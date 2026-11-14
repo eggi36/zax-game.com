@@ -28,9 +28,46 @@
   var soundOn = load('localStorage', 'zaxSound') !== 'off';
   var base = (nav.getAttribute('data-sound-base') || 'assets/snd/');
   var SOUNDS = { 15: 'typing.mp3', 38: 'hover.mp3', 60: 'zap.mp3', 62: 'crackle.mp3' };
+  // Web Audio: Töne vorab laden und dekodieren, damit sie ohne Verzögerung starten.
+  // Browser geben Ton erst nach einer Eingabe frei (Klick, Taste, Berührung) –
+  // der AudioContext wird deshalb bei der ersten Eingabe fortgesetzt. Solange er
+  // gesperrt ist, werden Töne verworfen statt verspätet nachgespielt.
+  // Ohne Web Audio oder ohne fetch (file://) gilt der alte Weg über <audio>.
+  var AC = window.AudioContext || window.webkitAudioContext, ctx = null, buffers = {};
+  if (AC && window.fetch && location.protocol !== 'file:') {
+    try { ctx = new AC(); } catch (e) { ctx = null; }
+  }
+  if (ctx) {
+    Object.keys(SOUNDS).forEach(function (id) {
+      fetch(base + SOUNDS[id]).then(function (r) { if (!r.ok) throw r.status; return r.arrayBuffer(); })
+        .then(function (data) {
+          return new Promise(function (ok, fail) { var p = ctx.decodeAudioData(data, ok, fail); if (p && p.catch) p.catch(fail); });
+        })
+        .then(function (buf) { buffers[id] = buf; }, function () {});
+    });
+    var unlock = function () {
+      if (ctx.state === 'running') return;
+      var p = ctx.resume(); if (p && p.catch) p.catch(function () {});
+      // iOS braucht zusätzlich einen (stummen) Ton innerhalb der Eingabe
+      try { var s = ctx.createBufferSource(); s.buffer = ctx.createBuffer(1, 1, 22050); s.connect(ctx.destination); s.start(0); } catch (e) {}
+    };
+    ['pointerdown', 'mousedown', 'touchend', 'keydown'].forEach(function (ev) {
+      window.addEventListener(ev, unlock, { capture: true, passive: true });
+    });
+    unlock();
+  }
   var pool = {};
   function sound(id, vol) {
     if (!soundOn || !SOUNDS[id]) return;
+    if (ctx) {
+      if (ctx.state !== 'running' || !buffers[id]) return;
+      try {
+        var src = ctx.createBufferSource(), gain = ctx.createGain();
+        src.buffer = buffers[id]; gain.gain.value = vol || 0.6;
+        src.connect(gain); gain.connect(ctx.destination); src.start(0);
+      } catch (e) {}
+      return;
+    }
     try {
       var list = pool[id] || (pool[id] = []), a = null;
       for (var i = 0; i < list.length; i++) if (list[i].paused || list[i].ended) { a = list[i]; break; }
