@@ -45,4 +45,4 @@ Content building blocks:
 ## Origin and rights
 Fan project with no affiliation to the rights holders. Game content, graphics, texts and sounds © Reflexive Entertainment / JoWooD Productions or their legal successors.
 Navigation bar, frames, fonts and hover sound come from the original zax-game.com files; the original pages were reconstructed from Internet Archive copies.
-Images that were never archived are marked in the archive pages as red-hatched placeholders ("FEHLT" – missing) at their original size; no self-made reconstructions of graphics are included. The zax-game.com Flash files run via Ruffle (loaded from the unpkg.com CDN; works only online or through a web server, not via `file://`).
+Images that were never archived are marked in the archive pages as red-hatched placeholders ("FEHLT" – missing) at their original size; no self-made reconstructions of graphics are included. The zax-game.com Flash files run via Ruffle 0.7.1, bundled in `assets/ruffle/` (MIT/Apache-2.0; works only through a web server, not via `file://`). The site loads nothing from third-party servers.
