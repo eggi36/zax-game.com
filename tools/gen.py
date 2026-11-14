@@ -293,7 +293,7 @@ arch = [
  ('archive/zax-game.com_2004/index_flash.html', 'archive/shot_zax-game.com_gateway.png', 'zax-game.com – 2002 to 2004',
   'The official JoWooD site in English and German. Navigation and banner are the original Flash files, played with the Ruffle emulator.'),
  ('archive/jowood.com_2003/gamers/index.html', 'archive/shot_jowood.com_2003.png', 'jowood.com – January 2003',
-  'The game\'s pages on the publisher\'s site: the game, screenshots, demo, patches, reviews, system requirements and registration. Links to other JoWooD pages lead to the Internet Archive; the Zax logo and the screenshots were not preserved, the forms are disabled.'),
+  'The game\'s pages on the publisher\'s site in English and German: the game, screenshots, demo, patches, reviews, system requirements and registration. Links to other JoWooD pages lead to the Internet Archive; the Zax logo and most English screenshots were not preserved, the forms are disabled.'),
 ]
 ar = box('  <p>The original websites, restored from copies at the Internet Archive. They are shown as they were – with frames, period HTML and, where noted, Flash. Only archived material is shown: images that were never preserved are marked as missing.</p>', 'Archive')
 ar += '\n<div class="cards">\n' + ''.join(
