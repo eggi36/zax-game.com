@@ -1,0 +1,141 @@
+/* Zax: The Alien Hunter – Fan-Website im Stil von zax-game.com (JoWooD / Reflexive, 2001–2004)
+   Farben aus english/styles/zaxtext.css, Schriften aus der Flash-Navigation (top_nav.swf). */
+
+@font-face {            /* Punktmatrix-Schrift der Anzeige (Font 12), ergänzt */
+  font-family: "Zelon Dots";
+  src: url(../fonts/ZelonDots.woff) format("woff"), url(../fonts/ZelonDots.ttf) format("truetype");
+  font-display: swap;
+}
+@font-face {            /* Menüschrift (Font 1), ergänzt */
+  font-family: "Zelon Bold";
+  src: url(../fonts/ZelonBold.woff) format("woff"), url(../fonts/ZelonBold.ttf) format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --zax-blue: #31a8da;   /* .zax */
+  --zax-title: #66ccff;  /* .titles */
+  --zax-light: #85d9fc;  /* .lightblue */
+  --zax-glow: #8fe3fe;   /* Menü/Anzeige im Flash */
+  --zax-white: #eafaff;  /* Menü Hover */
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #000; color: var(--zax-light); font: 13px/1.55 Arial, Helvetica, sans-serif; }
+a { color: #fff; }
+a:hover, a:focus { color: var(--zax-light); }
+img { border: 0; }
+
+.page { width: 797px; max-width: 100%; margin: 0 auto; }
+
+/* ---------- Navigationsleiste (Nachbau von top_nav.swf) ---------- */
+.navbar-wrap { height: calc(107px * var(--nav-scale, 1)); overflow: hidden; }
+.navbar {
+  position: relative; width: 797px; height: 107px;
+  background: url(../ui/navbar.jpg) no-repeat;
+  transform-origin: left top; transform: scale(var(--nav-scale, 1));
+}
+.navbar .home-link { position: absolute; left: 0; top: 0; width: 155px; height: 92px; }
+
+/* Punktmatrix-Anzeige in der Leiste: Seitentitel, beim Überfahren der Menüpunkt */
+.navbar .display {
+  position: absolute; left: 368px; top: 60px; transform: translateX(-50%);
+  margin: 0; white-space: nowrap; pointer-events: none;
+  font: normal 15px/14px "Zelon Dots", monospace; color: var(--zax-glow); text-transform: uppercase;
+}
+.navbar .display .page-text { display: inline-block; transform-origin: 50% 55%; }
+/* Geisterbilder wie in top_nav.swf: aufgehellt, +2 px / −3 px versetzt, 84 % Höhe */
+.navbar .display .ghost {
+  position: absolute; left: 0; top: 0; width: 100%; text-align: center; visibility: hidden;
+  color: #d4f4ff; transform: scaleY(.84); transform-origin: 50% 55%;
+}
+.navbar .display .ghost + .ghost { left: -3px; }
+.navbar .display .ghost:first-of-type { left: 2px; }
+
+/* Original-Animationen (assets/js/nav.js): die SVG-Ebene zeichnet die Leiste selbst */
+.navbar .nav-anim { position: absolute; left: 0; top: 0; pointer-events: none; }
+.navbar.animated { background: #000; }
+.navbar.animated .menu li { visibility: hidden; }
+.navbar.animated .menu li.on { visibility: visible; }
+.navbar.booting .display, .navbar.booting .menu { visibility: hidden; }
+
+/* Menü im Monitor rechts (bis zu 7 Einträge) */
+.navbar .menu {
+  position: absolute; right: 16px; top: 12px; margin: 0; padding: 0; list-style: none;
+  display: flex; flex-direction: column; gap: 0;
+}
+.navbar .menu li { height: 10.5px; display: flex; justify-content: flex-end; }
+.navbar .menu a {
+  display: flex; align-items: center; gap: 3px; height: 10.5px; text-decoration: none;
+  font: normal 10px/10.5px "Zelon Bold", "Arial Narrow", sans-serif; color: var(--zax-glow);
+  text-transform: uppercase; transform: scaleX(1.2); transform-origin: right center; white-space: nowrap;
+}
+.navbar .menu .cursor { visibility: hidden; height: 8.5px; width: auto; }
+.navbar .menu a:hover, .navbar .menu a:focus, .navbar .menu a[aria-current] { color: var(--zax-white); }
+.navbar .menu a:hover .cursor, .navbar .menu a:focus .cursor, .navbar .menu a[aria-current] .cursor { visibility: visible; }
+
+/* ---------- Inhalte ---------- */
+main { padding: 18px 13px 0; }
+.row { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 14px; }
+.row > .side { flex: 0 0 auto; }
+.row > .side img { display: block; }
+.row > .content { flex: 1 1 auto; min-width: 0; }
+
+.box {                                 /* blauer Rahmen aus den Original-Eckgrafiken */
+  border-style: solid; border-width: 20px 20px 30px 20px;
+  border-image: url(../ui/box.png) 20 20 30 20 fill stretch;
+  padding: 0 6px; margin-bottom: 14px; display: flow-root;
+}
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+.title { color: var(--zax-title); font-weight: bold; font-size: 11px; letter-spacing: .03em; text-transform: uppercase; margin: 0 0 .9em; }
+.box p { margin: 0 0 1em; }
+.box h3 { color: #fff; font-size: 12px; margin: 1.2em 0 .3em; }
+.box h3:first-child { margin-top: 0; }
+.box ul { margin: 0 0 1em; padding-left: 18px; }
+.box li { margin-bottom: .35em; }
+.small { font-size: 11px; color: #5fa9c7; }
+.date { display: block; color: #fff; font-size: 11px; letter-spacing: .05em; }
+.dots { font-family: "Zelon Dots", monospace; color: var(--zax-glow); text-transform: uppercase; font-size: 15px; line-height: 1.2; }
+
+.item { display: flow-root; }
+.item + .item { margin-top: 1.4em; padding-top: 1.2em; border-top: 1px solid #12394a; }
+.item img { float: left; margin: 0 16px 6px 0; }
+
+.faq dt { color: #fff; font-weight: bold; margin-top: .9em; }
+.faq dd { margin: .2em 0 0; }
+
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.card .shot { display: block; width: 100%; height: auto; border: 1px solid #12394a; margin: 0 0 8px; }
+
+.repo { font-family: "Zelon Bold", Arial, sans-serif; font-size: 14px; letter-spacing: .02em; color: #fff; text-decoration: none; }
+.tag { display: inline-block; font-size: 10px; color: #000; background: var(--zax-blue); padding: 0 5px; border-radius: 2px; margin-left: 6px; vertical-align: 2px; }
+
+.credits { display: flex; justify-content: space-around; align-items: flex-end; text-align: center; font-size: 10px; color: #6fa7c0; }
+.credits img { display: block; margin: 3px auto 0; }
+
+footer { margin: 26px 13px 20px; padding-top: 8px; border-top: 1px solid #123; color: #4d7d93; font-size: 10px; text-align: center; }
+footer a { color: #6fa7c0; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.mobile-menu { display: none; }
+
+@media (max-width: 700px) {
+  .navbar .menu { display: none; }
+  .mobile-menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; padding: 8px 10px 2px; }
+  .mobile-menu a { font: 14px/1.4 "Zelon Bold", "Arial Narrow", sans-serif; text-transform: uppercase; color: var(--zax-glow); text-decoration: none; letter-spacing: .03em; }
+  .mobile-menu a[aria-current] { color: var(--zax-white); }
+  .row { flex-direction: column; align-items: center; }
+  .row > .content { width: 100%; }
+  .cards { grid-template-columns: 1fr; }
+  .item img { float: none; display: block; margin: 0 auto 8px; }
+}
+
+.sound-toggle { font: inherit; color: var(--zax-glow); background: none; border: 1px solid #12394a; border-radius: 2px; padding: 0 6px; cursor: pointer; margin-top: 6px; }
+.sound-toggle:hover, .sound-toggle:focus { color: var(--zax-white); }
+
+/* Erster Besuch: Inhalt erst nach der Bootsequenz der Leiste einblenden */
+.zax-boot main, .zax-boot footer, .zax-boot .mobile-menu { visibility: hidden; }
+.zax-reveal main, .zax-reveal footer, .zax-reveal .mobile-menu { animation: zax-in .4s ease-out; }
+@keyframes zax-in { from { opacity: 0; } to { opacity: 1; } }

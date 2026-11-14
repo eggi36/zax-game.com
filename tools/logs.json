@@ -1,0 +1,312 @@
+[
+ {
+  "date": "01/05/01",
+  "sections": [
+   {
+    "name": "Programmer's Log",
+    "people": [
+     {
+      "name": "James",
+      "items": [
+       "Setup new e-mail accounts for everyone who had an account on @Home.",
+       "Spent more time trying new things to get VPN working.",
+       "Spent more time figure out what equipment we need to buy to get your T1 line working.",
+       "Made it possible to put particle generators on explosion's using the model's default entity.",
+       "Fixed lots a little crash bugs and other bugs.",
+       "Fixed the talon art to have the correct sequence names to it would render the upper body.",
+       "Help Tony get projectiles and particle systems working."
+      ]
+     },
+     {
+      "name": "Steve",
+      "items": [
+       "Fixed bug with Cave Dwellers, restoring previous functionality (they weren't spitting bug spit ... they were just walking like Egyptians)",
+       "Modified all models with split bodies to use CEntityAnimatedUpperBody instead of CEntityAnimated.",
+       "Modified CLayerGame::FixLegacyData() to replace the upper body's CEntityAnimated with CEntityAnimatedUpperBody.",
+       "Modified CLayerGame::FixLegacyData() to make sure that all targs use the \"Charge\" animation for pursuing their target.",
+       "Modified CLayerGame::FixLegacyData() to make sure that all targs use a min attack distance of 0 so that the \"Charge\" animation is used during attack."
+      ]
+     },
+     {
+      "name": "Loren",
+      "items": [
+       "I spent alot of this week working on CGravityObstacles...",
+       "I also spent much time trying to get my head around networking to get that into Zax... I now have a working implementation of Client-Server rendering for Zax, as well as a primitive game lobby where you can select a map...",
+       "I did some work extending CJResponseDialog for net game..."
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Artist's Log",
+    "people": [
+     {
+      "name": "Jeff",
+      "items": [
+       "This week I fixed the OM door, cut apart draw bridge, and made new water and water banks."
+      ]
+     },
+     {
+      "name": "Tony",
+      "items": [
+       "I finished making the projectiles & explosions for the weapons.",
+       "Working on creating new explosions for the boxes of dynamite.",
+       "Created portrait of Aza-Pan."
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Level Designer's Log",
+    "people": [
+     {
+      "name": "Jym",
+      "items": [
+       "Double checking and fixing relocate commands.",
+       "Adding new water banks.",
+       "Exchanged old light beam start for new model for all levels used.",
+       "Playing through to determine where to place 'exploding barrels'.",
+       "Continuing to exchange masks for renderable polys.",
+       "Replaced opening script with new script and added new ship into M1 Main."
+      ]
+     },
+     {
+      "name": "Chris",
+      "items": [
+       "added enemies to M17 tech main.",
+       "added mission definition to M19 start.",
+       "tuned dialog with azah in M15 pits 2.",
+       "tuned dialog at the drill in M16 drill main, also adjusted the treatment of the objectives.",
+       "replaced old artwork for switches and locks for doors that needed them.",
+       "adjusted the wall pieces and top masks for the drill sequence in M16.",
+       "fixed all of the camp fires in the wasteland so they are now half heigth.",
+       "made locks use the right key animation in all of the pits.",
+       "added a sequence of the working korbo being freed from pits1 in M15.",
+       "fixing the sequence with Jispur at his prison area.",
+       "M15 main, revamped dialog in the beginning and with din, made din hide and come out when you find him.",
+       "added some fluff to a slave sequence going on behind din when you find him.",
+       "broke up the find and kill azah pan objective, so it is find first then kill later.",
+       "setting relocate return to map values.",
+       "cleaned up the lava flow in M15 main.",
+       "removed test map poly's from M16 hydro maps.",
+       "finished of the deathmatch temple map, and added a naming convention to rooms and teleporters. This map is ready to be converted by the programmers.",
+       "started a hydro death match map that uses three different tile sets (om ship, volcano metal walls and hdryo plant) thats all I can remember (off the top of my head :)"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "date": "12/15/00",
+  "sections": [
+   {
+    "name": "Programmer's Log",
+    "people": [
+     {
+      "name": "James",
+      "items": [
+       "Worked on multi-player code.",
+       "Helped everyone else with their projects.",
+       "Upgraded the file server to Windows 2000 Server.",
+       "Upgraded Source Off Site to 3.01.",
+       "Working on enabling remote access / virtual private networking (VPN)."
+      ]
+     },
+     {
+      "name": "Steve",
+      "items": [
+       "Fixed bug in SentinonAI that causes Sentinon to deploy when player is within range but not visible (i.e., Sentinon apparently could see through walls but not fire through them ... now Sentinon can't see through walls either). Side effect of this fix is that Sentinon will be collideable when idle, but I really don't think this is a significant thing. If it is, someone let me know.",
+       "Removed all the conditional compilation stuff for NO_SET_FACING_ANGLE. Once checked in, this will have a wide impact so I am going to be working to minimize that impact by getting into a lot of StarTrek code that uses SetFacingAngle(), replacing those obsolete calls with appropriate new calls.",
+       "Added CEntityAnimatedUpperBody to handle upper body stuff, as opposed to using CEntityAnimated for upper bodies.",
+       "Modified Crater model to use CEntityAnimatedUpperBody. More work needs to be done to restore all previous functionality. Expect some anomalies with this change, please report any errant behavior to Steve.",
+       "Added property to move behavior which allows for specification of alternate sequence, such as Targ using a charge animation."
+      ]
+     },
+     {
+      "name": "Loren",
+      "items": [
+       "Got Zax \"Drop\" button to work... many changes resulted from this... I still need to get dropped items to fall in predictable places and not paint you into a corner.",
+       "Added ability to set a powerup to respawn in one of three modes.",
+       "Made *ALL* collidable polygons flash if wrapped backwards or self-crossing... there is no option to disable this, because it is always considered a bad thing... Things like the ship and targ dens need a big concaved polygon to work right.",
+       "Starting to look into net-game stuff...",
+       "Worked primarily on SDL port:",
+       "non-trivial Unix file-parsing code... (added case insensitivity, symbolic-link infinite cycle traversal, dot-file support, etc.)",
+       "Broke out 2-d and 3-d audio seperately:",
+       "2-d audio will be handled by SDL_mixer which I put togeather a skeleton binding for.",
+       "3-d audio will be handled by OpenAL, and is currently turned off on non-windows builds",
+       "preliminarly added Tcl/Tk support for dialogs (SDL has no provisions for multiple windows), Tcl/Tk [aka \"wish\"] is a seperate executable so it need no special linking considerations... This probably confines us to targets with windowing systems... I'd like to address this later.",
+       "finished a preliminary implementation of the event loop... including massive keyboard changes... reformatted keyboard lookup table on both SDL and win32 targets.",
+       "it looks like it's now getting as far as trying to draw to the screen...",
+       "added some direct-play stubs to get john's new lobby code compiling.",
+       "Still trying to get my head around networking...",
+       "dealt with some \"falling\" code, includeing grenades in STAT..."
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Artist's Log",
+    "people": [
+     {
+      "name": "Jeff",
+      "items": [
+       "Reanimated Zax's Walk.",
+       "Made several variations of Korbo working.",
+       "Alternate door for Om level.",
+       "Started working on new water.",
+       "Concepted the Main Menu for Zax."
+      ]
+     },
+     {
+      "name": "Mike",
+      "items": [
+       "Completed texturing of the ZAX ship."
+      ]
+     },
+     {
+      "name": "Tony",
+      "items": [
+       "I'm working on projectiles & explosions for the new weapons."
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Level Designer's Log",
+    "people": [
+     {
+      "name": "Jym",
+      "items": [
+       "Added Dialog to Earthquake poly in M3.",
+       "Finished Din sequence in M15 N. Wastes.",
+       "Finished scripting to Jispur in M16.",
+       "Added minerals to Secrets in M16 - M18.",
+       "Replaced locks in Volcano Pits levels.",
+       "Added Metal Virus Machine to M20.",
+       "Completed M21 Double Trouble.",
+       "Added Mission Objective to Mindaza for 'sharp object'.",
+       "Removing Masks and adding individual renderable polys to all caves, pits and temple maps. Act 1 completed.",
+       "Setting return map function throughout all levels.",
+       "Continuing to replace masks with renderable polys.",
+       "Map basics completed thru M22, now playable from M1 to M22.",
+       "Adding enemies, resources and scripts to M20.",
+       "Adding working slave Korbos to cave and pit areas."
+      ]
+     },
+     {
+      "name": "Chris",
+      "items": [
+       "I have been constructing a death match map since friday of last week. I have converted a single player map to a deathmatch style layout. It will be seenat show and tell today.",
+       "Still finishing my deathmatch map. It is now in sourcesafe in levels/multiplayer."
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "date": "12/08/00",
+  "sections": [
+   {
+    "name": "Programmer's Log",
+    "people": [
+     {
+      "name": "James",
+      "items": [
+       "Mostly helped everyone else with their respective tasks.",
+       "Has a design meeting to figure out several nagging issues in the Zax design.",
+       "Working on multiplayer mode.",
+       "Fixed disabled hot keys in JWindows.",
+       "Made materials generator enforce limits for number of items.",
+       "New \"generator\" cheat code for testing.",
+       "Weapons show ammo count in inventory.",
+       "Trying to get companion drones working."
+      ]
+     },
+     {
+      "name": "Steve",
+      "items": [
+       "Continuing to clean up and retro-document AI code.",
+       "Eliminated SetFacingAngle() function, wrapping change in conditional compilation structure (to avoid breaking too much stuff until I get the rest worked out).",
+       "Added separate functions to CEntityAnimated for specifying and retrieving movement angle and aiming angle.",
+       "Inserted class between CEntityBehaviorTurnToAngleBase and both CEntityBehaviorTurnToAngle and CEntityBehaviorTurnToTarget(CEntityBehaviorTurnMovingAngle and CEntityBehaviorTurnAimingAngle, respectively) to ensure that new functions for specifying and retrieving movement and aiming angle are used.",
+       "Began adding code to A.I.'s to allow bad guys to aim and shoot in different directions."
+      ]
+     },
+     {
+      "name": "Loren",
+      "items": [
+       "Worked on finishing up SaveGame GUI issues... Some minor things remain issues, but it is now functionally complete.",
+       "Got a new PropertyEditor on arrays to support out-of-order insertion/removal of items.",
+       "Finished up remaining major issues with Zax's SaveGame Gui.",
+       "Implemented a new editing system for arrays so users can do out of order inserts and deletes in PropertyArrayPropertys and ObjectArrayPropertys.",
+       "Ported ShakeScreen Action from STAT to Zax. *)",
+       "Got Zax to compile under linux ...again.",
+       "I added a backwards compatible array count to ObjectArrayPropertys... this should fix some things in save-games (I hope)",
+       "I added a PlasmaTile Generator to the TilePallette for Chris et al.",
+       "I made ConfigControl (Which does the keyboard remapping) support an arbitray number of \"Actions\".",
+       "Implemented \"Drop\" in Zax... (Unfortunately this requires loading all Item models at startup...)",
+       "Fixed Zax's ship's model's polygon to no longer be inside out... this was required so you could drop things inside the ship. (otherwise they landed outside the ship."
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Artist's Log",
+    "people": [
+     {
+      "name": "Jeff",
+      "items": [
+       "This week I made Mendaza and Partha. I also made all but one of the character portraits."
+      ]
+     },
+     {
+      "name": "Mike",
+      "items": [
+       "Completed building exploding barrels for ZAX began texturing Zax spaceship."
+      ]
+     },
+     {
+      "name": "Tony",
+      "items": [
+       "Finished creating light staff pedestal.",
+       "Finished adding loudspeakers to temple.",
+       "Finished creating door switch for Northern Wasteland.",
+       "Working on Spawn control panel destruction."
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Level Designer's Log",
+    "people": [
+     {
+      "name": "Jym",
+      "items": [
+       "Added Mission Descriptions to M14 thru M20.",
+       "Completed Drill Script (M15-M18).",
+       "Added NIS to M19 Tribal Council.",
+       "Finished adding Korbo aid to M19.",
+       "Have Act 3 levels through M20 in working order.",
+       "Added relay to Mindaza in M10 to determine which Relics are still needed by player.",
+       "Added Korbo to instruct player which drill pieces are still missing and where they go on the drill.",
+       "Beginning to work on basics of M21.",
+       "Will need to complete M21 Double Trouble, incomplete map."
+      ]
+     },
+     {
+      "name": "Chris",
+      "items": [
+       "Completed all the cheats for act 1 and up to M10. made them all function the same way.",
+       "In the process of adding dialog to be triggered when you approach a cheat console that explains what actions happen when you collide with it.",
+       "Cleaned up some minor flaws throughout the above mention missions.",
+       "Started play testing Act3, writing down issues and spot fixing them with Jym.",
+       "In the process of making a sample deathmatch map."
+      ]
+     }
+    ]
+   }
+  ]
+ }
+]

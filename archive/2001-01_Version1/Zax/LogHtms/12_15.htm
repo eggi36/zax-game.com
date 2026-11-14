@@ -1,0 +1,236 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" link="#999999" vlink="#999999" alink="#999999">
+<table width="90%" border="0" cellpadding="0" cellspacing="0" align="left">
+  <tr> 
+    <td align="left" width="50%"><font color="#CC9900" face="Arial, Helvetica, sans-serif" size="3"><b>Logs 
+      </b><font size="2">(12/15/00)<b> </b></font></font></td>
+    <td align="left" width="50%"><font color="#CC9900" face="Arial, Helvetica, sans-serif" size="2"><a href="Archive.htm" target="_self">Log 
+      Archive</a> &#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+      </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font color="#CC9900" face="Arial, Helvetica, sans-serif" size="2"> 
+      <a href="../Logs.htm" target="_self">Current Log</a></font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><font size="2" color="#996600" face="Arial, Helvetica, sans-serif"><b> Programmer's 
+  Log </b></font></p>
+<p><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"><b>James 
+  </b><br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  Worked on multi-player code.<br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  Helped 
+  everyone else with their projects.<br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  Upgraded 
+  the file server to Windows 2000 Server. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Upgraded 
+  Source Off Site to 3.01.<br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Working 
+  on enabling remote access / virtual private networking (VPN).</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"><b>Steve</b><br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC">Fixed 
+  bug in SentinonAI that causes Sentinon to deploy when player is within range 
+  but not visible (i.e., Sentinon apparently could see through walls but not fire 
+  through them ... now Sentinon can't see through walls either). Side effect of 
+  this fix is that Sentinon will be collideable when idle, but I really don't 
+  think this is a significant thing. If it is, someone let me know. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC">Removed 
+  all the conditional compilation stuff for NO_SET_FACING_ANGLE. Once checked 
+  in, this will have a wide impact so I am going to be working to minimize that 
+  impact by getting into a lot of StarTrek code that uses SetFacingAngle(), replacing 
+  those obsolete calls with appropriate new calls. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC">Added 
+  CEntityAnimatedUpperBody to handle upper body stuff, as opposed to using CEntityAnimated 
+  for upper bodies. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC">Modified 
+  Crater model to use CEntityAnimatedUpperBody. More work needs to be done to 
+  restore all previous functionality. Expect some anomalies with this change, 
+  please report any errant behavior to Steve. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC">Added 
+  property to move behavior which allows for specification of alternate sequence, 
+  such as Targ using a charge animation. </font></p>
+<p><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"><b>Loren<br>
+  </b></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Got 
+  Zax &quot;Drop&quot; button to work... many changes resulted from this... I 
+  still need to get dropped items to fall in predictable places and not paint 
+  you into a corner. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Added 
+  ability to set a powerup to respawn in one of three modes. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Made 
+  *ALL* collidable polygons flash if wrapped backwards or self-crossing... there 
+  is no option to disable this, because it is always considered a bad thing... 
+  Things like the ship and targ dens need a big concaved polygon to work right. 
+  <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Starting 
+  to look into net-game stuff... <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">(Vacation) 
+  Worked primarily on SDL port: <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">non-trivial 
+  Unix file-parsing code... (added case insensitivity, symbolic-link infinite 
+  cycle traversal, dot-file support, etc.) <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Broke 
+  out 2-d and 3-d audio seperately: <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">2-d 
+  audio will be handled by SDL_mixer which I put togeather a skeleton binding 
+  for. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">3-d 
+  audio will be handled by OpenAL, and is currently turned off on non-windows 
+  builds<br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">preliminarly 
+  added Tcl/Tk support for dialogs (SDL has no provisions for multiple windows), 
+  Tcl/Tk [aka &quot;wish&quot;] is a seperate executable so it need no special 
+  linking considerations... This probably confines us to targets with windowing 
+  systems... I'd like to address this later. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">finished 
+  a preliminary implementation of the event loop... including massive keyboard 
+  changes... reformatted keyboard lookup table on both SDL and win32 targets. 
+  <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">it 
+  looks like it's now getting as far as trying to draw to the screen... <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">added 
+  some direct-play stubs to get john's new lobby code compiling. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Still 
+  trying to get my head around networking... <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">dealt 
+  with some &quot;falling&quot; code, includeing grenades in STAT...</font></p>
+<p><font size="2" color="#996600" face="Arial, Helvetica, sans-serif"><b>Artist's 
+  Log </b></font></p>
+<p><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"><b>Jeff</b><br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Reanimated 
+  Zax's Walk. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Made 
+  several variations of Korbo working. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Alternate 
+  door for Om level. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Started 
+  working on new water. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Concepted 
+  the Main Menu for Zax.</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"><b>Mike</b><br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  Completed texturing of the ZAX ship.</font></p>
+<p><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"><b>Tony</b></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900"><br>
+  &#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  I'm working on projectiles &amp; explosions for the new weapons.</font></p>
+<p><font size="2" color="#996600" face="Arial, Helvetica, sans-serif"><b>Level 
+  Designer's Log </b></font></p>
+<p><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"><b>Jym</b><br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Added 
+  Dialog to Earthquake poly in M3. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Finished 
+  Din sequence in M15 N. Wastes. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Finished 
+  scripting to Jispur in M16. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Added 
+  minerals to Secrets in M16 - M18. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Replaced 
+  locks in Volcano Pits levels. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Added 
+  Metal Virus Machine to M20. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Completed 
+  M21 Double Trouble. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Added 
+  Mission Objective to Mindaza for 'sharp object'. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Removing 
+  Masks and adding individual renderable polys to all caves, pits and temple maps. 
+  Act 1 completed. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Setting 
+  return map function throughout all levels. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Continuing 
+  to replace masks with renderable polys. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Map 
+  basics completed thru M22, now playable from M1 to M22. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Adding 
+  enemies, resources and scripts to M20. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><font color="#CCCCCC"></font></font><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"></font><font face="Arial, Helvetica, sans-serif" size="2" color="#CCCCCC"></font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC">Adding 
+  working slave Korbos to cave and pit areas.<br>
+  </font></p>
+<p><font color="#CCCCCC" size="2" face="Arial, Helvetica, sans-serif"><b>Chris</b><br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  I have been constructing a death match map since friday of last week. I have 
+  converted a single player map to a deathmatch style layout. It will be seenat 
+  show and tell today. <br>
+  </font><font size="2" face="Arial, Helvetica, sans-serif" color="#CC9900">&#149;</font><font size="2" face="Arial, Helvetica, sans-serif" color="#CCCCCC"> 
+  Still finishing my deathmatch map. It is now in sourcesafe in levels/multiplayer.<br>
+  </font> </p>
+</body>
+</html>
