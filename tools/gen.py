@@ -166,7 +166,7 @@ demos = [
  ('ZaxDemo_2001-08-06_Build1308.exe', '6 August 2001', '1308', '1 August 2001', '50.9 MB',
   'Technically the EXE of the full version without copy protection – only its smaller data set makes it a demo.'),
 ]
-dl = box('''  <h3>Playable demos (2001)</h3>
+official = box('''  <h3>Playable demos (2001)</h3>
   <p>Three demo versions were released in the summer of 2001. All three contain the same five levels. Each download is the original Windows installer.</p>
   <ul class="downloads">
 ''' + ''.join(f'''    <li><a href="{REL}{f}"><b>Demo of {d}</b></a> – build {b}, EXE dated {e} ({s})<br>{t}</li>
@@ -176,12 +176,13 @@ dl = box('''  <h3>Playable demos (2001)</h3>
   <p><a href="''' + REL + '''Zax_French_Patch.zip"><b>Zax_French_Patch.zip</b></a> (3 KB, February 2002) – fixes the crash in mission 10 of the French version. Copy <code>1French.RED</code> into the Zax folder (where <code>Zax.exe</code> is); save games keep working.</p>
   <h3>Wallpapers</h3>
   <p>The wallpaper section of the official site was a Flash file that has not been preserved.</p>
-''', 'Downloads')
-dl += '\n' + box('''  <ul class="downloads">
+''', 'Official downloads')
+community = box('''  <ul class="downloads">
     <li><a href="https://github.com/eggi36/zax-launcher/releases"><b>Zax-Launcher</b></a> – a launcher for the original <code>Zax.exe</code>: start directly into any map with a start point and difficulty of your choice, a “Load Map” button in the game menu, and the developer switches still hidden in the exe (debug log, frame rate, cheats and more). The exe itself is not modified; full support for build 1308/1309 without copy protection.</li>
     <li><a href="https://github.com/eggi36/zax-editor/releases"><b>Zax Editor</b></a> – a level editor for Zax maps: objects, polygons, ground, surfaces, mini map, transitions and dialogue scripts, own graphics, a model viewer and a “Test in game” button. English with a German translation.</li>
   </ul>
   <p class="small">Fan-made tools, not affiliated with the rights holders. More projects around the game are listed on the <a href="projects.html">Projects</a> page.</p>''', 'Community downloads')
+dl = community + '\n' + official
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
 # ---------------------------------------------------------------- News & Links (+ Developer Logs)
