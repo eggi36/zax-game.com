@@ -23,7 +23,7 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
 ## Archiv (`archive/`)
 - Originalseiten aus dem Internet Archive: reflexive.net/Zax (Jan/Apr/Dez 2001) und zax-game.com.
 - Regel: nur echtes archiviertes Material. Nie archivierte Bilder bleiben als rot schraffierte
-  „FEHLT“-Platzhalter in Originalgröße stehen; keine selbst rekonstruierten Grafiken einfügen.
+  „MISSING“-Platzhalter in Originalgröße stehen; keine selbst rekonstruierten Grafiken einfügen.
 - zax-game.com: Flash läuft über Ruffle (lokal in `assets/ruffle/`) in `index_flash.html` und `*/top_nav.html`.
 - Nichts von fremden Servern einbinden (Datenschutz). Nie archivierte Frames/Flash-Filme zeigen `archive/missing.html?<name>`.
 

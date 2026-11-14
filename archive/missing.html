@@ -3,23 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<title>FEHLT</title>
+<title>MISSING</title>
 <!-- fan-site archive: placeholder for a frame or Flash movie that was never archived -->
 <style>
   html, body { margin: 0; height: 100%; background: #000; }
   .missing {
     box-sizing: border-box; height: 100%; min-height: 18px; overflow: hidden;
-    border: 1px solid #c00; color: #f99; font: 11px Arial, Helvetica, sans-serif;
-    display: flex; align-items: center; padding: 0 4px; white-space: nowrap;
-    background: repeating-linear-gradient(135deg, #400 0 3px, #2a0000 3px 6px);
+    /* same look as the missing-image GIFs: 1px diagonal line every 8px */
+    border: 1px solid #ff3c3c; color: #ffc8c8; font: 9px Arial, Helvetica, sans-serif;
+    display: flex; align-items: center; padding: 0 3px; white-space: nowrap;
+    background: #280000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' shape-rendering='crispEdges' fill='%236e0000'%3E%3Crect x='0' y='0' width='1' height='1'/%3E%3Crect x='7' y='1' width='1' height='1'/%3E%3Crect x='6' y='2' width='1' height='1'/%3E%3Crect x='5' y='3' width='1' height='1'/%3E%3Crect x='4' y='4' width='1' height='1'/%3E%3Crect x='3' y='5' width='1' height='1'/%3E%3Crect x='2' y='6' width='1' height='1'/%3E%3Crect x='1' y='7' width='1' height='1'/%3E%3C/svg%3E") 0 0 / 8px 8px repeat;
   }
 </style>
 </head>
 <body>
-<div class="missing" id="m">FEHLT</div>
+<div class="missing" id="m">MISSING</div>
 <script>
   var n = decodeURIComponent(location.search.slice(1)).replace(/[<>&"]/g, '');
-  if (n) document.getElementById('m').textContent = 'FEHLT: ' + n;
+  if (n) document.getElementById('m').textContent = 'MISSING: ' + n;
 </script>
 </body>
 </html>
