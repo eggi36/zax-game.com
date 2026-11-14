@@ -3,7 +3,7 @@
 Fan website for *Zax: The Alien Hunter* (Reflexive Entertainment / JoWooD, 2001), in the style of the official site **zax-game.com**.
 Static HTML/CSS plus a small navigation script – runs directly on GitHub Pages.
 
-**Live:** https://eggi36.github.io/zax-game.com/
+**Live:** https://zax-game.com/
 
 ## Pages
 | File | Content |
