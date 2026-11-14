@@ -1,48 +1,48 @@
 # Zax: The Alien Hunter – Fan Site
 
-Fan-Website zu *Zax: The Alien Hunter* (Reflexive Entertainment / JoWooD, 2001) im Stil der offiziellen Seite **zax-game.com**.
-Statisches HTML/CSS, ein kleines Skript für die Navigation – läuft direkt auf GitHub Pages.
+Fan website for *Zax: The Alien Hunter* (Reflexive Entertainment / JoWooD, 2001), in the style of the official site **zax-game.com**.
+Static HTML/CSS plus a small navigation script – runs directly on GitHub Pages.
 
-## Seiten
-| Datei | Inhalt |
+**Live:** https://eggi36.github.io/zax-game.com/
+
+## Pages
+| File | Content |
 |---|---|
 | `index.html` | Homepage |
-| `mission-briefing.html` | Story + offizielles FAQ |
-| `profiles.html` | Charaktere |
-| `weapons.html` | Waffen |
-| `downloads.html` | Demo-Mirrors, verlorene Dateien |
-| `news-links.html`, `logs.html` | Neuigkeiten, Entwickler-Logs 2000/2001, Links |
-| `projects.html` | eigene Projekte (zax-formats, zax-editor, zax-launcher, zax-decomp) |
-| `archive.html`, `archive/` | die vier Original-Websites aus dem Internet Archive, nur mit archiviertem Material |
+| `mission-briefing.html` | Story + official FAQ |
+| `profiles.html` | Characters |
+| `weapons.html` | Weapons |
+| `downloads.html` | Demo mirrors, lost files |
+| `news-links.html`, `logs.html` | News, developer logs 2000/2001, links |
+| `projects.html` | Related projects (zax-formats, zax-editor, zax-launcher, zax-decomp) |
+| `archive.html`, `archive/` | The four original websites from the Internet Archive, archived material only |
 
-## Bearbeiten
-Kopf, Menü und Fußzeile stehen in **`tools/gen.py`**, ebenso die Texte der Seiten. Nach Änderungen:
+## Editing
+Header, menu and footer live in **`tools/gen.py`**, as do the page texts. After making changes:
 ```
-python3 tools/gen.py        # benötigt Python 3 + Pillow
+python3 tools/gen.py        # requires Python 3 + Pillow
 ```
-Das Menü steht oben in `MENU` (Datei, Menütext, Text der Punktmatrix-Anzeige). Im Monitor der Leiste haben **höchstens 7 Einträge** Platz;
-auf schmalen Bildschirmen erscheint stattdessen eine Menüzeile unter der Leiste.
-Die Seiten im Ordner `archive/` werden vom Generator nicht angefasst.
+The menu is defined at the top in `MENU` (file, menu label, dot-matrix display text). The monitor in the navigation bar fits **at most 7 entries**;
+on narrow screens a menu row appears below the bar instead.
+The pages in `archive/` are not touched by the generator.
 
-Inhaltsbausteine:
+To preview locally, run `python3 -m http.server` in the repository root (the Flash pages need a web server, not `file://`).
+
+Content building blocks:
 ```html
-<div class="box"><p class="title">Überschrift</p><p>Text …</p></div>
-<div class="item"><img …><h3>Name</h3><p>Text …</p></div>   <!-- in einer Box, Bild links -->
-<span class="dots">Text in Punktmatrix-Schrift</span>
+<div class="box"><p class="title">Heading</p><p>Text …</p></div>
+<div class="item"><img …><h3>Name</h3><p>Text …</p></div>   <!-- inside a box, image on the left -->
+<span class="dots">Text in dot-matrix font</span>
 ```
 
-## Schriften
-- **Zelon Dots** (`assets/fonts/ZelonDots.*`) – Punktmatrix-Schrift der Anzeige, aus der Flash-Navigation ausgelesen (5×5-Raster).
-  Original: A–I, K–P, R–U, W, Z, &. Ergänzt: J Q V X Y, Ziffern, Satzzeichen, Ä Ö Ü ß.
-- **Zelon Bold** (`assets/fonts/ZelonBold.*`) – Menüschrift, aus der Flash-Navigation ausgelesen.
-  Original: A–I, K–P, R–Z, Ä, &, Komma, Punkt; ergänzt: J und Q aus U/O gebaut, Ö Ü, Ziffern und Satzzeichen nach DejaVu Sans Condensed Bold.
-- Neu erzeugen: `tools/fonts/build_dotfont.py`, `tools/fonts/build_boldfont.py` (Python + fontTools; Bold zusätzlich numpy, OpenCV und DejaVu Sans Condensed Bold).
+## Fonts
+- **Zelon Dots** (`assets/fonts/ZelonDots.*`) – dot-matrix font of the display, extracted from the Flash navigation (5×5 grid).
+  Original: A–I, K–P, R–U, W, Z, &. Added: J Q V X Y, digits, punctuation, Ä Ö Ü ß.
+- **Zelon Bold** (`assets/fonts/ZelonBold.*`) – menu font, extracted from the Flash navigation.
+  Original: A–I, K–P, R–Z, Ä, &, comma, period; added: J and Q built from U/O, Ö Ü, digits and punctuation based on DejaVu Sans Condensed Bold.
+- To rebuild: `tools/fonts/build_dotfont.py`, `tools/fonts/build_boldfont.py` (Python + fontTools; Bold additionally needs numpy, OpenCV and DejaVu Sans Condensed Bold).
 
-## Zu prüfen
-- **Projekttexte** in `tools/gen.py` (`repos`) sind aus den Repo-Namen abgeleitet – bitte durch eigene Beschreibungen ersetzen.
-- Datum unter „Site news“ anpassen.
-
-## Herkunft und Rechte
-Fan-Projekt ohne Verbindung zu den Rechteinhabern. Spielinhalte, Grafiken, Texte und Sounds © Reflexive Entertainment / JoWooD Productions bzw. deren Rechtsnachfolger.
-Navigationsleiste, Rahmen, Schriften und Hover-Ton stammen aus den Originaldateien von zax-game.com; die Originalseiten wurden aus Kopien des Internet Archive rekonstruiert.
-Bilder, die nie archiviert wurden, sind in den Archivseiten als rot schraffierte Platzhalter („FEHLT“) in Originalgröße markiert; selbst rekonstruierte Grafiken sind nicht enthalten. Die Flash-Dateien von zax-game.com laufen über Ruffle (per CDN von unpkg.com eingebunden; funktioniert nur online bzw. über einen Webserver, nicht per file://).
+## Origin and rights
+Fan project with no affiliation to the rights holders. Game content, graphics, texts and sounds © Reflexive Entertainment / JoWooD Productions or their legal successors.
+Navigation bar, frames, fonts and hover sound come from the original zax-game.com files; the original pages were reconstructed from Internet Archive copies.
+Images that were never archived are marked in the archive pages as red-hatched placeholders ("FEHLT" – missing) at their original size; no self-made reconstructions of graphics are included. The zax-game.com Flash files run via Ruffle (loaded from the unpkg.com CDN; works only online or through a web server, not via `file://`).
