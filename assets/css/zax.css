@@ -94,6 +94,7 @@ main { padding: 18px 13px 0; }
 .box h3:first-child { margin-top: 0; }
 .box ul { margin: 0 0 1em; padding-left: 18px; }
 .box li { margin-bottom: .35em; }
+.box ul.downloads li { margin-bottom: .8em; }
 .small { font-size: 11px; color: #5fa9c7; }
 .date { display: block; color: #fff; font-size: 11px; letter-spacing: .05em; }
 .dots { font-family: "Zelon Dots", monospace; color: var(--zax-glow); text-transform: uppercase; font-size: 15px; line-height: 1.2; }

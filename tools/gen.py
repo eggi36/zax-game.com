@@ -157,16 +157,23 @@ wp = box('\n'.join(f'  <div class="item">{img("assets/img/weapons/"+f, n)}<h3>{n
 page('weapons.html', 'Weapons', 'Weapons', wp, 'weapons.html')
 
 # ---------------------------------------------------------------- Downloads
-dl = box('''  <h3>Playable demo (2001)</h3>
-  <p>The official demo (<code>Zax Demo.exe</code>, about 50 MB) is no longer available from Reflexive or JoWooD. It is still mirrored on several download sites:</p>
-  <ul>
-    <li><a href="https://www.gamepressure.com/download/zax-the-alien-hunter-demo/zb4a6">gamepressure.com</a></li>
-    <li><a href="https://games.softpedia.com/get/Games-Demo/Zax-The-Alien-Hunter.shtml">Softpedia</a></li>
-    <li><a href="https://www.pcgames.de/Zax-The-Alien-Hunter-Spiel-43742/Downloads/Zax-The-Alien-Hunter-spielbare-Demoversion-10635/">PC Games (German)</a></li>
-  </ul>
-  <p class="small">Minimum system requirements: Pentium II 233 MHz, 32 MB RAM. Mirrors are external sites – check the files before running them.</p>
+REL = 'https://github.com/eggi36/zax-game.com/releases/download/downloads/'
+demos = [
+ ('ZaxDemo_2001-07-01_Build890.exe', '1 July 2001', '890', '30 June 2001', '50.0 MB',
+  'The earliest demo, from an older stage of the engine. It is the only build with 3D positional sound via DirectSound3D and EAX.'),
+ ('ZaxDemo_2001-07-19_Build950.exe', '19 July 2001', '950', '18 July 2001', '50.1 MB',
+  'An intermediate build shortly before the full version, without the positional sound of the first demo.'),
+ ('ZaxDemo_2001-08-06_Build1308.exe', '6 August 2001', '1308', '1 August 2001', '50.9 MB',
+  'Technically the EXE of the full version without copy protection – only its smaller data set makes it a demo.'),
+]
+dl = box('''  <h3>Playable demos (2001)</h3>
+  <p>Three demo versions were released in the summer of 2001. All three contain the same five levels. Each download is the original Windows installer.</p>
+  <ul class="downloads">
+''' + ''.join(f'''    <li><a href="{REL}{f}"><b>Demo of {d}</b></a> – build {b}, EXE dated {e} ({s})<br>{t}</li>
+''' for f, d, b, e, s, t in demos) + '''  </ul>
+  <p class="small">Minimum system requirements: Pentium II 233 MHz, 32 MB RAM. File list and SHA-256 checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>.</p>
   <h3>French patch</h3>
-  <p>The official site offered a patch for a crash in mission 10 of the French version (<code>Zax_French_Patch.zip</code>). The file was not preserved by the Internet Archive.</p>
+  <p><a href="''' + REL + '''Zax_French_Patch.zip"><b>Zax_French_Patch.zip</b></a> (3 KB, February 2002) – fixes the crash in mission 10 of the French version. Copy <code>1French.RED</code> into the Zax folder (where <code>Zax.exe</code> is); save games keep working.</p>
   <h3>Wallpapers</h3>
   <p>The wallpaper section of the official site was a Flash file that has not been preserved.</p>
   <h3>Fan tools</h3>
