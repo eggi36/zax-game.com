@@ -177,11 +177,28 @@ official = box('''  <h3>Playable demos (2001)</h3>
   <h3>Wallpapers</h3>
   <p>The wallpaper section of the official site was a Flash file that has not been preserved.</p>
 ''', 'Official downloads')
-community = box('''  <ul class="downloads">
+packs = [
+ ('Zax_Fix_Levels.zip', 'Level fixes', '0.8 MB', '<code>DataFixes.RED</code> – fixes script errors in ten levels: Valeth\'s ore cave in mission 7, misspelt trigger targets in missions 5, 14 and 21, the mission log in the Mining maps, the Sun key in the Assimilate Temple and more. Works with every language. Note: the Slave Main key door now raises the alarm, so that level is harder than in the original.'),
+ ('Zax_Fix_English.zip', 'English fix', '35 KB', '<code>EnglishFix.RED</code> – spelling, grammar and wrong names in menus, objectives, dialogue and item texts; dialogue matches the spoken voice.'),
+ ('Zax_Fix_German.zip', 'German fix', '42 KB', '<code>GermanFix.RED</code> – wrong translations, duplicate menu shortcuts, 28 missing texts and 5 multiplayer map names, 37 broken item labels. Needs <code>GERMAN.RED</code>.'),
+ ('Zax_Fix_French.zip', 'French fix', '0.4 MB', '<code>0FrenchFix.RED</code> – fixes the mission 10 crash like the official patch, adds 33 missing texts and corrects about 30 translations. Needs <code>0French.RED</code>. Not yet tested in the game.'),
+ ('Zax_Fix_Spanish.zip', 'Spanish fix', '0.5 MB', '<code>0SpanishFix.RED</code> – a broken weapon text, three voice lines that played in English, missing item and weapon names. Needs <code>0Spanish.RED</code>.'),
+ ('Zax_Fix_Polish.zip', 'Polish fix', '0.3 MB', '<code>PolishFix.RED</code> – Polish voice lines that never played, a speaker without portrait, missing texts and misspellings. Needs <code>Polish.red</code>.'),
+ ('Zax_Fix_Chinese.zip', 'Chinese fix', '32 KB', '<code>0ChineseFix.RED</code> – readable multiplayer texts (they were garbled), a missing item description and weapon name. Chinese Simplified edition only.'),
+ ('Zax_LanguagePack_Russian.zip', 'Russian language pack', '83 MB', '<code>RUSSIAN.RED</code> – the Russian texts and voices of the Russian edition for the standard game data, with repaired voice files and missing texts added.'),
+ ('Zax_LanguagePack_Czech.zip', 'Czech language pack', '50 KB', '<code>Czech.RED</code> – the Czech community translation of 2004 (translation: Dr. Mephisto, technique: Blackbird) for the standard game data; no patched <code>Zax.exe</code> needed, mission 18 no longer ends the game.'),
+]
+community = box('''  <h3>Tools</h3>
+  <ul class="downloads">
     <li><a href="https://github.com/eggi36/zax-launcher/releases"><b>Zax-Launcher</b></a> – a launcher for the original <code>Zax.exe</code>: start directly into any map with a start point and difficulty of your choice, a “Load Map” button in the game menu, and the developer switches still hidden in the exe (debug log, frame rate, cheats and more). The exe itself is not modified; full support for build 1308/1309 without copy protection.</li>
     <li><a href="https://github.com/eggi36/zax-editor/releases"><b>Zax Editor</b></a> – a level editor for Zax maps: objects, polygons, ground, surfaces, mini map, transitions and dialogue scripts, own graphics, a model viewer and a “Test in game” button. English with a German translation.</li>
   </ul>
-  <p class="small">Fan-made tools, not affiliated with the rights holders. More projects around the game are listed on the <a href="projects.html">Projects</a> page.</p>''', 'Community downloads')
+  <h3>Fix packs and language packs</h3>
+  <p>Each ZIP holds one <code>.RED</code> file and a README. Put the <code>.RED</code> file into the game folder next to <code>Zax.exe</code> and <code>DATA.dat</code> – the game loads every <code>.RED</code> file there in alphabetical order. Use one language at a time; the level fixes combine with any of them. All packs need the original game.</p>
+  <ul class="downloads">
+''' + ''.join(f'''    <li><a href="{REL}{f}"><b>{n}</b></a> ({s}) – {t}</li>
+''' for f, n, s, t in packs) + '''  </ul>
+  <p class="small">Fan-made tools and packs, not affiliated with the rights holders. Checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>. More projects around the game are listed on the <a href="projects.html">Projects</a> page.</p>''', 'Community downloads')
 dl = community + '\n' + official
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
