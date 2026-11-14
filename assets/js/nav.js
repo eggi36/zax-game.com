@@ -32,38 +32,41 @@
   // Browser geben Ton erst nach einer Eingabe frei (Klick, Taste, Berührung) –
   // der AudioContext wird deshalb bei der ersten Eingabe fortgesetzt. Solange er
   // gesperrt ist, werden Töne verworfen statt verspätet nachgespielt.
-  // Ohne Web Audio oder ohne fetch (file://) gilt der alte Weg über <audio>.
-  var AC = window.AudioContext || window.webkitAudioContext, ctx = null, buffers = {};
-  if (AC && window.fetch && location.protocol !== 'file:') {
-    try { ctx = new AC(); } catch (e) { ctx = null; }
+  // Ohne Web Audio oder ohne fetch (file://) – und für jeden Ton, dessen Laden
+  // fehlschlug – gilt der alte Weg über <audio>.
+  // Bei ausgeschaltetem Ton wird nichts geladen; erst das Einschalten lädt.
+  var AC = window.AudioContext || window.webkitAudioContext, ctx = null, buffers = {}, failed = {};
+  function unlock() {
+    if (!ctx || ctx.state === 'running') return;
+    var p = ctx.resume(); if (p && p.catch) p.catch(function () {});
+    // iOS braucht zusätzlich einen (stummen) Ton innerhalb der Eingabe
+    try { var s = ctx.createBufferSource(); s.buffer = ctx.createBuffer(1, 1, 22050); s.connect(ctx.destination); s.start(0); } catch (e) {}
   }
-  if (ctx) {
+  function loadSounds() {
+    if (ctx || !AC || !window.fetch || location.protocol === 'file:') return;
+    try { ctx = new AC(); } catch (e) { ctx = null; return; }
     Object.keys(SOUNDS).forEach(function (id) {
       fetch(base + SOUNDS[id]).then(function (r) { if (!r.ok) throw r.status; return r.arrayBuffer(); })
         .then(function (data) {
           return new Promise(function (ok, fail) { var p = ctx.decodeAudioData(data, ok, fail); if (p && p.catch) p.catch(fail); });
         })
-        .then(function (buf) { buffers[id] = buf; }, function () {});
+        .then(function (buf) { buffers[id] = buf; }, function () { failed[id] = true; });
     });
-    var unlock = function () {
-      if (ctx.state === 'running') return;
-      var p = ctx.resume(); if (p && p.catch) p.catch(function () {});
-      // iOS braucht zusätzlich einen (stummen) Ton innerhalb der Eingabe
-      try { var s = ctx.createBufferSource(); s.buffer = ctx.createBuffer(1, 1, 22050); s.connect(ctx.destination); s.start(0); } catch (e) {}
-    };
     ['pointerdown', 'mousedown', 'touchend', 'keydown'].forEach(function (ev) {
       window.addEventListener(ev, unlock, { capture: true, passive: true });
     });
     unlock();
   }
+  if (soundOn) loadSounds();
   var pool = {};
   function sound(id, vol) {
     if (!soundOn || !SOUNDS[id]) return;
-    if (ctx) {
+    if (vol === undefined) vol = 0.6;
+    if (ctx && !failed[id]) {
       if (ctx.state !== 'running' || !buffers[id]) return;
       try {
         var src = ctx.createBufferSource(), gain = ctx.createGain();
-        src.buffer = buffers[id]; gain.gain.value = vol || 0.6;
+        src.buffer = buffers[id]; gain.gain.value = vol;
         src.connect(gain); gain.connect(ctx.destination); src.start(0);
       } catch (e) {}
       return;
@@ -72,7 +75,7 @@
       var list = pool[id] || (pool[id] = []), a = null;
       for (var i = 0; i < list.length; i++) if (list[i].paused || list[i].ended) { a = list[i]; break; }
       if (!a) { if (list.length > 3) return; a = new Audio(base + SOUNDS[id]); list.push(a); }
-      a.volume = vol || 0.6; a.currentTime = 0;
+      a.volume = vol; a.currentTime = 0;
       var p = a.play(); if (p && p.catch) p.catch(function () {});
     } catch (e) {}
   }
@@ -80,7 +83,10 @@
   function showToggle() { if (toggle) { toggle.textContent = 'Sound: ' + (soundOn ? 'on' : 'off'); toggle.setAttribute('aria-pressed', soundOn ? 'true' : 'false'); } }
   if (toggle) {
     toggle.hidden = false; showToggle();
-    toggle.addEventListener('click', function () { soundOn = !soundOn; save('localStorage', 'zaxSound', soundOn ? 'on' : 'off'); showToggle(); });
+    toggle.addEventListener('click', function () {
+      soundOn = !soundOn; save('localStorage', 'zaxSound', soundOn ? 'on' : 'off'); showToggle();
+      if (soundOn) { loadSounds(); unlock(); }   // der Klick selbst gibt den Ton frei
+    });
   }
 
   // ---------------------------------------------------------------- Skalierung
@@ -282,7 +288,7 @@
     display.appendChild(ghostA); display.appendChild(ghostB);
   }
   function showTitle(text, delayFrames, withSound, done) {
-    if (!display) return;
+    if (!display) { if (done) done(); return; }
     clearInterval(dispTimer);
     var f = -delayFrames, label = display.querySelector('.page-text');
     var Y = [0.38, 0.59, 0.79, 1], A = [0.2, 0.47, 0.73, 1], GH = [4, 7, 11];

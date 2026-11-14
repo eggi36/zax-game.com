@@ -2,6 +2,7 @@
 und ergänzt fehlende Zeichen im selben 5x5-Raster."""
 import json, math, os
 HERE=os.path.dirname(os.path.abspath(__file__))
+OUT=os.path.join(HERE,'..','..','assets','fonts')
 from fontTools.fontBuilder import FontBuilder
 from fontTools.pens.ttGlyphPen import TTGlyphPen
 G=json.load(open(os.path.join(HERE,'dotfont_grid.json')))
@@ -90,7 +91,7 @@ fb.setupHorizontalHeader(ascent=1000,descent=-120)
 fb.setupNameTable({'familyName':'Zelon Dots','styleName':'Regular','copyright':'Glyphen nach der Flash-Navigation von zax-game.com (JoWooD/Reflexive 2001); ergänzt für ein Fan-Projekt'})
 fb.setupOS2(sTypoAscender=1000,sTypoDescender=-120,usWinAscent=1000,usWinDescent=120)
 fb.setupPost()
-fb.save('ZelonDots.ttf')
-fb.font.flavor='woff'; fb.font.save('ZelonDots.woff')
+fb.save(os.path.join(OUT,'ZelonDots.ttf'))
+fb.font.flavor='woff'; fb.font.save(os.path.join(OUT,'ZelonDots.woff'))
 json.dump({'original':sorted(orig),'neu':sorted(set(glyphs)-set(orig))},open('glyphs.json','w'),ensure_ascii=False,indent=1)
 print('Zeichen:',''.join(sorted(glyphs)))

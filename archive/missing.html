@@ -19,7 +19,8 @@
 <body>
 <div class="missing" id="m">MISSING</div>
 <script>
-  var n = decodeURIComponent(location.search.slice(1)).replace(/[<>&"]/g, '');
+  var n = location.search.slice(1);
+  try { n = decodeURIComponent(n); } catch (e) {}
   if (n) document.getElementById('m').textContent = 'MISSING: ' + n;
 </script>
 </body>

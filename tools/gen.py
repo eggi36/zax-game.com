@@ -158,35 +158,53 @@ page('weapons.html', 'Weapons', 'Weapons', wp, 'weapons.html')
 
 # ---------------------------------------------------------------- Downloads
 REL = 'https://github.com/eggi36/zax-game.com/releases/download/downloads/'
+# Dateigrößen aus dem Release lesen (GitHub-API); offline gilt der zuletzt gespeicherte Stand.
+SIZES_CACHE = os.path.join(SITE, 'tools', 'downloads.json')
+def release_sizes():
+    import urllib.request
+    try:
+        req = urllib.request.Request('https://api.github.com/repos/eggi36/zax-game.com/releases/tags/downloads',
+                                     headers={'Accept': 'application/vnd.github+json', 'User-Agent': 'zax-site-gen'})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            sizes = {a['name']: a['size'] for a in json.load(r)['assets']}
+        json.dump(sizes, open(SIZES_CACHE, 'w'), indent=1, sort_keys=True)
+        return sizes
+    except Exception as e:
+        print('Release nicht erreichbar, nehme', os.path.basename(SIZES_CACHE), '-', e)
+        return json.load(open(SIZES_CACHE))
+SIZES = release_sizes()
+def size(name):
+    b = SIZES[name]   # KeyError = Datei fehlt im Release
+    return f'{b / 1e6:.1f} MB' if b >= 1e6 else f'{max(1, round(b / 1e3))} KB'
 demos = [
- ('ZaxDemo_2001-07-01_Build890.exe', '1 July 2001', '890', '30 June 2001', '50.0 MB',
+ ('ZaxDemo_2001-07-01_Build890.exe', '1 July 2001', '890', '30 June 2001',
   'The earliest demo, from an older stage of the engine. It is the only build with 3D positional sound via DirectSound3D and EAX.'),
- ('ZaxDemo_2001-07-19_Build950.exe', '19 July 2001', '950', '18 July 2001', '50.1 MB',
+ ('ZaxDemo_2001-07-19_Build950.exe', '19 July 2001', '950', '18 July 2001',
   'An intermediate build shortly before the full version, without the positional sound of the first demo.'),
- ('ZaxDemo_2001-08-06_Build1308.exe', '6 August 2001', '1308', '1 August 2001', '50.9 MB',
+ ('ZaxDemo_2001-08-06_Build1308.exe', '6 August 2001', '1308', '1 August 2001',
   'Technically the EXE of the full version without copy protection – only its smaller data set makes it a demo.'),
 ]
 official = box('''  <h3>Playable demos (2001)</h3>
   <p>Three demo versions were released in the summer of 2001. All three contain the same five levels. Each download is the original Windows installer.</p>
   <ul class="downloads">
-''' + ''.join(f'''    <li><a href="{REL}{f}"><b>Demo of {d}</b></a> – build {b}, EXE dated {e} ({s})<br>{t}</li>
-''' for f, d, b, e, s, t in demos) + '''  </ul>
+''' + ''.join(f'''    <li><a href="{REL}{f}"><b>Demo of {d}</b></a> – build {b}, EXE dated {e} ({size(f)})<br>{t}</li>
+''' for f, d, b, e, t in demos) + '''  </ul>
   <p class="small">Minimum system requirements: Pentium II 233 MHz, 32 MB RAM. File list and SHA-256 checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>.</p>
   <h3>French patch</h3>
-  <p><a href="''' + REL + '''Zax_French_Patch.zip"><b>Zax_French_Patch.zip</b></a> (3 KB, February 2002) – fixes the crash in mission 10 of the French version. Copy <code>1French.RED</code> into the Zax folder (where <code>Zax.exe</code> is); save games keep working.</p>
+  <p><a href="''' + REL + '''Zax_French_Patch.zip"><b>Zax_French_Patch.zip</b></a> (''' + size('Zax_French_Patch.zip') + ''', February 2002) – fixes the crash in mission 10 of the French version. Copy <code>1French.RED</code> into the Zax folder (where <code>Zax.exe</code> is); save games keep working.</p>
   <h3>Wallpapers</h3>
   <p>The wallpaper section of the official site was a Flash file that has not been preserved.</p>
 ''', 'Official downloads')
 packs = [
- ('Zax_Fix_Levels.zip', 'Level fixes', '0.8 MB', '<code>DataFixes.RED</code> – fixes script errors in ten levels: Valeth\'s ore cave in mission 7, misspelt trigger targets in missions 5, 14 and 21, the mission log in the Mining maps, the Sun key in the Assimilate Temple and more. Works with every language. Note: the Slave Main key door now raises the alarm, so that level is harder than in the original.'),
- ('Zax_Fix_English.zip', 'English fix', '35 KB', '<code>EnglishFix.RED</code> – spelling, grammar and wrong names in menus, objectives, dialogue and item texts; dialogue matches the spoken voice.'),
- ('Zax_Fix_German.zip', 'German fix', '42 KB', '<code>GermanFix.RED</code> – wrong translations, duplicate menu shortcuts, 28 missing texts and 5 multiplayer map names, 37 broken item labels. Needs <code>GERMAN.RED</code>.'),
- ('Zax_Fix_French.zip', 'French fix', '0.4 MB', '<code>0FrenchFix.RED</code> – fixes the mission 10 crash like the official patch, adds 33 missing texts and corrects about 30 translations. Needs <code>0French.RED</code>. Not yet tested in the game.'),
- ('Zax_Fix_Spanish.zip', 'Spanish fix', '0.5 MB', '<code>0SpanishFix.RED</code> – a broken weapon text, three voice lines that played in English, missing item and weapon names. Needs <code>0Spanish.RED</code>.'),
- ('Zax_Fix_Polish.zip', 'Polish fix', '0.3 MB', '<code>PolishFix.RED</code> – Polish voice lines that never played, a speaker without portrait, missing texts and misspellings. Needs <code>Polish.red</code>.'),
- ('Zax_Fix_Chinese.zip', 'Chinese fix', '32 KB', '<code>0ChineseFix.RED</code> – readable multiplayer texts (they were garbled), a missing item description and weapon name. Chinese Simplified edition only.'),
- ('Zax_LanguagePack_Russian.zip', 'Russian language pack', '83 MB', '<code>RUSSIAN.RED</code> – the Russian texts and voices of the Russian edition for the standard game data, with repaired voice files and missing texts added.'),
- ('Zax_LanguagePack_Czech.zip', 'Czech language pack', '50 KB', '<code>Czech.RED</code> – the Czech community translation of 2004 (translation: Dr. Mephisto, technique: Blackbird) for the standard game data; no patched <code>Zax.exe</code> needed, mission 18 no longer ends the game.'),
+ ('Zax_Fix_Levels.zip', 'Level fixes', '<code>DataFixes.RED</code> – fixes script errors in ten levels: Valeth\'s ore cave in mission 7, misspelt trigger targets in missions 5, 14 and 21, the mission log in the Mining maps, the Sun key in the Assimilate Temple and more. Works with every language. Note: the Slave Main key door now raises the alarm, so that level is harder than in the original.'),
+ ('Zax_Fix_English.zip', 'English fix', '<code>EnglishFix.RED</code> – spelling, grammar and wrong names in menus, objectives, dialogue and item texts; dialogue matches the spoken voice.'),
+ ('Zax_Fix_German.zip', 'German fix', '<code>GermanFix.RED</code> – wrong translations, duplicate menu shortcuts, 28 missing texts and 5 multiplayer map names, 37 broken item labels. Needs <code>GERMAN.RED</code>.'),
+ ('Zax_Fix_French.zip', 'French fix', '<code>0FrenchFix.RED</code> – fixes the mission 10 crash like the official patch, adds 33 missing texts and corrects about 30 translations. Needs <code>0French.RED</code>. Not yet tested in the game.'),
+ ('Zax_Fix_Spanish.zip', 'Spanish fix', '<code>0SpanishFix.RED</code> – a broken weapon text, three voice lines that played in English, missing item and weapon names. Needs <code>0Spanish.RED</code>.'),
+ ('Zax_Fix_Polish.zip', 'Polish fix', '<code>PolishFix.RED</code> – Polish voice lines that never played, a speaker without portrait, missing texts and misspellings. Needs <code>Polish.red</code>.'),
+ ('Zax_Fix_Chinese.zip', 'Chinese fix', '<code>0ChineseFix.RED</code> – readable multiplayer texts (they were garbled), a missing item description and weapon name. Chinese Simplified edition only.'),
+ ('Zax_LanguagePack_Russian.zip', 'Russian language pack', '<code>RUSSIAN.RED</code> – the Russian texts and voices of the Russian edition for the standard game data, with repaired voice files and missing texts added.'),
+ ('Zax_LanguagePack_Czech.zip', 'Czech language pack', '<code>Czech.RED</code> – the Czech community translation of 2004 (translation: Dr. Mephisto, technique: Blackbird) for the standard game data; no patched <code>Zax.exe</code> needed, mission 18 no longer ends the game.'),
 ]
 community = box('''  <h3>Tools</h3>
   <ul class="downloads">
@@ -196,8 +214,8 @@ community = box('''  <h3>Tools</h3>
   <h3>Fix packs and language packs</h3>
   <p>Each ZIP holds one <code>.RED</code> file and a README. Put the <code>.RED</code> file into the game folder next to <code>Zax.exe</code> and <code>DATA.dat</code> – the game loads every <code>.RED</code> file there in alphabetical order. Use one language at a time; the level fixes combine with any of them. All packs need the original game.</p>
   <ul class="downloads">
-''' + ''.join(f'''    <li><a href="{REL}{f}"><b>{n}</b></a> ({s}) – {t}</li>
-''' for f, n, s, t in packs) + '''  </ul>
+''' + ''.join(f'''    <li><a href="{REL}{f}"><b>{n}</b></a> ({size(f)}) – {t}</li>
+''' for f, n, t in packs) + '''  </ul>
   <p class="small">Fan-made tools and packs, not affiliated with the rights holders. Checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>. More projects around the game are listed on the <a href="projects.html">Projects</a> page.</p>''', 'Community downloads')
 dl = community + '\n' + official
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')

@@ -2,6 +2,7 @@
 Originalglyphen als Vektoren; J, Q, Ö, Ü aus Originalteilen; Ziffern/Satzzeichen aus DejaVu Sans Condensed Bold angepasst."""
 import json, math, os, numpy as np, cv2
 HERE=os.path.dirname(os.path.abspath(__file__))
+OUT=os.path.join(HERE,'..','..','assets','fonts')
 from fontTools.fontBuilder import FontBuilder
 from fontTools.pens.ttGlyphPen import TTGlyphPen
 from fontTools.pens.transformPen import TransformPen
@@ -136,5 +137,5 @@ fb.setupHorizontalHeader(ascent=960,descent=-200)
 fb.setupNameTable({'familyName':'Zelon Bold','styleName':'Regular','copyright':'Glyphen nach der Flash-Navigation von zax-game.com (2001); Ziffern/Satzzeichen nach DejaVu Sans Condensed Bold (Bitstream Vera Lizenz); Fan-Projekt'})
 fb.setupOS2(sTypoAscender=960,sTypoDescender=-200,usWinAscent=1000,usWinDescent=220)
 fb.setupPost()
-fb.save('ZelonBold.ttf'); fb.font.flavor='woff'; fb.font.save('ZelonBold.woff')
+fb.save(os.path.join(OUT,'ZelonBold.ttf')); fb.font.flavor='woff'; fb.font.save(os.path.join(OUT,'ZelonBold.woff'))
 print(''.join(c for c in chars))
