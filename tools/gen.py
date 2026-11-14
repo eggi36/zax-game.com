@@ -298,4 +298,22 @@ ar += '\n<div class="cards">\n' + ''.join(
     f'<div class="box card"><p class="title">{t}</p><a href="{u}" target="_blank" rel="noopener">{img(s, t, "shot")}</a><p>{d}</p><p><a href="{u}" target="_blank" rel="noopener">Open</a></p></div>\n'
     for u, s, t, d in arch) + '</div>'
 page('archive.html', 'Archive', 'Archive', ar, 'archive.html')
+
+# ---------------------------------------------------------------- Weiterleitungen alter Adressen
+# GitHub Pages kann keine Server-Weiterleitungen: Meta-Refresh + JS + Link.
+REDIRECTS = {'index_flash.html': 'index.html'}
+for old, new in REDIRECTS.items():
+    open(os.path.join(SITE, old), 'w', encoding='utf-8').write(f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Zax: The Alien Hunter</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://zax-game.com/{'' if new == 'index.html' else new}">
+<meta http-equiv="refresh" content="0;url={new}">
+<script>location.replace('{new}' + location.hash);</script>
+</head>
+<body><a href="{new}">Continue to the Zax fan site</a></body>
+</html>
+''')
 print('ok')

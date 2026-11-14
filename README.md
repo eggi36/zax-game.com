@@ -15,6 +15,7 @@ Static HTML/CSS plus a small navigation script – runs directly on GitHub Pages
 | `downloads.html` | Demo mirrors, lost files |
 | `news-links.html`, `logs.html` | News, developer logs 2000/2001, links |
 | `projects.html` | Related projects (zax-formats, zax-editor, zax-launcher, zax-decomp) |
+| `index_flash.html` | Redirect from the old zax-game.com start address to the homepage |
 | `archive.html`, `archive/` | The four original websites from the Internet Archive, archived material only |
 
 ## Editing
