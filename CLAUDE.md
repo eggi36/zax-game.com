@@ -21,7 +21,7 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
 - `assets/snd/` – Original-Töne aus top_nav.swf (hover, typing, zap, crackle).
 
 ## Archiv (`archive/`)
-- Originalseiten aus dem Internet Archive: reflexive.net/Zax (Jan/Apr/Dez 2001) und zax-game.com.
+- Originalseiten aus dem Internet Archive: reflexive.net/Zax (Jan/Apr/Dez 2001), zax-game.com und die Zax-Seite auf jowood.com (Jan 2003).
 - Regel: nur echtes archiviertes Material. Nie archivierte Bilder bleiben als rot schraffierte
   „MISSING“-Platzhalter in Originalgröße stehen; keine selbst rekonstruierten Grafiken einfügen.
 - zax-game.com: Flash läuft über Ruffle (lokal in `assets/ruffle/`) in `index_flash.html` und `*/top_nav.html`.

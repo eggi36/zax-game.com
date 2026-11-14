@@ -1,0 +1,224 @@
+.dropdownmenu_head
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 9pt;
+	COLOR:black;
+	font-weight:bold;
+	padding : 2;
+	padding-left: 2;
+	padding-right: 2;
+}
+
+.newsbuttonfont_head
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 9pt;
+	COLOR:white;
+	font-weight: normal;
+	padding : 2;
+	padding-left: 2;
+	padding-right: 2;
+}
+        
+.newsbuttonportal 
+{
+margin-top:1;
+margin-bottom:1;
+}
+
+.packshot 
+{
+	margin-top:2;
+	padding-left : 3;
+	padding-right : 20;
+    padding-top: 3;
+}
+
+.shopportalfont_text
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 10pt;
+	COLOR:black;
+	font-weight: normal;
+	padding : 2;
+	padding-right: 3;
+	padding-left: 3;
+	padding-bottom: 3;
+    padding-top : 4;
+}
+
+.shopportalfont_head
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 12pt;
+	COLOR:white;
+	font-weight: bold;
+	padding-top : 5;
+	padding-left: 3;
+	padding-right: 3;
+}
+    
+.newsportalfont_head
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 9pt;
+	COLOR:white;
+	font-weight: normal;
+	padding : 2;
+	padding-left: 3;
+	padding-right: 3;
+}
+
+.newsportalfont_text
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 8pt;
+	COLOR:black;
+	font-weight: normal;
+	padding : 2;
+	padding-right: 3;
+	padding-left: 3;
+}
+
+.newsbuttonfont_text
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 8pt;
+	COLOR:black;
+	font-weight: normal;
+	padding : 3;
+	padding-right: 3;
+	padding-left: 3;
+}
+
+.searchbuttonfont_text
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 12pt;
+	COLOR:black;
+	font-weight: normal;
+	padding : 3;
+	padding-right: 3;
+	padding-left: 3;
+}
+
+.newstext_head 
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 14pt;
+	COLOR:black;
+	font-weight: bold;
+    font-style :italic;
+    padding-top:12;
+    padding-bottom:12;
+    padding-right: 12;
+	padding-left: 12;
+}
+
+.newstext_text 
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 9pt;
+	COLOR:black;
+	font-weight: normal;
+	padding:12;
+	padding-right: 19;
+	padding-left: 12;
+}
+
+.unternews_text 
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 8pt;
+	COLOR:black;
+	font-weight: normal;
+	padding:4;
+	padding-left: 4;
+    padding-right: 10;
+}
+
+.patchtext_text 
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 9pt;
+	COLOR:black;
+	font-weight: normal;
+    padding:2;
+	padding-left:12;
+	padding-right: 16;
+}
+
+.patchtext_link 
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 9pt;
+	COLOR:black;
+	font-weight: normal;
+}
+
+.portal_head
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 9pt;
+	COLOR:white;;
+	font-weight: bold;
+	padding:1;
+	padding-right: 1;
+	padding-left: 1;
+}
+
+.normal2
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 8pt;
+	COLOR:black;
+	font-weight: normal;
+}
+
+.text 
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 7.5pt;
+	COLOR:black;
+	font-weight: normal;
+	padding : 2;
+	padding-left:2;
+	padding-right:2;
+}
+
+p 
+{
+	FONT-FAMILY: arial;
+	FONT-SIZE: 9pt;
+	COLOR:black;
+	font-weight: normal;
+    padding-right: 19;
+	padding-left: 12;
+}
+
+A:link 
+{
+	COLOR: white;
+	TEXT-DECORATION: underline;
+	font-weight: bold;
+	border : Black;
+	border:1;
+}
+
+A:active 
+{
+	TEXT-DECORATION: underline; COLOR: black;
+	font-weight: bold;
+}
+
+A:visited 
+{
+	COLOR: white; TEXT-DECORATION: underline; 
+	font-weight: bold;
+}
+
+A:hover 
+{
+	color: black;
+	font-weight: bold;
+}

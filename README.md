@@ -16,7 +16,7 @@ Static HTML/CSS plus a small navigation script – runs directly on GitHub Pages
 | `news-links.html`, `logs.html` | News, developer logs 2000/2001, links |
 | `projects.html` | Related projects (zax-formats, zax-editor, zax-launcher, zax-decomp) |
 | `index_flash.html` | Redirect from the old zax-game.com start address to the homepage |
-| `archive.html`, `archive/` | The four original websites from the Internet Archive, archived material only |
+| `archive.html`, `archive/` | The original websites (reflexive.net 2001, zax-game.com 2002–2004, jowood.com 2003) from the Internet Archive, archived material only |
 
 ## Editing
 Header, menu and footer live in **`tools/gen.py`**, as do the page texts. After making changes:
