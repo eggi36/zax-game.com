@@ -255,7 +255,7 @@ arch = [
 ]
 ar = box('  <p>The original websites, restored from copies at the Internet Archive. They are shown as they were – with frames, period HTML and, where noted, Flash. Only archived material is shown: images that were never preserved are marked as missing.</p>', 'Archive')
 ar += '\n<div class="cards">\n' + ''.join(
-    f'<div class="box card"><p class="title">{t}</p><a href="{u}">{img(s, t, "shot")}</a><p>{d}</p><p><a href="{u}">Open</a></p></div>\n'
+    f'<div class="box card"><p class="title">{t}</p><a href="{u}" target="_blank" rel="noopener">{img(s, t, "shot")}</a><p>{d}</p><p><a href="{u}" target="_blank" rel="noopener">Open</a></p></div>\n'
     for u, s, t, d in arch) + '</div>'
 page('archive.html', 'Archive', 'Archive', ar, 'archive.html')
 print('ok')
