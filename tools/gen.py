@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Erzeugt die Zax-Fan-Website (Stil zax-game.com). Inhalte stehen in diesem Skript bzw. in logs.json.
 Aufruf: python3 tools/gen.py   -> schreibt die HTML-Seiten ins Repo-Verzeichnis"""
-import json, html, os
+import json, html, os, re
 from PIL import Image
 
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # Repo-Wurzel
@@ -13,6 +13,7 @@ MENU = [
     ('news-links.html',       'News & Links',     'News & Links'),
     ('projects.html',         'Projects',         'Projects'),
     ('archive.html',          'Archive',          'Archive'),
+    ('sitemap.html',          'Sitemap',          'Sitemap'),
 ]
 
 def img(src, alt='', cls=None):
@@ -64,9 +65,10 @@ def page(filename, display, title, body, current=None):
 '''
     open(os.path.join(SITE, filename), 'w', encoding='utf-8').write(doc)
 
-def box(inner, title=None):
+def box(inner, title=None, id=None):
     t = f'  <p class="title">{title}</p>\n' if title else ''
-    return f'<div class="box">\n{t}{inner}\n</div>'
+    i = f' id="{id}"' if id else ''
+    return f'<div class="box"{i}>\n{t}{inner}\n</div>'
 
 def row(side, content):
     return f'<div class="row">\n  <div class="side">{side}</div>\n  <div class="content">\n{content}\n  </div>\n</div>'
@@ -196,7 +198,7 @@ official = box('''  <h3>Playable demos (2001)</h3>
   <p><a href="''' + REL + '''Zax_French_Patch.zip"><b>Zax_French_Patch.zip</b></a> (''' + size('Zax_French_Patch.zip') + ''', February 2002) – fixes the crash in mission 10 of the French version. Copy <code>1French.RED</code> into the Zax folder (where <code>Zax.exe</code> is); save games keep working.</p>
   <h3>Wallpapers</h3>
   <p>The wallpaper section of the official site was a Flash file that has not been preserved.</p>
-''', 'Official downloads')
+''', 'Official downloads', 'official')
 packs = [
  ('Zax_Fix_Levels.zip', 'Level fixes', '<code>DataFixes.RED</code> – fixes script errors in ten levels: Valeth\'s ore cave in mission 7, misspelt trigger targets in missions 5, 14 and 21, the mission log in the Mining maps, the Sun key in the Assimilate Temple and more. Works with every language. Note: the Slave Main key door now raises the alarm, so that level is harder than in the original.'),
  ('Zax_Fix_English.zip', 'English fix', '<code>EnglishFix.RED</code> – spelling, grammar and wrong names in menus, objectives, dialogue and item texts; dialogue matches the spoken voice.'),
@@ -218,7 +220,7 @@ community = box('''  <h3>Tools</h3>
   <ul class="downloads">
 ''' + ''.join(f'''    <li><a href="{REL}{f}"><b>{n}</b></a> ({size(f)}) – {t}</li>
 ''' for f, n, t in packs) + '''  </ul>
-  <p class="small">Fan-made tools and packs, not affiliated with the rights holders. Checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>. More projects around the game are listed on the <a href="projects.html">Projects</a> page.</p>''', 'Community downloads')
+  <p class="small">Fan-made tools and packs, not affiliated with the rights holders. Checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>. More projects around the game are listed on the <a href="projects.html">Projects</a> page.</p>''', 'Community downloads', 'community')
 dl = community + '\n' + official
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
@@ -249,15 +251,15 @@ links = [
   ('https://web.archive.org/web/2001/http://www.reflexive.net/Zax/', 'reflexive.net/Zax at the Internet Archive', ''),
   ('https://web.archive.org/web/2004/http://www.zax-game.com/', 'zax-game.com at the Internet Archive', '')]),
 ]
-nl = box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_site), 'Site news')
+nl = box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_site), 'Site news', 'site-news')
 nl += '\n' + box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_orig)
-                 + '  <p class="small">News from the official site by Reflexive Entertainment, 2000–2001.</p>', 'Development news 2000–2001')
-nl += '\n' + box('  <p>Every week the Reflexive team posted what they had been working on – programmers, artists and level designers. Three of these logs have survived: 12/08/00, 12/15/00 and 01/05/01.</p>\n  <p><a href="logs.html">Read the developer logs</a></p>', 'Developer logs')
+                 + '  <p class="small">News from the official site by Reflexive Entertainment, 2000–2001.</p>', 'Development news 2000–2001', 'development-news')
+nl += '\n' + box('  <p>Every week the Reflexive team posted what they had been working on – programmers, artists and level designers. Three of these logs have survived: 12/08/00, 12/15/00 and 01/05/01.</p>\n  <p><a href="logs.html">Read the developer logs</a></p>', 'Developer logs', 'developer-logs')
 lk = ''
 for head, entries in links:
     lk += f'  <h3>{head}</h3>\n  <ul>\n' + ''.join(
         f'    <li><a href="{u}">{n}</a>{" – " + d if d else ""}</li>\n' for u, n, d in entries) + '  </ul>\n'
-nl += '\n' + box(lk, 'Links')
+nl += '\n' + box(lk, 'Links', 'links')
 page('news-links.html', 'News & Links', 'News & Links', nl, 'news-links.html')
 
 logs = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs.json'), encoding='utf-8'))
@@ -269,7 +271,7 @@ for l in logs:
         for p in sec['people']:
             inner += f'  <p class="small" style="margin:.6em 0 .2em;color:#fff">{html.escape(p["name"])}</p>\n  <ul>\n' + ''.join(
                 f'    <li>{html.escape(i)}</li>\n' for i in p['items']) + '  </ul>\n'
-    lg += '\n' + box(inner, f'Log {l["date"]}')
+    lg += '\n' + box(inner, f'Log {l["date"]}', 'log-' + re.sub(r'\W+', '-', l['date']).strip('-'))
 page('logs.html', 'Developer Logs', 'Developer Logs', lg, 'news-links.html')
 
 # ---------------------------------------------------------------- Projects
@@ -302,6 +304,33 @@ ar += '\n<div class="cards">\n' + ''.join(
     f'<div class="box card"><p class="title">{t}</p><a href="{u}" target="_blank" rel="noopener">{img(s, t, "shot")}</a><p>{d}</p><p><a href="{u}" target="_blank" rel="noopener">Open</a></p></div>\n'
     for u, s, t, d in arch) + '</div>'
 page('archive.html', 'Archive', 'Archive', ar, 'archive.html')
+
+# ---------------------------------------------------------------- Sitemap (Seite im Menü + sitemap.xml)
+def sm_list(items):
+    return '<ul>\n' + ''.join(f'<li><a href="{h}">{html.escape(t)}</a>' + (sm_list(c) if c else '') + '</li>\n' for h, t, c in items) + '</ul>\n'
+SITEMAP = [
+ ('index.html', 'Homepage', []),
+ ('the-game.html', 'The Game', [(f'the-game.html#{a}', t, []) for a, t, _ in GAME_SECTIONS]),
+ ('downloads.html', 'Downloads', [('downloads.html#community', 'Community downloads – tools, fix packs and language packs', []),
+                                   ('downloads.html#official', 'Official downloads – demos and the French patch', []),
+                                   ('https://github.com/eggi36/zax-game.com/releases/tag/downloads', 'Release page with all files and checksums', [])]),
+ ('news-links.html', 'News & Links', [('news-links.html#site-news', 'Site news', []),
+                                       ('news-links.html#development-news', 'Development news 2000–2001', []),
+                                       ('logs.html', 'Developer logs', [('logs.html#log-' + re.sub(r'\W+', '-', l['date']).strip('-'), 'Log ' + l['date'], []) for l in logs]),
+                                       ('news-links.html#links', 'Links', [])]),
+ ('projects.html', 'Projects', []),
+ ('archive.html', 'Archive', [(u, t, []) for u, s_, t, d in arch]
+                              + [('archive/jowood.com_2003/gamers/index_de.html', 'jowood.com – January 2003, German pages', [])]),
+]
+smap = box('  <div class="sitemap">\n' + sm_list(SITEMAP) + '  </div>', 'Sitemap')
+page('sitemap.html', 'Sitemap', 'Sitemap', smap, 'sitemap.html')
+# Für Suchmaschinen: alle eigenen Seiten (ohne Weiterleitungen) und die Einstiegsseiten des Archivs
+urls = [h for h, _, _ in MENU] + ['index.html', 'logs.html'] + [u for u, *_ in arch] + ['archive/jowood.com_2003/gamers/index_de.html']
+urls = sorted(set(urls), key=lambda u: (u != 'index.html', u))
+open(os.path.join(SITE, 'sitemap.xml'), 'w', encoding='utf-8').write(
+    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    + ''.join(f'  <url><loc>https://zax-game.com/{"" if u == "index.html" else u}</loc></url>\n' for u in urls) + '</urlset>\n')
+open(os.path.join(SITE, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\nSitemap: https://zax-game.com/sitemap.xml\n')
 
 # ---------------------------------------------------------------- Weiterleitungen alter Adressen
 # GitHub Pages kann keine Server-Weiterleitungen: Meta-Refresh + JS + Link.
