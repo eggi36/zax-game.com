@@ -60,9 +60,10 @@ img { border: 0; }
 .navbar.booting .display, .navbar.booting .menu { visibility: hidden; }
 
 /* Menü im Monitor rechts (bis zu 7 Einträge). --n = Zahl der Einträge (aus tools/gen.py):
-   die Höhe von 7 Zeilen à 10,5 px (wie im Original) wird immer ganz gefüllt, die Schrift wächst mit. */
+   die Fläche (68 px hoch, mit Abstand zum unteren Rand des Monitors) wird immer ganz gefüllt,
+   die Schrift wächst mit (--k = 68 / 10,5 / n; 10 px Schrift bei 10,5 px Zeile). */
 .navbar .menu {
-  --n: 7; --row: calc(73.5px / var(--n)); --k: calc(7 / var(--n));
+  --n: 7; --row: calc(68px / var(--n)); --k: calc(6.476 / var(--n));
   position: absolute; right: 22px; top: 12px; margin: 0; padding: 0; list-style: none;
   display: flex; flex-direction: column; gap: 0;
 }
