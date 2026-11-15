@@ -205,7 +205,7 @@ official = box('''  <h3>Playable demos (2001)</h3>
   <p>The wallpaper section of the official site was a Flash file that has not been preserved.</p>
 ''', 'Official downloads', 'official')
 packs = [
- ('Zax_Fix_Levels.zip', 'Level fixes', '<code>DataFixes.RED</code> – fixes script errors in ten levels: Valeth\'s ore cave in mission 7, misspelt trigger targets in missions 5, 14 and 21, the mission log in the Mining maps, the Sun key in the Assimilate Temple and more. Works with every language. Note: the Slave Main key door now raises the alarm, so that level is harder than in the original.'),
+ ('Zax_Fix_Levels.zip', 'Level fixes', '<code>DataFixes.RED</code> – fixes script errors in eleven levels: Valeth\'s ore cave in mission 7, misspelt trigger targets in missions 5, 14 and 21, the mission log in the Mining maps and in the Cave of Souls (mission 8), the Sun key in the Assimilate Temple and more. Works with every language. Note: the Slave Main key door now raises the alarm, so that level is harder than in the original.'),
  ('Zax_Fix_English.zip', 'English fix', '<code>EnglishFix.RED</code> – spelling, grammar and wrong names in menus, objectives, dialogue and item texts; dialogue matches the spoken voice.'),
  ('Zax_Fix_German.zip', 'German fix', '<code>GermanFix.RED</code> – wrong translations, duplicate menu shortcuts, 28 missing texts and 5 multiplayer map names, 37 broken item labels. Needs <code>GERMAN.RED</code>.'),
  ('Zax_Fix_French.zip', 'French fix', '<code>0FrenchFix.RED</code> – fixes the mission 10 crash like the official patch, adds 33 missing texts and corrects about 30 translations. Needs <code>0French.RED</code>. Not yet tested in the game.'),
