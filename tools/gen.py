@@ -48,7 +48,7 @@ def page(filename, display, title, body, current=None):
   <nav class="navbar" aria-label="Main menu">
     <a class="home-link" href="index.html" data-label="Homepage" aria-label="Homepage"></a>
     <h1 class="display"><span class="page-text">{html.escape(display)}</span></h1>
-    <ul class="menu">
+    <ul class="menu" style="--n:{len(MENU)}">
 {items}    </ul>
   </nav>
 </div>
