@@ -239,20 +239,12 @@ news_orig = [
  ('11/12/00', 'The Zax website is going through some major changes. It should now be updated every week with the latest and greatest information on the Epic adventure Zax. Stay tuned for more information.'),
 ]
 links = [
- ('Community projects', [
-  ('https://github.com/zar9roc/ZaxEd', 'ZaxEd', 'map viewer in the browser, editor planned'),
-  ('https://github.com/zar9roc/ZaxHiRes', 'ZaxHiRes', 'patch for high resolutions'),
-  ('https://github.com/dubstabber/Zax-The-Alien-Hunter-Rebooted', 'Zax – The Alien Hunter Rebooted', 'remake in Godot 4'),
-  ('https://github.com/dubstabber/Zax-bot', 'Zax-bot', 'bots for multiplayer'),
-  ('https://github.com/EricHype/LionheartModTools', 'LionheartModTools', 'includes a renderer for .zax maps'),
-  ('https://github.com/EricHype/LionheartFixt', 'LionheartFixt', 'Lionheart levels in the .zax format'),
-  ('https://github.com/rayrapetyan/lutris_installers', 'Lutris installers', 'install script for Linux')]),
  ('About the game', [
   ('https://www.mobygames.com/game/5954/zax-the-alien-hunter/', 'MobyGames', 'credits, screenshots, releases'),
   ('https://en.wikipedia.org/wiki/Zax:_The_Alien_Hunter', 'Wikipedia', 'overview and reviews'),
   ('https://www.myabandonware.com/game/zax-the-alien-hunter-du5', 'My Abandonware', 'game page')]),
  ('Original websites', [
-  ('archive.html', 'Archive on this site', 'reflexive.net/Zax (2001) and zax-game.com (2002–2004), restored'),
+  ('archive.html', 'Archive on this site', 'reflexive.net/Zax (2001), jowood.com (2003) and zax-game.com (2002–2004), restored'),
   ('https://web.archive.org/web/2001/http://www.reflexive.net/Zax/', 'reflexive.net/Zax at the Internet Archive', ''),
   ('https://web.archive.org/web/2004/http://www.zax-game.com/', 'zax-game.com at the Internet Archive', '')]),
 ]
@@ -288,7 +280,17 @@ repos = [
 ]
 pj = box('  <p>Projects around the game, all open source on GitHub.</p>\n' + ''.join(
     f'  <div class="item"><h3><a class="repo" href="https://github.com/eggi36/{n}">{n}</a><span class="tag">{lang}</span></h3><p>{d}</p></div>\n'
-    for n, lang, d in repos), 'Projects')
+    for n, lang, d in repos), 'Projects', 'my-projects')
+community_projects = [
+ ('https://github.com/zar9roc/ZaxEd', 'ZaxEd', 'A map viewer in the browser, an editor is planned.'),
+ ('https://github.com/zar9roc/ZaxHiRes', 'ZaxHiRes', 'A patch for high resolutions.'),
+ ('https://github.com/dubstabber/Zax-The-Alien-Hunter-Rebooted', 'Zax – The Alien Hunter Rebooted', 'A remake in Godot 4.'),
+ ('https://github.com/dubstabber/Zax-bot', 'Zax-bot', 'Bots for multiplayer.'),
+ ('https://github.com/rayrapetyan/lutris_installers', 'Lutris installers', 'An install script for Linux.'),
+]
+pj += '\n' + box('  <p>Projects by other fans.</p>\n' + ''.join(
+    f'  <div class="item"><h3><a class="repo" href="{u}">{html.escape(n)}</a></h3><p>{d}</p></div>\n'
+    for u, n, d in community_projects), 'Community projects', 'community-projects')
 page('projects.html', 'Projects', 'Projects', pj, 'projects.html')
 
 # ---------------------------------------------------------------- Archive
@@ -323,7 +325,7 @@ SITEMAP = [
                                        ('news-links.html#development-news', 'Development news 2000–2001', []),
                                        ('logs.html', 'Developer logs', [('logs.html#log-' + re.sub(r'\W+', '-', l['date']).strip('-'), 'Log ' + l['date'], []) for l in logs]),
                                        ('news-links.html#links', 'Links', [])]),
- ('projects.html', 'Projects', []),
+ ('projects.html', 'Projects', [('projects.html#my-projects', 'Projects of this site', []), ('projects.html#community-projects', 'Community projects', [])]),
  ('archive.html', 'Archive', [(u, t, []) for u, s_, t, d in arch]
                               + [('archive/jowood.com_2003/gamers/index_de.html', 'jowood.com – January 2003, German pages', [])]),
 ]
