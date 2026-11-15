@@ -8,9 +8,7 @@ SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # Repo-Wurz
 
 # Menü im Monitor (max. 7 Einträge). (Datei, Menütext, Text für die Punktmatrix-Anzeige)
 MENU = [
-    ('mission-briefing.html', 'Mission Briefing', 'Mission Briefing'),
-    ('profiles.html',         'Profiles',         'Profiles'),
-    ('weapons.html',          'Weapons',          'Weapons'),
+    ('the-game.html',         'The Game',         'The Game'),
     ('downloads.html',        'Downloads',        'Downloads'),
     ('news-links.html',       'News & Links',     'News & Links'),
     ('projects.html',         'Projects',         'Projects'),
@@ -126,7 +124,6 @@ faq = [
 ]
 mb += box('  <p class="small">From the official FAQ by Reflexive Entertainment (2001). Note: the Zax CD-Key is found on the back of the jewel case, not the back of the manual as indicated in the manual.</p>\n  <dl class="faq">\n' +
           ''.join(f'    <dt>{q}</dt><dd>{a}</dd>\n' for q, a in faq) + '  </dl>', 'Frequently asked questions')
-page('mission-briefing.html', 'Mission Briefing', 'Mission Briefing', mb, 'mission-briefing.html')
 
 # ---------------------------------------------------------------- Profiles
 chars = [
@@ -141,7 +138,6 @@ chars = [
 ]
 pr = box('\n'.join(f'  <div class="item">{img("assets/img/profiles/"+f, n)}<h3>{n}</h3><p>{t}</p></div>' for f, n, t in chars),
          'Profiles')
-page('profiles.html', 'Profiles', 'Profiles', pr, 'profiles.html')
 
 # ---------------------------------------------------------------- Weapons
 weapons = [
@@ -154,7 +150,13 @@ weapons = [
 ]
 wp = box('\n'.join(f'  <div class="item">{img("assets/img/weapons/"+f, n)}<h3>{n}</h3><p>{t}</p></div>' for f, n, t in weapons)
          + '\n  <p class="small">“Crater” in the first description was the working name of the hero during development.</p>', 'Weapons')
-page('weapons.html', 'Weapons', 'Weapons', wp, 'weapons.html')
+
+# ---------------------------------------------------------------- The Game (Mission Briefing, Profiles, Weapons)
+GAME_SECTIONS = [('mission-briefing', 'Mission Briefing', mb), ('profiles', 'Profiles', pr), ('weapons', 'Weapons', wp)]
+game = '<nav class="subnav" aria-label="The Game">' + ''.join(f'<a href="#{a}">{html.escape(t)}</a>' for a, t, _ in GAME_SECTIONS) + '</nav>\n'
+game += '\n'.join(f'<section id="{a}" aria-labelledby="{a}-h">\n<h2 class="section-title" id="{a}-h"><span class="dots">{html.escape(t)}</span></h2>\n{body}\n</section>'
+                  for a, t, body in GAME_SECTIONS)
+page('the-game.html', 'The Game', 'The Game', game, 'the-game.html')
 
 # ---------------------------------------------------------------- Downloads
 REL = 'https://github.com/eggi36/zax-game.com/releases/download/downloads/'
@@ -303,11 +305,14 @@ page('archive.html', 'Archive', 'Archive', ar, 'archive.html')
 
 # ---------------------------------------------------------------- Weiterleitungen alter Adressen
 # GitHub Pages kann keine Server-Weiterleitungen: Meta-Refresh + JS + Link.
-# Alte Adressen von zax-game.com (2002–2004) -> passende Seite der Fan-Site (deutsche -> Startseite).
+# Alte Adressen -> passende Seite der Fan-Site: frühere Einzelseiten dieser Site und zax-game.com (2002–2004;
+# deutsche -> Startseite).
 REDIRECTS = {
+    'mission-briefing.html': 'the-game.html#mission-briefing', 'profiles.html': 'the-game.html#profiles',
+    'weapons.html': 'the-game.html#weapons',
     'index_flash.html': 'index.html', 'index_no_flash.html': 'index.html', 'gateway.html': 'index.html',
     **{f'english/{p}.html': 'index.html' for p in ('index', 'homepage', 'top_nav', 'top_secret')},
-    **{f'english/{p}.html': 'mission-briefing.html' for p in ('mission_briefing', 'missionb_nav', 'story', 'mission_shots')},
+    **{f'english/{p}.html': 'the-game.html#mission-briefing' for p in ('mission_briefing', 'missionb_nav', 'story', 'mission_shots')},
     **{f'english/{p}.html': 'downloads.html' for p in ('downloads', 'downloads_nav', 'cargo_hold')},
     'english/news_and_links.html': 'news-links.html',
     **{f'german/{p}.html': 'index.html' for p in ('index', 'homepage', 'top_nav', 'mission_briefing', 'missionb_nav', 'story', 'cargo_hold')},
@@ -323,7 +328,7 @@ for old, target in REDIRECTS.items():
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://zax-game.com/{'' if target == 'index.html' else target}">
 <meta http-equiv="refresh" content="0;url={new}">
-<script>location.replace('{new}' + location.hash);</script>
+<script>location.replace('{new}'{'' if '#' in new else ' + location.hash'});</script>
 </head>
 <body><a href="{new}">Continue to the Zax fan site</a></body>
 </html>

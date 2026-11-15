@@ -7,6 +7,7 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
 - Alle HTML-Seiten im Wurzelordner werden von `tools/gen.py` erzeugt. Nicht von Hand bearbeiten,
   sondern `tools/gen.py` ändern und `python3 tools/gen.py` ausführen (braucht Pillow).
 - Menü: Liste `MENU` in `tools/gen.py` (bis zu 7 Einträge passen in den Monitor der Leiste).
+  „The Game“ (`the-game.html`) fasst Mission Briefing, Profiles und Weapons als Abschnitte zusammen (`GAME_SECTIONS`).
 - Logbücher: `tools/logs.json`.
 - Vor dem Commit die geänderten Seiten im Browser prüfen (lokal: `python3 -m http.server`).
 

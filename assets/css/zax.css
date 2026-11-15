@@ -97,6 +97,13 @@ main { padding: 18px 13px 0; }
 .box ul.downloads li { margin-bottom: .8em; }
 .small { font-size: 11px; color: #5fa9c7; }
 .date { display: block; color: #fff; font-size: 11px; letter-spacing: .05em; }
+/* Sprungleiste und Abschnittstitel (Seite „The Game“) */
+.subnav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 22px; margin: 0 0 18px; }
+.subnav a { font: 14px/1.4 "Zelon Bold", "Arial Narrow", sans-serif; text-transform: uppercase; letter-spacing: .03em; color: var(--zax-glow); text-decoration: none; }
+.subnav a:hover, .subnav a:focus { color: var(--zax-white); }
+.section-title { margin: 26px 0 12px; text-align: center; font-weight: normal; }
+section:first-of-type .section-title { margin-top: 0; }
+section { scroll-margin-top: 12px; }
 .dots { font-family: "Zelon Dots", monospace; color: var(--zax-glow); text-transform: uppercase; font-size: 15px; line-height: 1.2; }
 
 .item { display: flow-root; }
