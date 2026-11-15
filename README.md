@@ -9,7 +9,7 @@ Static HTML/CSS plus a small navigation script – runs directly on GitHub Pages
 | File | Content |
 |---|---|
 | `index.html` | Homepage |
-| `the-game.html` | The Game: Mission Briefing (story + official FAQ), Profiles (characters), Weapons, Unused Content (models the game never uses; data in `tools/unused_environments.json`, pictures in `assets/img/unused/`) |
+| `the-game.html` | The Game: Mission Briefing (story + official FAQ), Profiles (characters), Weapons, Unused Content (models the game never uses; data in `tools/unused_models.json`, pictures in `assets/img/unused/`) |
 | `downloads.html` | Demo mirrors, lost files |
 | `news-links.html`, `logs.html` | News, developer logs 2000/2001, links |
 | `projects.html` | Related projects (zax-formats, zax-editor, zax-launcher, zax-decomp) |

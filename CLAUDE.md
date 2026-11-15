@@ -9,7 +9,7 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
 - Menü: Liste `MENU` in `tools/gen.py` (bis zu 7 Einträge passen in den Monitor der Leiste).
   Schrift und Zeilenhöhe des Menüs skalieren mit der Zahl der Einträge (CSS `--n`), die Fläche ist immer gefüllt.
   „The Game“ (`the-game.html`) fasst Mission Briefing, Profiles, Weapons und Unused Content als Abschnitte zusammen (`GAME_SECTIONS`).
-  Unused Content: Daten aus der Modellübersicht (Artefakt) in `tools/unused_environments.json`, Bilder in `assets/img/unused/environments/`.
+  Unused Content: Daten aus der Modellübersicht (Artefakt) in `tools/unused_models.json` (je Kategorie), Bilder in `assets/img/unused/<kategorie>/`.
 - Logbücher: `tools/logs.json`.
 - CSS/JS werden mit `?v=<Inhalts-Hash>` eingebunden (`asset()` in `tools/gen.py`), damit Browser keine alten Dateien aus dem Cache nehmen.
 - Vor dem Commit die geänderten Seiten im Browser prüfen (lokal: `python3 -m http.server`).

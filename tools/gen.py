@@ -160,26 +160,29 @@ wp = box('\n'.join(f'  <div class="item">{img("assets/img/weapons/"+f, n)}<h3>{n
 
 # ---------------------------------------------------------------- The Game (Mission Briefing, Profiles, Weapons)
 # ---------------------------------------------------------------- Unused Content (Modelle, die das Spiel nie benutzt)
-# Daten: tools/unused_environments.json + Vorschaubilder in assets/img/unused/environments/
-# (Verweisanalyse der DATA.dat: kein Level, Skript, keine Definition und nicht Zax.exe nennt sie).
-unused_env = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'unused_environments.json'), encoding='utf-8'))
-groups = {}
-for m in unused_env:
-    area, _, rest = m['name'].partition('/')
-    groups.setdefault(area, []).append((rest or area, m))
-uc = '  <p>Models in the game data (<code>DATA.dat</code>) that the game never uses: no level, script, object definition or the executable refers to them. Each picture is the first frame of the model, rendered straight from the game files.</p>\n'
-for area in sorted(groups):
-    uc += f'  <h3>{html.escape(area)}</h3>\n  <div class="gallery">\n'
-    for label, m in groups[area]:
-        note = ' <span class="maybe">possibly used</span>' if m['status'] != 'unused' else ''
-        uc += (f'    <figure><div class="pic">{img("assets/img/unused/environments/" + m["file"], label)}</div>'
-               f'<figcaption>{html.escape(label.replace("/", " / "))}{note}</figcaption></figure>\n')
-    uc += '  </div>\n'
-n_maybe = sum(m['status'] != 'unused' for m in unused_env)
-uc += (f'  <p class="small">{len(unused_env)} models of the category Environments' +
-       (f'; {len(unused_env) - n_maybe} are never used, {n_maybe} only by other files that are themselves possibly unused (marked “possibly used”).'
-        if n_maybe else ', none of them used by the game.') + '</p>')
-uc = box(uc, 'Environments', 'unused-environments')
+# Daten: tools/unused_models.json ({Kategorie: [Modelle]}) + Vorschaubilder in assets/img/unused/<kategorie>/
+# (aus der Modellübersicht der Verweisanalyse der DATA.dat: kein Level, Skript, keine Definition und nicht Zax.exe nennt sie).
+unused_models = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'unused_models.json'), encoding='utf-8'))
+def unused_box(cat, models):
+    groups = {}
+    for m in models:
+        area, _, rest = m['name'].partition('/')
+        groups.setdefault(area, []).append((rest or area, m))
+    out = ''
+    for area in sorted(groups):
+        out += f'  <h3>{html.escape(area)}</h3>\n  <div class="gallery">\n'
+        for label, m in groups[area]:
+            note = ' <span class="maybe">possibly used</span>' if m['status'] != 'unused' else ''
+            out += (f'    <figure><div class="pic">{img(f"assets/img/unused/{cat.lower()}/" + m["file"], label)}</div>'
+                    f'<figcaption>{html.escape(label.replace("/", " / "))}{note}</figcaption></figure>\n')
+        out += '  </div>\n'
+    n_maybe = sum(m['status'] != 'unused' for m in models)
+    out += (f'  <p class="small">{len(models)} models of the category {cat}' +
+            (f'; {len(models) - n_maybe} are never used, {n_maybe} only by other files that are themselves possibly unused (marked “possibly used”).'
+             if n_maybe else ', none of them used by the game.') + '</p>')
+    return box(out, cat, 'unused-' + cat.lower())
+uc = box('  <p>Models in the game data (<code>DATA.dat</code>) that the game never uses: no level, script, object definition or the executable refers to them. Each picture is the first frame of the model, rendered straight from the game files.</p>')
+uc += ''.join('\n' + unused_box(cat, models) for cat, models in unused_models.items())
 GAME_SECTIONS = [('mission-briefing', 'Mission Briefing', mb), ('profiles', 'Profiles', pr), ('weapons', 'Weapons', wp),
                  ('unused-content', 'Unused Content', uc)]
 game = '<nav class="subnav" aria-label="The Game">' + ''.join(f'<a href="#{a}">{html.escape(t)}</a>' for a, t, _ in GAME_SECTIONS) + '</nav>\n'
