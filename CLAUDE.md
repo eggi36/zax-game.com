@@ -25,6 +25,8 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
 - Regel: nur echtes archiviertes Material. Nie archivierte Bilder bleiben als rot schraffierte
   „MISSING“-Platzhalter in Originalgröße stehen; keine selbst rekonstruierten Grafiken einfügen.
 - zax-game.com: Flash läuft über Ruffle (lokal in `assets/ruffle/`) in `index_flash.html` und `*/top_nav.html`.
+- Archivseiten nur in ASCII speichern: GitHub Pages sendet `charset=utf-8`, rohe Latin-1-Umlaute werden zu �.
+  Nach dem Import `python3 tools/archive_entities.py`; `tools/gen.py` bricht sonst ab.
 - Nichts von fremden Servern einbinden (Datenschutz). Nie archivierte Frames/Flash-Filme zeigen `archive/missing.html?<name>`.
 
 ## Projekte des Nutzers (Seite projects.html)

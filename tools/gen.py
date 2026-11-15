@@ -318,4 +318,14 @@ for old, new in REDIRECTS.items():
 <body><a href="{new}">Continue to the Zax fan site</a></body>
 </html>
 ''')
+
+# ---------------------------------------------------------------- Archiv: keine rohen Sonderzeichen
+# GitHub Pages sendet charset=utf-8; rohe Latin-1-Bytes der Originalseiten würden zu �.
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from archive_entities import raw_pages
+raw = raw_pages()
+if raw:
+    sys.exit('Archivseiten mit rohen Sonderzeichen – erst `python3 tools/archive_entities.py` ausführen:\n  '
+             + '\n  '.join(os.path.relpath(p, SITE) for p in raw))
 print('ok')
