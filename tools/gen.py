@@ -286,7 +286,6 @@ community_projects = [
  ('https://github.com/zar9roc/ZaxHiRes', 'ZaxHiRes', 'A patch for high resolutions.'),
  ('https://github.com/dubstabber/Zax-The-Alien-Hunter-Rebooted', 'Zax – The Alien Hunter Rebooted', 'A remake in Godot 4.'),
  ('https://github.com/dubstabber/Zax-bot', 'Zax-bot', 'Bots for multiplayer.'),
- ('https://github.com/rayrapetyan/lutris_installers', 'Lutris installers', 'An install script for Linux.'),
 ]
 pj += '\n' + box('  <p>Projects by other fans.</p>\n' + ''.join(
     f'  <div class="item"><h3><a class="repo" href="{u}">{html.escape(n)}</a></h3><p>{d}</p></div>\n'
