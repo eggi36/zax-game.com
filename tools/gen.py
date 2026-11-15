@@ -16,6 +16,11 @@ MENU = [
     ('sitemap.html',          'Sitemap',          'Sitemap'),
 ]
 
+import hashlib
+def asset(path):
+    """Pfad mit Inhalts-Kennung (?v=…), damit Browser nach Änderungen nicht die alte Datei aus dem Cache nehmen."""
+    return path + '?v=' + hashlib.sha1(open(os.path.join(SITE, path), 'rb').read()).hexdigest()[:10]
+
 def img(src, alt='', cls=None):
     w, h = Image.open(os.path.join(SITE, src)).size
     c = f' class="{cls}"' if cls else ''
@@ -34,7 +39,7 @@ def page(filename, display, title, body, current=None):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)} – Zax: The Alien Hunter</title>
-<link rel="stylesheet" href="assets/css/zax.css">
+<link rel="stylesheet" href="{asset('assets/css/zax.css')}">
 <script>(function(){{try{{if(sessionStorage.getItem('zaxBooted')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches){{var d=document.documentElement;d.classList.add('zax-boot');setTimeout(function(){{d.classList.remove('zax-boot');}},10000);}}}}catch(e){{}}}})();</script>
 </head>
 <body>
@@ -58,8 +63,8 @@ def page(filename, display, title, body, current=None):
   <button type="button" class="sound-toggle" hidden>Sound: on</button>
 </footer>
 </div>
-<script src="assets/js/nav-data.js"></script>
-<script src="assets/js/nav.js"></script>
+<script src="{asset('assets/js/nav-data.js')}"></script>
+<script src="{asset('assets/js/nav.js')}"></script>
 </body>
 </html>
 '''

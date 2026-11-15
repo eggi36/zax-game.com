@@ -9,6 +9,7 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
 - Menü: Liste `MENU` in `tools/gen.py` (bis zu 7 Einträge passen in den Monitor der Leiste).
   „The Game“ (`the-game.html`) fasst Mission Briefing, Profiles und Weapons als Abschnitte zusammen (`GAME_SECTIONS`).
 - Logbücher: `tools/logs.json`.
+- CSS/JS werden mit `?v=<Inhalts-Hash>` eingebunden (`asset()` in `tools/gen.py`), damit Browser keine alten Dateien aus dem Cache nehmen.
 - Vor dem Commit die geänderten Seiten im Browser prüfen (lokal: `python3 -m http.server`).
 
 ## Aufbau
