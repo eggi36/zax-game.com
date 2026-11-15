@@ -1,0 +1,127 @@
+Internet Archive capture date of every file in this folder (fan-site archive).
+
+2003-01-10  gamers/index.html
+2002-10-30  gamers/zax_4266.html
+2002-12-19  gamers/zax_4490.html
+2003-01-06  gamers/zax_4491.html
+2003-01-10  gamers/zax_4492.html
+2003-01-10  gamers/zax_4493.html
+2003-01-10  gamers/register_54.html
+2002-11-10  gamers/screenshot_1.html
+2003-09-04  gamers/screenshot_2.html
+2003-03-28  gamers/screenshot_3.html
+2002-11-10  gamers/screenshot_4.html
+2003-03-28  gamers/screenshot_5.html
+2003-03-28  gamers/screenshot_6.html
+2003-01-10  gamers/index_de.html
+2003-01-10  gamers/zax_de_345.html
+2002-12-25  gamers/zax_de_346.html
+2003-01-10  gamers/zax_de_347.html
+2003-01-10  gamers/register_de_19.html
+2002-11-25  gamers/screenshot_de_1.html
+2003-04-24  gamers/screenshot_de_2.html
+2002-11-25  gamers/screenshot_de_3.html
+2002-11-25  gamers/screenshot_de_4.html
+2002-11-25  gamers/screenshot_de_5.html
+2003-04-24  gamers/screenshot_de_6.html
+2011-07-22  gamers/de/games/aquanox_r/link_aquanox_r.gif
+2003-09-16  gamers/de/games/arxfatalis/link_arxfatalis.gif
+2007-02-10  gamers/de/games/cold_zero/link_cold_zero.gif
+2011-07-22  gamers/de/games/farwest/link_farwest.gif
+2003-09-16  gamers/de/games/gothic2/link_gothic2.gif
+2003-09-16  gamers/de/games/ig2/link_ig2.gif
+2003-09-16  gamers/de/games/soeldner/link_soeldner.gif
+2003-10-04  gamers/de/games/spellforce/link_spellforce.gif
+2003-03-25  gamers/de/games/zax/ss/tn_zax_1.jpg
+2003-03-25  gamers/de/games/zax/ss/tn_zax_2.jpg
+2003-03-25  gamers/de/games/zax/ss/tn_zax_3.jpg
+2003-03-25  gamers/de/games/zax/ss/tn_zax_5.jpg
+2003-03-25  gamers/de/games/zax/ss/tn_zax_6.jpg
+2005-05-05  gamers/de/games/zax/ss/zax_1.jpg
+2005-05-05  gamers/de/games/zax/ss/zax_2.jpg
+2005-05-05  gamers/de/games/zax/ss/zax_3.jpg
+2004-09-23  gamers/de/games/zax/ss/zax_4.jpg
+2004-09-23  gamers/de/games/zax/ss/zax_5.jpg
+2005-05-06  gamers/de/games/zax/zax_packshot.jpg
+2003-09-16  gamers/de/images/index_01.gif
+2003-09-16  gamers/de/images/link_contact.gif
+2003-09-16  gamers/de/images/link_downloads.gif
+2003-09-16  gamers/de/images/link_forum.gif
+2003-09-16  gamers/de/images/link_games.gif
+2003-09-16  gamers/de/images/link_links.gif
+2003-09-16  gamers/de/images/link_news.gif
+2003-09-16  gamers/de/images/link_reg.gif
+2003-09-16  gamers/de/images/link_release.gif
+2003-09-16  gamers/de/images/link_shop.gif
+2003-09-16  gamers/de/images/link_support.gif
+2006-02-16  gamers/de/images/logo_register.gif
+2003-09-16  gamers/en/games/aquanox_r/link_aquanox_r.gif
+2011-07-22  gamers/en/games/archangel/link_archangel.gif
+2003-09-16  gamers/en/games/arxfatalis/link_arxfatalis.gif
+2011-05-13  gamers/en/games/chaser/link_chaser.gif
+2003-09-16  gamers/en/games/cold_zero/link_cold_zero.gif
+2011-07-16  gamers/en/games/farwest/link_farwest.gif
+2003-09-16  gamers/en/games/gothic2/link_gothic2.gif
+2011-07-16  gamers/en/games/ig2/link_ig2.gif
+2011-07-16  gamers/en/games/k_hawk/link_k_hawk.gif
+2011-07-22  gamers/en/games/soccermanager/link_soccermanager.gif
+2003-09-16  gamers/en/games/soeldner/link_soeldner.gif
+2011-05-04  gamers/en/games/spellforce/link_spellforce.gif
+2003-09-16  gamers/en/games/theguild/link_theguild.gif
+2004-03-15  gamers/en/games/zax/ss/tn_zax_6.jpg
+2010-12-26  gamers/en/games/zax/zax_packshot.jpg
+2003-09-17  gamers/en/images/index_01.gif
+2003-09-17  gamers/en/images/link_contact.gif
+2003-11-16  gamers/en/images/link_downloads.gif
+2003-11-16  gamers/en/images/link_forum.gif
+2003-09-17  gamers/en/images/link_games.gif
+2003-09-17  gamers/en/images/link_links.gif
+2003-09-17  gamers/en/images/link_news.gif
+2003-09-17  gamers/en/images/link_reg.gif
+2003-09-17  gamers/en/images/link_release.gif
+2003-06-14  gamers/en/images/link_support.gif
+2003-08-03  gamers/en/images/logo_register.gif
+2004-10-21  gamers/images/arrow_dis.gif
+2004-08-14  gamers/images/arrow_next.gif
+2004-10-21  gamers/images/arrow_next_ov.gif
+2004-08-14  gamers/images/arrow_prev.gif
+2004-10-21  gamers/images/arrow_prev_ov.gif
+2003-06-14  gamers/images/index_02.jpg
+2005-10-26  gamers/images/index_03.jpg
+2005-10-26  gamers/images/index_04.jpg
+2003-06-14  gamers/images/index_05.jpg
+2005-10-26  gamers/images/index_06.jpg
+2003-09-17  gamers/images/jobs.gif
+2003-09-17  gamers/images/newsbg_01.gif
+2003-09-17  gamers/images/newsbg_02.gif
+2003-09-17  gamers/images/newsbg_03.gif
+2003-09-17  gamers/images/newsbg_04.gif
+2003-09-17  gamers/images/newsbg_05.gif
+2003-09-17  gamers/images/pfeil.gif
+2004-10-21  gamers/images/screenshot.gif
+2003-09-17  gamers/images/search.gif
+2005-10-26  gamers/images/spacer.gif
+2004-10-21  gamers/images/ss_logo.jpg
+2003-11-17  images/getit.gif
+2004-06-02  images/mail.gif
+2003-06-06  images/print.gif
+2002-10-01  jowood.js
+2003-02-06  style.css
+never archived  gamers/en/images/logos/gamelogo_zax.gif  (placeholder, size unknown; column width, height estimated)
+never archived  gamers/de/images/logos/gamelogo_zax.gif  (placeholder, size unknown; column width, height estimated)
+never archived  gamers/en/games/industrygiant2/link_industrygiant2.gif  (placeholder, size as the other game banners)
+never archived  gamers/de/games/diegilde_addon/link_diegilde_addon.gif  (placeholder, size as the other game banners)
+never archived  gamers/de/games/echelon/link_echelon.gif  (placeholder, size as the other game banners)
+never archived  gamers/en/games/zax/ss/tn_zax_1.jpg  (placeholder, size as the archived thumbnail tn_zax_6.jpg)
+never archived  gamers/en/games/zax/ss/tn_zax_2.jpg  (placeholder, size as the archived thumbnail tn_zax_6.jpg)
+never archived  gamers/en/games/zax/ss/tn_zax_3.jpg  (placeholder, size as the archived thumbnail tn_zax_6.jpg)
+never archived  gamers/en/games/zax/ss/tn_zax_4.jpg  (placeholder, size as the archived thumbnail tn_zax_6.jpg)
+never archived  gamers/en/games/zax/ss/tn_zax_5.jpg  (placeholder, size as the archived thumbnail tn_zax_6.jpg)
+never archived  gamers/de/games/zax/ss/tn_zax_4.jpg  (placeholder, size as the other archived thumbnails)
+never archived  gamers/en/games/zax/ss/zax_1.jpg  (placeholder, size as the archived German screenshots)
+never archived  gamers/en/games/zax/ss/zax_2.jpg  (placeholder, size as the archived German screenshots)
+never archived  gamers/en/games/zax/ss/zax_3.jpg  (placeholder, size as the archived German screenshots)
+never archived  gamers/en/games/zax/ss/zax_4.jpg  (placeholder, size as the archived German screenshots)
+never archived  gamers/en/games/zax/ss/zax_5.jpg  (placeholder, size as the archived German screenshots)
+never archived  gamers/en/games/zax/ss/zax_6.jpg  (placeholder, size as the archived German screenshots)
+never archived  gamers/de/games/zax/ss/zax_6.jpg  (placeholder, size as the other archived screenshots)

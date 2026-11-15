@@ -292,7 +292,7 @@ arch = [
   'The release version with FAQ, demo page and the mirrored navigation.'),
  ('archive/zax-game.com_2004/index_flash.html', 'archive/shot_zax-game.com_gateway.png', 'zax-game.com – 2002 to 2004',
   'The official JoWooD site in English and German. Navigation and banner are the original Flash files, played with the Ruffle emulator.'),
- ('archive/jowood.com_2003/gamers/index.html', 'archive/shot_jowood.com_2003.png', 'jowood.com – January 2003',
+ ('archive/jowood.com_2003/gamers/index.html', 'archive/shot_jowood.com_2003.jpg', 'jowood.com – January 2003',
   'The game\'s pages on the publisher\'s site in English and German: the game, screenshots, demo, patches, reviews, system requirements and registration. Links to other JoWooD pages lead to the Internet Archive; the Zax logo and most English screenshots were not preserved, the forms are disabled.'),
 ]
 ar = box('  <p>The original websites, restored from copies at the Internet Archive. They are shown as they were – with frames, period HTML and, where noted, Flash. Only archived material is shown: images that were never preserved are marked as missing.</p>', 'Archive')
@@ -303,15 +303,25 @@ page('archive.html', 'Archive', 'Archive', ar, 'archive.html')
 
 # ---------------------------------------------------------------- Weiterleitungen alter Adressen
 # GitHub Pages kann keine Server-Weiterleitungen: Meta-Refresh + JS + Link.
-REDIRECTS = {'index_flash.html': 'index.html'}
-for old, new in REDIRECTS.items():
+# Alte Adressen von zax-game.com (2002–2004) -> passende Seite der Fan-Site (deutsche -> Startseite).
+REDIRECTS = {
+    'index_flash.html': 'index.html', 'index_no_flash.html': 'index.html', 'gateway.html': 'index.html',
+    **{f'english/{p}.html': 'index.html' for p in ('index', 'homepage', 'top_nav', 'top_secret')},
+    **{f'english/{p}.html': 'mission-briefing.html' for p in ('mission_briefing', 'missionb_nav', 'story', 'mission_shots')},
+    **{f'english/{p}.html': 'downloads.html' for p in ('downloads', 'downloads_nav', 'cargo_hold')},
+    'english/news_and_links.html': 'news-links.html',
+    **{f'german/{p}.html': 'index.html' for p in ('index', 'homepage', 'top_nav', 'mission_briefing', 'missionb_nav', 'story', 'cargo_hold')},
+}
+for old, target in REDIRECTS.items():
+    new = os.path.relpath(target, os.path.dirname(old) or '.')
+    os.makedirs(os.path.join(SITE, os.path.dirname(old)), exist_ok=True)
     open(os.path.join(SITE, old), 'w', encoding='utf-8').write(f'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <title>Zax: The Alien Hunter</title>
 <meta name="robots" content="noindex">
-<link rel="canonical" href="https://zax-game.com/{'' if new == 'index.html' else new}">
+<link rel="canonical" href="https://zax-game.com/{'' if target == 'index.html' else target}">
 <meta http-equiv="refresh" content="0;url={new}">
 <script>location.replace('{new}' + location.hash);</script>
 </head>

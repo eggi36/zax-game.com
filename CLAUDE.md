@@ -27,6 +27,9 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
 - zax-game.com: Flash läuft über Ruffle (lokal in `assets/ruffle/`) in `index_flash.html` und `*/top_nav.html`.
 - Archivseiten nur in ASCII speichern: GitHub Pages sendet `charset=utf-8`, rohe Latin-1-Umlaute werden zu �.
   Nach dem Import `python3 tools/archive_entities.py`; `tools/gen.py` bricht sonst ab.
+- jowood.com-Archiv: nicht von Hand ändern, sondern `tools/archive/build_jowood.py` (Quellen in `tools/archive/jowood_src/`).
+  Platzhalter immer mit `tools/archive/placeholder.py` erzeugen.
+- Alte zax-game.com-Adressen leitet `REDIRECTS` in `tools/gen.py` um (`index_flash.html`, `english/…`, `german/…`).
 - Nichts von fremden Servern einbinden (Datenschutz). Nie archivierte Frames/Flash-Filme zeigen `archive/missing.html?<name>`.
 
 ## Projekte des Nutzers (Seite projects.html)
