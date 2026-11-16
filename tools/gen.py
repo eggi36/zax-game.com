@@ -255,7 +255,8 @@ dl = community + '\n' + official
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
 # ---------------------------------------------------------------- News & Links (+ Developer Logs)
-news_site = [('11/14/26', 'This fan site goes online: navigation and fonts rebuilt from the original Flash files of zax-game.com, the original websites restored in the <a href="archive.html">Archive</a>.')]
+news_site = [('11/16/26', 'New in the <a href="archive.html#score-1998">Archive</a>: eleven early pictures of the game from the cover CD of the Czech magazine <i>Score</i>, issue 59 (November 1998), with the text that came with them.'),
+             ('11/14/26', 'This fan site goes online: navigation and fonts rebuilt from the original Flash files of zax-game.com, the original websites restored in the <a href="archive.html">Archive</a>.')]
 news_orig = [
  ('04/03/01', 'Zax&trade; has a brand new name! "Zax the Alien Hunter" is now the official title of the Zax title that has been under construction for the past year. The team is currently working on multi-player maps, AI\'s and optimizations. The game is looking beautiful if I do say so myself.'),
  ('02/15/01', 'Hmmm, I wonder what\'s new? You guessed it! The Zax page has been redesigned yet again. However this time it is for good reason. There is now a Zax message board that will be moderated by members of Reflexive. There will be a major update to the Logs section soon.'),
