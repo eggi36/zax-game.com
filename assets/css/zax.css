@@ -108,6 +108,11 @@ main { padding: 18px 13px 0; }
 .gallery figcaption { font-size: 11px; line-height: 1.3; color: var(--zax-light); word-break: break-word; text-align: center; }
 .gallery .maybe { display: inline-block; margin-top: 2px; padding: 0 4px; border: 1px solid #806020; color: #e0b050; border-radius: 2px; font-size: 10px; }
 
+.gallery.renders { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.gallery.renders .pic { height: auto; aspect-ratio: 4 / 3; background: #000; }
+.gallery.renders img { width: 100%; max-height: none; }
+.box blockquote { margin: .4em 0 .6em; padding: .3em 0 .3em 12px; border-left: 2px solid #12394a; font-style: italic; }
+
 /* Sitemap */
 .sitemap ul { margin: .2em 0 .6em; }
 .sitemap > ul > li { margin-bottom: .7em; }

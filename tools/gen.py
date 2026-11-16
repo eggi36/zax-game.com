@@ -330,7 +330,29 @@ arch = [
  ('archive/jowood.com_2003/gamers/index.html', 'archive/shot_jowood.com_2003.jpg', 'jowood.com – January 2003',
   'The game\'s pages on the publisher\'s site in English and German: the game, screenshots, demo, patches, reviews, system requirements and registration. Links to other JoWooD pages lead to the Internet Archive; the Zax logo and most English screenshots were not preserved, the forms are disabled.'),
 ]
-ar = box('  <p>The original websites, restored from copies at the Internet Archive. They are shown as they were – with frames, period HTML and, where noted, Flash. Only archived material is shown: images that were never preserved are marked as missing.</p>', 'Archive')
+ar = box('  <p>Early pictures of the game from a 1998 magazine cover CD, followed by the original websites, restored from copies at the Internet Archive. The websites are shown as they were – with frames, period HTML and, where noted, Flash. Only archived material is shown: images that were never preserved are marked as missing.</p>', 'Archive')
+# Score 59 (CZ, November 1998): Bilder von der Heft-CD (NGF-Format, verlustfrei als PNG); Titel wie im Bild, sonst beschrieben
+score = [('ZAX00', 'In-game view: jungle ruins'), ('ZAX01', 'The throne of Om'), ('ZAX02', 'In-game view: a Korbo village'),
+         ('ZAX03', 'Zax discovers a new world'), ('ZAX04', 'In-game view with the inventory'), ('ZAX05', 'In-game view: jungle ruins, second view'),
+         ('ZAX06', 'Sentinel at the Temple'), ('ZAX07', 'The Crutch'), ('ZAX08', 'The Zelon'), ('ZAX09', 'The Zelon Interior'),
+         ('ZAX10', 'Malak of the Korbo')]
+ar += '\n' + box(
+    '  <p>Early pictures of the game from the cover CD of the Czech games magazine <i>Score</i>, issue 59 (November 1998) – almost three years before the release. '
+    'They show renders and in-game views from an early stage of development. On the disc they are stored in the NGF image format, which the CD also uses for its other pictures; here they are converted to PNG without loss, in their original size of 640×480.</p>\n'
+    '  <div class="gallery renders">\n' + ''.join(
+        f'    <figure><a class="pic" href="archive/score_1998-11/{f}.png" target="_blank" rel="noopener">{img(f"archive/score_1998-11/{f}.png", t)}</a>'
+        f'<figcaption>{html.escape(t)}</figcaption></figure>\n' for f, t in score) +
+    '  </div>\n'
+    '  <p>The text that came with the pictures:</p>\n'
+    '  <blockquote lang="cs">Velmi nadějně vyhlížející sci-fi adventuru ZAX prezentovali na Internetu před nedávnem marketingoví odborníci firmy Reflexive Entertainment. '
+    'Její vydání je sice naplánované až na konec příštího roku,při spatření těch úchvatných renderovaných - a přece tak reálných - obrázků ze hry mi všk srdce napovídá, '
+    'že tady by se mohl skrývat jeden z nejpotencionálnějších produktů příští zimy. Když budeme všichni společně věřit a doufat, třeba se ZAX dostane na herní trh dříve '
+    'a my tak budeme moci konečně odložit slintátko, uchopit myš a dát se do hraní. Už aby to bylo.</blockquote>\n'
+    '  <p class="small">In English: “The very promising-looking sci-fi adventure ZAX was recently presented on the Internet by the marketing experts of Reflexive Entertainment. '
+    'Its release is planned for the end of next year, but seeing these stunning rendered – and yet so realistic – pictures from the game, my heart tells me this could be one of the most promising products of next winter. '
+    'If we all believe and hope together, maybe ZAX will reach the shops sooner, and we can finally put away the bib, grab the mouse and start playing. Can\'t wait.”</p>',
+    'Score cover CD – November 1998', 'score-1998')
+ar += '\n<h2 class="section-title"><span class="dots">Websites</span></h2>'
 ar += '\n<div class="cards">\n' + ''.join(
     f'<div class="box card"><p class="title">{t}</p><a href="{u}" target="_blank" rel="noopener">{img(s, t, "shot")}</a><p>{d}</p><p><a href="{u}" target="_blank" rel="noopener">Open</a></p></div>\n'
     for u, s, t, d in arch) + '</div>'
@@ -350,7 +372,7 @@ SITEMAP = [
                                        ('logs.html', 'Developer logs', [('logs.html#log-' + re.sub(r'\W+', '-', l['date']).strip('-'), 'Log ' + l['date'], []) for l in logs]),
                                        ('news-links.html#links', 'Links', [])]),
  ('projects.html', 'Projects', [('projects.html#my-projects', 'Projects of this site', []), ('projects.html#community-projects', 'Community projects', [])]),
- ('archive.html', 'Archive', [(u, t, []) for u, s_, t, d in arch]
+ ('archive.html', 'Archive', [('archive.html#score-1998', 'Score cover CD – November 1998: early pictures', [])] + [(u, t, []) for u, s_, t, d in arch]
                               + [('archive/jowood.com_2003/gamers/index_de.html', 'jowood.com – January 2003, German pages', [])]),
 ]
 smap = box('  <div class="sitemap">\n' + sm_list(SITEMAP) + '  </div>', 'Sitemap')
