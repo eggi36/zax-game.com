@@ -211,17 +211,19 @@ def size(name):
     b = SIZES[name]   # KeyError = Datei fehlt im Release
     return f'{b / 1e6:.1f} MB' if b >= 1e6 else f'{max(1, round(b / 1e3))} KB'
 demos = [
+ ('ZaxDemo_2001-06-01.exe', '1 June 2001', None, '1 June 2001',
+  'The earliest known build, from a much older stage of the engine. It runs in 8-bit colour only, offers any 4:3 resolution from 640×480 upwards, shows still images instead of the intro videos and still has working cheat codes. Only a third-party repack of its installer has survived.'),
  ('ZaxDemo_2001-07-01_Build890.exe', '1 July 2001', '890', '30 June 2001',
-  'The earliest demo, from an older stage of the engine. It is the only build with 3D positional sound via DirectSound3D and EAX.'),
+  'The first demo with 16-bit graphics and the intro videos. Like the June demo, it still has 3D positional sound via DirectSound3D and EAX.'),
  ('ZaxDemo_2001-07-19_Build950.exe', '19 July 2001', '950', '18 July 2001',
-  'An intermediate build shortly before the full version, without the positional sound of the first demo.'),
+  'An intermediate build shortly before the full version, without the positional sound of the earlier demos.'),
  ('ZaxDemo_2001-08-06_Build1308.exe', '6 August 2001', '1308', '1 August 2001',
   'Technically the EXE of the full version without copy protection – only its smaller data set makes it a demo.'),
 ]
 official = box('''  <h3>Playable demos (2001)</h3>
-  <p>Three demo versions were released in the summer of 2001. All three contain the same five levels. Each download is the original Windows installer.</p>
+  <p>Four demo versions from the summer of 2001 are known. All four contain the same five levels. The three later downloads are the original Windows installers; the earliest demo survives only as a later repack.</p>
   <ul class="downloads">
-''' + ''.join(f'''    <li><a href="{REL}{f}"><b>Demo of {d}</b></a> – build {b}, EXE dated {e} ({size(f)})<br>{t}</li>
+''' + ''.join(f'''    <li><a href="{REL}{f}"><b>Demo of {d}</b></a> – {f"build {b}" if b else "no build number"}, EXE dated {e} ({size(f)})<br>{t}</li>
 ''' for f, d, b, e, t in demos) + '''  </ul>
   <p class="small">Minimum system requirements: Pentium II 233 MHz, 32 MB RAM. File list and SHA-256 checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>.</p>
   <h3>French patch</h3>
@@ -255,7 +257,8 @@ dl = community + '\n' + official
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
 # ---------------------------------------------------------------- News & Links (+ Developer Logs)
-news_site = [('11/16/26', 'New in the <a href="archive.html#score-1998">Archive</a>: eleven early pictures of the game from the cover CD of the Czech magazine <i>Score</i>, issue 59 (November 1998), with the text that came with them.'),
+news_site = [('11/16/26', 'New in <a href="downloads.html#official">Downloads</a>: the demo of 1 June 2001, the earliest known build of the game, in 8-bit colour and with still images instead of the intro videos.'),
+             ('11/16/26', 'New in the <a href="archive.html#score-1998">Archive</a>: eleven early pictures of the game from the cover CD of the Czech magazine <i>Score</i>, issue 59 (November 1998), with the text that came with them.'),
              ('11/14/26', 'This fan site goes online: navigation and fonts rebuilt from the original Flash files of zax-game.com, the original websites restored in the <a href="archive.html">Archive</a>.')]
 news_orig = [
  ('04/03/01', 'Zax&trade; has a brand new name! "Zax the Alien Hunter" is now the official title of the Zax title that has been under construction for the past year. The team is currently working on multi-player maps, AI\'s and optimizations. The game is looking beautiful if I do say so myself.'),
