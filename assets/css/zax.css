@@ -130,6 +130,12 @@ dl.facts dt { color: #5fa9c7; }
 dl.facts dd { margin: 0; }
 .box p > img { max-width: 100%; height: auto; }
 
+/* CD-Key-Generator */
+.cdkey-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.cdkey { font-family: "Zelon Dots", monospace; font-size: min(20px, calc((100vw - 96px) / 25)); letter-spacing: 1px; max-width: 100%; box-sizing: border-box; white-space: nowrap; color: #fff; background: #000; border: 1px solid #12394a; padding: 6px 12px; min-width: 18ch; }
+.cdkey-row button { font: inherit; font-size: 12px; color: #fff; background: #12394a; border: 1px solid #5fa9c7; border-radius: 2px; padding: 5px 12px; cursor: pointer; }
+.cdkey-row button:hover { background: #1d5670; }
+
 /* Sitemap */
 .sitemap ul { margin: .2em 0 .6em; }
 .sitemap > ul > li { margin-bottom: .7em; }

@@ -344,13 +344,14 @@ official = box('''  <h3>Playable demos (2001)</h3>
 packs = [
  ('Zax_Fix_Levels.zip', 'Level fixes', '<code>DataFixes.RED</code> – fixes script errors in eleven levels: Valeth\'s ore cave in mission 7, misspelt trigger targets in missions 5, 14 and 21, the mission log in the Mining maps and in the Cave of Souls (mission 8), the Sun key in the Assimilate Temple and more; also Zax\'s footsteps on metal floors. Works with every language. Note: the Slave Main key door now raises the alarm, so that level is harder than in the original. A fix only takes effect in a level the game enters for the first time with the pack installed – levels already visited in a save game stay as they were.'),
  ('Zax_Fix_English.zip', 'English fix', '<code>EnglishFix.RED</code> – spelling, grammar and wrong names in menus, objectives, dialogue and item texts; dialogue matches the spoken voice.'),
- ('Zax_Fix_German.zip', 'German fix', '<code>GermanFix.RED</code> – wrong translations, duplicate menu shortcuts, 28 missing texts and 5 multiplayer map names, 37 broken item labels. Needs <code>GERMAN.RED</code>.'),
- ('Zax_Fix_French.zip', 'French fix', '<code>0FrenchFix.RED</code> – fixes the mission 10 crash like the official patch, adds 33 missing texts and corrects about 30 translations. Needs <code>0French.RED</code>. Not yet tested in the game.'),
- ('Zax_Fix_Spanish.zip', 'Spanish fix', '<code>0SpanishFix.RED</code> – a broken weapon text, three voice lines that played in English, missing item and weapon names. Needs <code>0Spanish.RED</code>.'),
- ('Zax_Fix_Polish.zip', 'Polish fix', '<code>PolishFix.RED</code> – Polish voice lines that never played, a speaker without portrait, missing texts and misspellings. Needs <code>Polish.red</code>.'),
  ('Zax_Fix_Chinese.zip', 'Chinese fix', '<code>0ChineseFix.RED</code> – readable multiplayer texts (they were garbled), a missing item description and weapon name. Chinese Simplified edition only.'),
- ('Zax_LanguagePack_Russian.zip', 'Russian language pack', '<code>RUSSIAN.RED</code> – the Russian texts and voices of the Russian edition for the standard game data, with repaired voice files and missing texts added.'),
+ ('Zax_Fix_French.zip', 'French fix', '<code>0FrenchFix.RED</code> – fixes the mission 10 crash like the official patch, adds 33 missing texts and corrects about 30 translations. Needs <code>0French.RED</code>. Not yet tested in the game.'),
+ ('Zax_Fix_German.zip', 'German fix', '<code>GermanFix.RED</code> – wrong translations, duplicate menu shortcuts, 28 missing texts and 5 multiplayer map names, 37 broken item labels. Needs <code>GERMAN.RED</code>.'),
+ ('Zax_Fix_Polish.zip', 'Polish fix', '<code>PolishFix.RED</code> – Polish voice lines that never played, a speaker without portrait, missing texts and misspellings. Needs <code>Polish.red</code>.'),
+ ('Zax_Fix_Russian.zip', 'Russian fix', '<code>RussianFix.RED</code> – repairs for the original Russian edition with its own Russian <code>DATA.dat</code> and <code>local.txt</code>: damaged voice files and data files, a speaker portrait that was never found, an untranslated speaker name, a missing item description and two missing weapon names, dialogue text that did not match the spoken line. Keep the loose <code>local.txt</code>. For Russian over the standard game data use the Russian language pack below, which already holds these repairs.'),
+ ('Zax_Fix_Spanish.zip', 'Spanish fix', '<code>0SpanishFix.RED</code> – a broken weapon text, three voice lines that played in English, missing item and weapon names. Needs <code>0Spanish.RED</code>.'),
  ('Zax_LanguagePack_Czech.zip', 'Czech language pack', '<code>Czech.RED</code> – the Czech community translation of 2004 (translation: Dr. Mephisto, technique: Blackbird) for the standard game data; no patched <code>Zax.exe</code> needed, mission 18 no longer ends the game.'),
+ ('Zax_LanguagePack_Russian.zip', 'Russian language pack', '<code>RUSSIAN.RED</code> – the Russian texts and voices of the Russian edition for the standard game data, with repaired voice files and missing texts added.'),
 ]
 community = box('''  <h3>Tools</h3>
   <ul class="downloads">
@@ -389,11 +390,20 @@ game_dl = box('  <p>The full versions of the game in its different editions. The
               + gd_list
               + f'  <p>Problems with the copy protection? Use the <code>Zax.exe</code> of the <a href="{REL}ZaxDemo_2001-08-06_Build1308.exe">demo of 6 August 2001</a> (build 1308) – it is the full version\'s EXE without copy protection: install the demo, back up or rename the <code>Zax.exe</code> in the game folder of the full version, then copy the demo\'s <code>Zax.exe</code> there. This does not work with the Chinese edition.</p>\n'
               + '  <p class="small">You need the full version for the fix packs and language packs below.</p>')
+# CD-Key-Generator (assets/js/cdkey.js, nach der Prüfung in Zax.exe 0x46b540; läuft nur im Browser)
+cdkey_html = ('  <h3 id="cdkey-generator">CD key generator</h3>\n  <p>The game asks for a CD key. If yours is lost, this generator makes a valid one – right here in your browser, nothing is sent anywhere.</p>\n'
+    '  <p class="cdkey-row"><output id="cdkey" class="cdkey" aria-live="polite">····-····-····-····-····</output>'
+    '<button type="button" id="cdkey-new">New key</button><button type="button" id="cdkey-copy">Copy</button></p>\n'
+    '  <noscript><p class="small">The generator needs JavaScript.</p></noscript>\n'
+    f'<script src="{asset("assets/js/cdkey.js")}" defer></script>')
+NOTE = '  <p class="small">You need the full version for the fix packs and language packs below.</p>'
+game_dl = game_dl.replace(NOTE, cdkey_html + '\n' + NOTE)
 dl = sections('Downloads', [('game', 'Game Downloads', game_dl), ('community', 'Community Downloads', community), ('official', 'Official Downloads', official)])
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
 # ---------------------------------------------------------------- News & Links (+ Developer Logs)
-news_site = [('11/17/26', 'New finds from the Internet Archive: the first Zax page of 1998 and the reflexive.net page of 2003 in the <a href="archive.html">Archive</a>, many more pages and pictures of zax-game.com and jowood.com, and a new <a href="the-game.html">The Game</a> page that brings together everything the developer\'s and the official site said about the game: story, characters, weapons, interface and screenshots.'),
+news_site = [('11/17/26', 'New in <a href="downloads.html">Downloads</a>: <a href="downloads.html#game">links to the full version</a> of the game in seven languages with a tip for copy protection problems, a <a href="downloads.html#cdkey-generator">CD key generator</a> and a fix pack for the original Russian edition.'),
+             ('11/17/26', 'New finds from the Internet Archive: the first Zax page of 1998 and the reflexive.net page of 2003 in the <a href="archive.html">Archive</a>, many more pages and pictures of zax-game.com and jowood.com, and a new <a href="the-game.html">The Game</a> page that brings together everything the developer\'s and the official site said about the game: story, characters, weapons, interface and screenshots.'),
              ('11/16/26', 'New in <a href="downloads.html#official">Downloads</a>: the demo of 1 June 2001, the earliest known build of the game, in 8-bit colour and with still images instead of the intro videos.'),
              ('11/16/26', 'New in the <a href="archive.html#score-1998">Archive</a>: ten early pictures of the game from the cover CD of the Czech magazine <i>Score</i>, issue 59 (November 1998), with the text that came with them.'),
              ('11/14/26', 'This fan site goes online: navigation and fonts rebuilt from the original Flash files of zax-game.com, the original websites restored in the <a href="archive.html">Archive</a>.')]
@@ -532,7 +542,7 @@ def sm_list(items):
 SITEMAP = [
  ('index.html', 'Homepage', []),
  ('the-game.html', 'The Game', [(f'the-game.html#{a}', t, []) for a, t, _ in GAME_SECTIONS]),
- ('downloads.html', 'Downloads', [('downloads.html#game', 'Game downloads – full versions (external links)', []), ('downloads.html#community', 'Community downloads – tools, fix packs and language packs', []),
+ ('downloads.html', 'Downloads', [('downloads.html#game', 'Game downloads – full versions (external links)', []), ('downloads.html#cdkey-generator', 'CD key generator', []), ('downloads.html#community', 'Community downloads – tools, fix packs and language packs', []),
                                    ('downloads.html#official', 'Official downloads – demos and the French patch', []),
                                    ('https://github.com/eggi36/zax-game.com/releases/tag/downloads', 'Release page with all files and checksums', [])]),
  ('news-links.html', 'News & Links', [('news-links.html#site-news', 'Site news', []),

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Downloads – Zax: The Alien Hunter</title>
-<link rel="stylesheet" href="assets/css/zax.css?v=bd39a65397">
+<link rel="stylesheet" href="assets/css/zax.css?v=7e28675a4a">
 <script>(function(){try{if(sessionStorage.getItem('zaxBooted')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches){var d=document.documentElement;d.classList.add('zax-boot');setTimeout(function(){d.classList.remove('zax-boot');},10000);}}catch(e){}})();</script>
 </head>
 <body>
@@ -40,6 +40,11 @@
     <li><a class="flag" href="https://archive.org/details/Zax_ES" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="assets/img/flags/es.gif" width="82" height="47" alt=""></a><span><a href="https://archive.org/details/Zax_ES" target="_blank" rel="noopener"><b>Zax: The Alien Hunter – Spanish</b></a> <span class="srcline">(archive.org, external)</span></span></li>
   </ul>
   <p>Problems with the copy protection? Use the <code>Zax.exe</code> of the <a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/ZaxDemo_2001-08-06_Build1308.exe">demo of 6 August 2001</a> (build 1308) – it is the full version's EXE without copy protection: install the demo, back up or rename the <code>Zax.exe</code> in the game folder of the full version, then copy the demo's <code>Zax.exe</code> there. This does not work with the Chinese edition.</p>
+  <h3 id="cdkey-generator">CD key generator</h3>
+  <p>The game asks for a CD key. If yours is lost, this generator makes a valid one – right here in your browser, nothing is sent anywhere.</p>
+  <p class="cdkey-row"><output id="cdkey" class="cdkey" aria-live="polite">····-····-····-····-····</output><button type="button" id="cdkey-new">New key</button><button type="button" id="cdkey-copy">Copy</button></p>
+  <noscript><p class="small">The generator needs JavaScript.</p></noscript>
+<script src="assets/js/cdkey.js?v=9472fe7153" defer></script>
   <p class="small">You need the full version for the fix packs and language packs below.</p>
 </div>
 </section>
@@ -56,13 +61,14 @@
   <ul class="downloads">
     <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_Levels.zip"><b>Level fixes</b></a> (7.9 MB) – <code>DataFixes.RED</code> – fixes script errors in eleven levels: Valeth's ore cave in mission 7, misspelt trigger targets in missions 5, 14 and 21, the mission log in the Mining maps and in the Cave of Souls (mission 8), the Sun key in the Assimilate Temple and more; also Zax's footsteps on metal floors. Works with every language. Note: the Slave Main key door now raises the alarm, so that level is harder than in the original. A fix only takes effect in a level the game enters for the first time with the pack installed – levels already visited in a save game stay as they were.</li>
     <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_English.zip"><b>English fix</b></a> (36 KB) – <code>EnglishFix.RED</code> – spelling, grammar and wrong names in menus, objectives, dialogue and item texts; dialogue matches the spoken voice.</li>
-    <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_German.zip"><b>German fix</b></a> (43 KB) – <code>GermanFix.RED</code> – wrong translations, duplicate menu shortcuts, 28 missing texts and 5 multiplayer map names, 37 broken item labels. Needs <code>GERMAN.RED</code>.</li>
-    <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_French.zip"><b>French fix</b></a> (435 KB) – <code>0FrenchFix.RED</code> – fixes the mission 10 crash like the official patch, adds 33 missing texts and corrects about 30 translations. Needs <code>0French.RED</code>. Not yet tested in the game.</li>
-    <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_Spanish.zip"><b>Spanish fix</b></a> (562 KB) – <code>0SpanishFix.RED</code> – a broken weapon text, three voice lines that played in English, missing item and weapon names. Needs <code>0Spanish.RED</code>.</li>
-    <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_Polish.zip"><b>Polish fix</b></a> (270 KB) – <code>PolishFix.RED</code> – Polish voice lines that never played, a speaker without portrait, missing texts and misspellings. Needs <code>Polish.red</code>.</li>
     <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_Chinese.zip"><b>Chinese fix</b></a> (32 KB) – <code>0ChineseFix.RED</code> – readable multiplayer texts (they were garbled), a missing item description and weapon name. Chinese Simplified edition only.</li>
-    <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_LanguagePack_Russian.zip"><b>Russian language pack</b></a> (87.5 MB) – <code>RUSSIAN.RED</code> – the Russian texts and voices of the Russian edition for the standard game data, with repaired voice files and missing texts added.</li>
+    <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_French.zip"><b>French fix</b></a> (435 KB) – <code>0FrenchFix.RED</code> – fixes the mission 10 crash like the official patch, adds 33 missing texts and corrects about 30 translations. Needs <code>0French.RED</code>. Not yet tested in the game.</li>
+    <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_German.zip"><b>German fix</b></a> (43 KB) – <code>GermanFix.RED</code> – wrong translations, duplicate menu shortcuts, 28 missing texts and 5 multiplayer map names, 37 broken item labels. Needs <code>GERMAN.RED</code>.</li>
+    <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_Polish.zip"><b>Polish fix</b></a> (270 KB) – <code>PolishFix.RED</code> – Polish voice lines that never played, a speaker without portrait, missing texts and misspellings. Needs <code>Polish.red</code>.</li>
+    <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_Russian.zip"><b>Russian fix</b></a> (13.9 MB) – <code>RussianFix.RED</code> – repairs for the original Russian edition with its own Russian <code>DATA.dat</code> and <code>local.txt</code>: damaged voice files and data files, a speaker portrait that was never found, an untranslated speaker name, a missing item description and two missing weapon names, dialogue text that did not match the spoken line. Keep the loose <code>local.txt</code>. For Russian over the standard game data use the Russian language pack below, which already holds these repairs.</li>
+    <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_Fix_Spanish.zip"><b>Spanish fix</b></a> (562 KB) – <code>0SpanishFix.RED</code> – a broken weapon text, three voice lines that played in English, missing item and weapon names. Needs <code>0Spanish.RED</code>.</li>
     <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_LanguagePack_Czech.zip"><b>Czech language pack</b></a> (51 KB) – <code>Czech.RED</code> – the Czech community translation of 2004 (translation: Dr. Mephisto, technique: Blackbird) for the standard game data; no patched <code>Zax.exe</code> needed, mission 18 no longer ends the game.</li>
+    <li><a href="https://github.com/eggi36/zax-game.com/releases/download/downloads/Zax_LanguagePack_Russian.zip"><b>Russian language pack</b></a> (87.5 MB) – <code>RUSSIAN.RED</code> – the Russian texts and voices of the Russian edition for the standard game data, with repaired voice files and missing texts added.</li>
   </ul>
   <p class="small">Fan-made tools and packs, not affiliated with the rights holders. Checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>. More projects around the game are listed on the <a href="projects.html">Projects</a> page.</p>
 </div>
