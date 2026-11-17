@@ -196,10 +196,11 @@ characters = [
   ('Cave Dweller', P + 'cave_dweller.jpg', ['This soft-shelled four-legged arachnid resides deep in the wet caverns of LV-42-3. Though very slow moving, they can kill enemy and prey alike with the venomous spray shot from their mouths.'], [('r', RC)]),
   ('Jungle Creature', P + 'jungle_creature.jpg', ['These creatures can usually be found in packs throughout the jungle regions. These speedy two-legged beasts use their powerful jaws to feast upon the native wild boar and any unsuspecting Korbo.'], [('r', RC)])]),
 ]
+def ch_id(group): return 'ch-' + re.sub(r'[^a-z]+', '-', group.lower()).strip('-')   # Sprungmarke einer Figurengruppe
 ch = box('  <p>The heroes, the robots of Om and the creatures of the planet, as the developer (reflexive.net, 2001) and the official site (zax-game.com, 2002–2004) described them. Where both sites wrote about the same character, both texts are given; pictures were only partly preserved.</p>\n'
-         '  <nav class="toc">' + ' · '.join(f'<a href="#ch-{re.sub(r"[^a-z]+", "-", g.lower()).strip("-")}">{g}</a>' for g, _ in characters) + '</nav>')
+         '  <nav class="toc">' + ' · '.join(f'<a href="#{ch_id(g)}">{g}</a>' for g, _ in characters) + '</nav>')
 for g, items in characters:
-    ch += '\n' + box('\n'.join(entry(*c) for c in items), g, 'ch-' + re.sub(r'[^a-z]+', '-', g.lower()).strip('-'))
+    ch += '\n' + box('\n'.join(entry(*c) for c in items), g, ch_id(g))
 
 # ---- Weapons (Reihenfolge und Texte von zax-game.com – meist Zelons Worte –, Bilder und längere Texte von reflexive.net)
 W, RW, ZW = 'assets/img/weapons/', R1 + 'Weapons.htm', ZG + 'weapons/'
@@ -365,39 +366,35 @@ community = box('''  <h3>Tools</h3>
 ''' for f, n, t in packs) + '''  </ul>
   <p class="small">Fan-made tools and packs, not affiliated with the rights holders. Checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>. More projects around the game are listed on the <a href="projects.html">Projects</a> page.</p>''')
 # Vollversionen des Spiels: nur externe Links, nichts davon liegt auf dieser Seite oder im Release.
-# Je Eintrag: (Name, Adresse, Anbieter, Beschreibung) – z. B. ('Zax: The Alien Hunter – English', 'https://…', 'archive.org', 'CD image, …')
+# Je Eintrag: (Sprache, Flagge in assets/img/flags/ oder None, Adresse, Anbieter, Beschreibung); Englisch zuerst, dann alphabetisch.
 game_downloads = [
- ('Zax: The Alien Hunter – English', 'https://archive.org/details/zax-the-alien-hunter-flt', 'archive.org', ''),
- ('Zax: The Alien Hunter – Chinese', 'https://archive.org/details/ZTAHChs', 'archive.org', ''),
- ('Zax: The Alien Hunter – French', 'https://www.abandonware-france.org/ltf_abandon/ltf_jeu.php?id=4014&fic=liens', 'abandonware-france.org', ''),
- ('Zax: The Alien Hunter – German', 'https://archive.org/details/Zax_DE', 'archive.org', ''),
- ('Zax: The Alien Hunter – Polish', 'https://archive.org/details/zax_20210926', 'archive.org', ''),
- ('Zax: The Alien Hunter – Russian', 'https://www.old-games.ru/game/download/2011.html', 'old-games.ru', ''),
- ('Zax: The Alien Hunter – Spanish', 'https://archive.org/details/Zax_ES', 'archive.org', ''),
+ ('English', 'en', 'https://archive.org/details/zax-the-alien-hunter-flt', 'archive.org', ''),
+ ('Chinese', 'zh', 'https://archive.org/details/ZTAHChs', 'archive.org', ''),
+ ('French', 'fr', 'https://www.abandonware-france.org/ltf_abandon/ltf_jeu.php?id=4014&fic=liens', 'abandonware-france.org', ''),
+ ('German', 'de', 'https://archive.org/details/Zax_DE', 'archive.org', ''),
+ ('Polish', 'pl', 'https://archive.org/details/zax_20210926', 'archive.org', ''),
+ ('Russian', 'ru', 'https://www.old-games.ru/game/download/2011.html', 'old-games.ru', ''),
+ ('Spanish', 'es', 'https://archive.org/details/Zax_ES', 'archive.org', ''),
 ]
-if game_downloads:
-    # Flaggen im Stil der Sprachwahl von zax-game.com (en.gif = flag_uk.gif dort); ohne Flagge bleibt der Platz frei
-    FLAGS = {'English': 'en', 'Chinese': 'zh', 'French': 'fr', 'German': 'de', 'Polish': 'pl', 'Spanish': 'es', 'Czech': 'cs', 'Russian': 'ru'}
-    def flag(n):
-        c = FLAGS.get(n.rsplit('– ', 1)[-1])
-        return img(f'assets/img/flags/{c}.gif', '') if c else '<span class="noflag"></span>'
-    gd_list = '  <ul class="downloads flags">\n' + ''.join(
-        f'    <li><a class="flag" href="{html.escape(u)}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">{flag(n)}</a><span><a href="{html.escape(u)}" target="_blank" rel="noopener"><b>{html.escape(n)}</b></a> <span class="srcline">({html.escape(h)}, external)</span>{"<br>" + t if t else ""}</span></li>\n'
-        for n, u, h, t in game_downloads) + '  </ul>\n'
-else:
-    gd_list = '  <p><i>No links yet.</i></p>\n'
-game_dl = box('  <p>The full versions of the game in its different editions. They are not hosted here: the links lead to other sites, which are responsible for their downloads.</p>\n'
-              + gd_list
-              + f'  <p>Problems with the copy protection? Use the <code>Zax.exe</code> of the <a href="{REL}ZaxDemo_2001-08-06_Build1308.exe">demo of 6 August 2001</a> (build 1308) – it is the full version\'s EXE without copy protection: install the demo, back up or rename the <code>Zax.exe</code> in the game folder of the full version, then copy the demo\'s <code>Zax.exe</code> there. This does not work with the Chinese edition.</p>\n'
-              + '  <p class="small">You need the full version for the fix packs and language packs below.</p>')
+# Flaggen im Stil der Sprachwahl von zax-game.com (en.gif = flag_uk.gif dort); ohne Flagge bleibt der Platz frei
+def flag(code):
+    return img(f'assets/img/flags/{code}.gif', '') if code else '<span class="noflag"></span>'
+def game_item(lang, code, u, h, t):
+    u, n = html.escape(u), f'Zax: The Alien Hunter – {html.escape(lang)}'
+    return (f'    <li><a class="flag" href="{u}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">{flag(code)}</a>'
+            f'<span><a href="{u}" target="_blank" rel="noopener"><b>{n}</b></a> <span class="srcline">({html.escape(h)}, external)</span>{"<br>" + t if t else ""}</span></li>\n')
+gd_list = ('  <ul class="downloads flags">\n' + ''.join(game_item(*g) for g in game_downloads) + '  </ul>\n') if game_downloads else '  <p><i>No links yet.</i></p>\n'
 # CD-Key-Generator (assets/js/cdkey.js, nach der Prüfung in Zax.exe 0x46b540; läuft nur im Browser)
 cdkey_html = ('  <h3 id="cdkey-generator">CD key generator</h3>\n  <p>The game asks for a CD key. If yours is lost, this generator makes a valid one – right here in your browser, nothing is sent anywhere.</p>\n'
     '  <p class="cdkey-row"><output id="cdkey" class="cdkey" aria-live="polite">····-····-····-····-····</output>'
     '<button type="button" id="cdkey-new">New key</button><button type="button" id="cdkey-copy">Copy</button></p>\n'
     '  <noscript><p class="small">The generator needs JavaScript.</p></noscript>\n'
-    f'<script src="{asset("assets/js/cdkey.js")}" defer></script>')
-NOTE = '  <p class="small">You need the full version for the fix packs and language packs below.</p>'
-game_dl = game_dl.replace(NOTE, cdkey_html + '\n' + NOTE)
+    f'<script src="{asset("assets/js/cdkey.js")}" defer></script>\n')
+game_dl = box('  <p>The full versions of the game in its different editions. They are not hosted here: the links lead to other sites, which are responsible for their downloads.</p>\n'
+              + gd_list
+              + f'  <p>Problems with the copy protection? Use the <code>Zax.exe</code> of the <a href="{REL}ZaxDemo_2001-08-06_Build1308.exe">demo of 6 August 2001</a> (build 1308) – it is the full version\'s EXE without copy protection: install the demo, back up or rename the <code>Zax.exe</code> in the game folder of the full version, then copy the demo\'s <code>Zax.exe</code> there. This does not work with the Chinese edition.</p>\n'
+              + cdkey_html
+              + '  <p class="small">You need the full version for the fix packs and language packs below.</p>')
 dl = sections('Downloads', [('game', 'Game Downloads', game_dl), ('community', 'Community Downloads', community), ('official', 'Official Downloads', official)])
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
@@ -474,15 +471,15 @@ page('projects.html', 'Projects', 'Projects', pj, 'projects.html')
 
 # ---------------------------------------------------------------- Archive
 ZGA = 'archive/zax-game.com_2004/english/'
-def links(items): return ', '.join(f'<a href="{u}" target="_blank" rel="noopener">{t}</a>' for u, t in items)
+def link_list(items): return ', '.join(f'<a href="{u}" target="_blank" rel="noopener">{t}</a>' for u, t in items)
 zg_more = ('<br>Pages that were reached through Flash menus that were not preserved: '
-    + links([(ZGA + 'features.html', 'features'), ('archive/zax-game.com_2004/german/features.html', 'Features (German)'),
+    + link_list([(ZGA + 'features.html', 'features'), ('archive/zax-game.com_2004/german/features.html', 'Features (German)'),
              (ZGA + 'heroic/zax.html', 'heroes'), (ZGA + 'enemy/om.html', 'enemies'), (ZGA + 'weapons/laser_welder.html', 'weapons'),
              (ZGA + 'screenshots/00.html', 'screenshots'), (ZGA + 'links_php.html', 'links')])
     + '. All heroes, enemies and weapons are linked from <a href="the-game.html#characters">The Game</a>.')
 R4 = 'archive/2003-06_Version4/zax/screenhtms/'
 r4_shots = ('<br>Screenshot pages (their overview page was not preserved): '
-    + links([(R4 + f'ss{n:02d}.htm', f'{n:02d}') for n in range(26) if n not in (3,)] + [(R4 + f'multiplayer%20{n:02d}.htm', f'MP{n:02d}') for n in range(1, 10)]) + '.')
+    + link_list([(R4 + f'ss{n:02d}.htm', f'{n:02d}') for n in range(26) if n not in (3,)] + [(R4 + f'multiplayer%20{n:02d}.htm', f'MP{n:02d}') for n in range(1, 10)]) + '.')
 arch = [
  ('archive/1998-12_Version0/zax/zaxintro.html', 'archive/shot_1998-12_Version0.png', 'reflexive.net/Zax – December 1998',
   'The first Zax page of the developer: “Zax, Coming 1999-2000”, with the early story of a soldier of the Galactic Imperium. Only the text was preserved; its ten large pictures – seven illustrations and three screenshots – are the ones found on the <a href="#score-1998">Score cover CD</a>, the other images are marked as missing.'),

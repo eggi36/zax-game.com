@@ -38,7 +38,8 @@ Content building blocks:
 ## Archive tools
 - `tools/archive_entities.py` – writes special characters in archive pages as HTML entities (GitHub Pages serves everything as UTF-8); `tools/gen.py` stops while an archive page still has raw ones.
 - `tools/archive/placeholder.py` – the red-hatched MISSING placeholder for never-archived images.
-- `tools/archive/check_links.py` – finds local links in the archive that would break on GitHub Pages (missing files, or a different upper/lower case than the file); `--fix` corrects the case.
+- `tools/archive/check_links.py` – finds local links in the archive that would break on GitHub Pages (missing files, or a different upper/lower case than the file); `--fix` corrects the case. Accepted gaps are listed in `tools/archive/known_missing.txt`; it exits with 1 on new problems.
+- `tools/archive/import_reflexive.py`, `tools/archive/import_zaxgame.py` – build reflexive.net/Zax 1998 and 2003 and the additional zax-game.com pages from the source pages in `tools/archive/finds_src/` (Internet Archive finds of November 2026).
 - `tools/archive/build_jowood.py` – rebuilds `archive/jowood.com_2003/gamers/*.html` from the original pages in `tools/archive/jowood_src/`; capture dates are in `tools/archive/jowood_captures.json` and `archive/jowood.com_2003/CAPTURES.txt`.
 
 ## Fonts

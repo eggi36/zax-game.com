@@ -11,8 +11,8 @@
     var s = String(text).toUpperCase().replace(/O/g, '0').replace(/[IL]/g, '1').replace(/B/g, '8')
       .replace(/S/g, '5').replace(/[^0-9]/g, '');
     if (s.length !== 20) return false;
-    var first = BigInt(s.slice(0, 10)), last = BigInt(s.slice(10));
-    if (first > 0xffffffffn || last > 0xffffffffn) return false;     // %010u reads 32-bit numbers
+    // %010u reads into a 32-bit number and, like the CRT of the game, wraps above 4294967295
+    var first = BigInt(s.slice(0, 10)) & 0xffffffffn, last = BigInt(s.slice(10)) & 0xffffffffn;
     var v = (first << 32n) | last;
     var t = (v >> 20n) & 0xffffffffffn;                               // bits 20-59
     return (last & M) === (((t % M) ^ 0x9249n) & M);
@@ -45,9 +45,19 @@
     if (copy) copy.textContent = 'Copy';
   }
   btn.addEventListener('click', fresh);
+  // Without the Clipboard API (no secure context, older browsers) or when it refuses: select the key instead
+  function selectKey() {
+    var range = document.createRange();
+    range.selectNodeContents(out);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    copy.textContent = 'Selected – copy with Ctrl+C or ⌘C';
+  }
   if (copy) copy.addEventListener('click', function () {
-    var done = function () { copy.textContent = 'Copied'; };
-    if (navigator.clipboard) navigator.clipboard.writeText(out.textContent).then(done, function () {});
+    if (navigator.clipboard && window.isSecureContext)
+      navigator.clipboard.writeText(out.textContent).then(function () { copy.textContent = 'Copied'; }, selectKey);
+    else selectKey();
   });
   fresh();
   window.zaxCdKey = { check: check, generate: generate };
