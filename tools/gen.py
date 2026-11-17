@@ -75,6 +75,14 @@ def box(inner, title=None, id=None):
     i = f' id="{id}"' if id else ''
     return f'<div class="box"{i}>\n{t}{inner}\n</div>'
 
+def sections(label, secs, intro=''):
+    """Seite aus Abschnitten wie „The Game“: Unterleiste mit Sprungmarken, je Abschnitt eine Punktmatrix-Überschrift.
+    secs: [(id, Titel, HTML)]; intro steht zwischen Leiste und erstem Abschnitt."""
+    out = f'<nav class="subnav" aria-label="{html.escape(label)}">' + ''.join(f'<a href="#{a}">{html.escape(t)}</a>' for a, t, _ in secs) + '</nav>\n'
+    out += (intro + '\n') if intro else ''
+    return out + '\n'.join(f'<section id="{a}" aria-labelledby="{a}-h">\n<h2 class="section-title" id="{a}-h"><span class="dots">{html.escape(t)}</span></h2>\n{body}\n</section>'
+                            for a, t, body in secs)
+
 def row(side, content):
     return f'<div class="row">\n  <div class="side">{side}</div>\n  <div class="content">\n{content}\n  </div>\n</div>'
 
@@ -99,7 +107,7 @@ home += '\n' + box('''  <div class="credits">
 page('index.html', 'Homepage', 'Homepage', home)
 
 # ---------------------------------------------------------------- The Game
-# Eine Seite in der Reihenfolge eines Handbuchs: Overview → Story → Characters → Weapons → Interface → Screenshots → FAQ → Unused Content.
+# Eine Seite in der Reihenfolge eines Handbuchs: Overview → Story → Characters → Weapons → Interface → Screenshots → FAQ. (Unused Content steht im Archiv.)
 # Texte aus den archivierten Seiten: reflexive.net (2001) und zax-game.com (2002–2004); je Eintrag beide Quellen zusammengeführt.
 R1 = 'archive/2001-12_Version3/Zax/'          # reflexive.net, Dezember 2001
 ZG = 'archive/zax-game.com_2004/english/'     # zax-game.com
@@ -288,10 +296,8 @@ def unused_box(cat, models):
 uc = box('  <p>Models in the game data (<code>DATA.dat</code>) that the game never uses: no level, script, object definition or the executable refers to them. Each picture is the first frame of the model, rendered straight from the game files.</p>')
 uc += ''.join('\n' + unused_box(cat, models) for cat, models in unused_models.items())
 GAME_SECTIONS = [('overview', 'Overview', ov), ('story', 'Story', st), ('characters', 'Characters', ch), ('weapons', 'Weapons', wp),
-                 ('interface', 'Interface', it), ('screenshots', 'Screenshots', sc), ('faq', 'FAQ', fq), ('unused-content', 'Unused Content', uc)]
-game = '<nav class="subnav" aria-label="The Game">' + ''.join(f'<a href="#{a}">{html.escape(t)}</a>' for a, t, _ in GAME_SECTIONS) + '</nav>\n'
-game += '\n'.join(f'<section id="{a}" aria-labelledby="{a}-h">\n<h2 class="section-title" id="{a}-h"><span class="dots">{html.escape(t)}</span></h2>\n{body}\n</section>'
-                  for a, t, body in GAME_SECTIONS)
+                 ('interface', 'Interface', it), ('screenshots', 'Screenshots', sc), ('faq', 'FAQ', fq)]
+game = sections('The Game', GAME_SECTIONS)
 page('the-game.html', 'The Game', 'The Game', game, 'the-game.html')
 
 # ---------------------------------------------------------------- Downloads
@@ -334,7 +340,7 @@ official = box('''  <h3>Playable demos (2001)</h3>
   <p><a href="''' + REL + '''Zax_French_Patch.zip"><b>Zax_French_Patch.zip</b></a> (''' + size('Zax_French_Patch.zip') + ''', February 2002) – fixes the crash in mission 10 of the French version. Copy <code>1French.RED</code> into the Zax folder (where <code>Zax.exe</code> is); save games keep working.</p>
   <h3>Wallpapers</h3>
   <p>The wallpaper section of the official site was a Flash file that has not been preserved.</p>
-''', 'Official downloads', 'official')
+''')
 packs = [
  ('Zax_Fix_Levels.zip', 'Level fixes', '<code>DataFixes.RED</code> – fixes script errors in eleven levels: Valeth\'s ore cave in mission 7, misspelt trigger targets in missions 5, 14 and 21, the mission log in the Mining maps and in the Cave of Souls (mission 8), the Sun key in the Assimilate Temple and more; also Zax\'s footsteps on metal floors. Works with every language. Note: the Slave Main key door now raises the alarm, so that level is harder than in the original. A fix only takes effect in a level the game enters for the first time with the pack installed – levels already visited in a save game stay as they were.'),
  ('Zax_Fix_English.zip', 'English fix', '<code>EnglishFix.RED</code> – spelling, grammar and wrong names in menus, objectives, dialogue and item texts; dialogue matches the spoken voice.'),
@@ -356,8 +362,8 @@ community = box('''  <h3>Tools</h3>
   <ul class="downloads">
 ''' + ''.join(f'''    <li><a href="{REL}{f}"><b>{n}</b></a> ({size(f)}) – {t}</li>
 ''' for f, n, t in packs) + '''  </ul>
-  <p class="small">Fan-made tools and packs, not affiliated with the rights holders. Checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>. More projects around the game are listed on the <a href="projects.html">Projects</a> page.</p>''', 'Community downloads', 'community')
-dl = community + '\n' + official
+  <p class="small">Fan-made tools and packs, not affiliated with the rights holders. Checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>. More projects around the game are listed on the <a href="projects.html">Projects</a> page.</p>''')
+dl = sections('Downloads', [('community', 'Community Downloads', community), ('official', 'Official Downloads', official)])
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
 # ---------------------------------------------------------------- News & Links (+ Developer Logs)
@@ -382,19 +388,21 @@ links = [
   ('https://web.archive.org/web/2001/http://www.reflexive.net/Zax/', 'reflexive.net/Zax at the Internet Archive', ''),
   ('https://web.archive.org/web/2004/http://www.zax-game.com/', 'zax-game.com at the Internet Archive', '')]),
 ]
-nl = box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_site), 'Site news', 'site-news')
-nl += '\n' + box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_orig)
-                 + '  <p class="small">News from the official site by Reflexive Entertainment, 2000–2001.</p>', 'Development news 2000–2001', 'development-news')
-nl += '\n' + box('  <p>Every week the Reflexive team posted what they had been working on – programmers, artists and level designers. Three of these logs have survived: 12/08/00, 12/15/00 and 01/05/01.</p>\n  <p><a href="logs.html">Read the developer logs</a></p>', 'Developer logs', 'developer-logs')
+nl_site = box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_site))
+nl_dev = box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_orig)
+                 + '  <p class="small">News from the official site by Reflexive Entertainment, 2000–2001.</p>', )
+nl_logs = box('  <p>Every week the Reflexive team posted what they had been working on – programmers, artists and level designers. Three of these logs have survived: 12/08/00, 12/15/00 and 01/05/01.</p>\n  <p><a href="logs.html">Read the developer logs</a></p>', )
 lk = ''
 for head, entries in links:
     lk += f'  <h3>{head}</h3>\n  <ul>\n' + ''.join(
         f'    <li><a href="{u}">{n}</a>{" – " + d if d else ""}</li>\n' for u, n, d in entries) + '  </ul>\n'
-nl += '\n' + box(lk, 'Links', 'links')
+nl = sections('News & Links', [('site-news', 'Site News', nl_site), ('development-news', 'Development News 2000–2001', nl_dev),
+                               ('developer-logs', 'Developer Logs', nl_logs), ('links', 'Links', box(lk))])
 page('news-links.html', 'News & Links', 'News & Links', nl, 'news-links.html')
 
 logs = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs.json'), encoding='utf-8'))
-lg = box('  <p>The weekly logs of the Zax team at Reflexive Entertainment, as published on reflexive.net/Zax. Text unchanged, apart from layout.</p>\n  <p><a href="news-links.html">&larr; back to News &amp; Links</a></p>', 'Developer logs')
+lg_intro = box('  <p>The weekly logs of the Zax team at Reflexive Entertainment, as published on reflexive.net/Zax. Text unchanged, apart from layout.</p>\n  <p><a href="news-links.html">&larr; back to News &amp; Links</a></p>')
+log_secs = []
 for l in logs:
     inner = ''
     for sec in l['sections']:
@@ -402,7 +410,8 @@ for l in logs:
         for p in sec['people']:
             inner += f'  <p class="small" style="margin:.6em 0 .2em;color:#fff">{html.escape(p["name"])}</p>\n  <ul>\n' + ''.join(
                 f'    <li>{html.escape(i)}</li>\n' for i in p['items']) + '  </ul>\n'
-    lg += '\n' + box(inner, f'Log {l["date"]}', 'log-' + re.sub(r'\W+', '-', l['date']).strip('-'))
+    log_secs.append(('log-' + re.sub(r'\W+', '-', l['date']).strip('-'), f'Log {l["date"]}', box(inner)))
+lg = sections('Developer Logs', log_secs, lg_intro)
 page('logs.html', 'Developer Logs', 'Developer Logs', lg, 'news-links.html')
 
 # ---------------------------------------------------------------- Projects
@@ -414,16 +423,17 @@ repos = [
 ]
 pj = box('  <p>Projects around the game, all open source on GitHub.</p>\n' + ''.join(
     f'  <div class="item"><h3><a class="repo" href="https://github.com/eggi36/{n}">{n}</a><span class="tag">{lang}</span></h3><p>{d}</p></div>\n'
-    for n, lang, d in repos), 'Projects', 'my-projects')
+    for n, lang, d in repos))
 community_projects = [
  ('https://github.com/zar9roc/ZaxEd', 'ZaxEd', 'A map viewer in the browser, an editor is planned.'),
  ('https://github.com/zar9roc/ZaxHiRes', 'ZaxHiRes', 'A patch for high resolutions.'),
  ('https://github.com/dubstabber/Zax-The-Alien-Hunter-Rebooted', 'Zax – The Alien Hunter Rebooted', 'A remake in Godot 4.'),
  ('https://github.com/dubstabber/Zax-bot', 'Zax-bot', 'Bots for multiplayer.'),
 ]
-pj += '\n' + box('  <p>Projects by other fans.</p>\n' + ''.join(
+pj_c = box('  <p>Projects by other fans.</p>\n' + ''.join(
     f'  <div class="item"><h3><a class="repo" href="{u}">{html.escape(n)}</a></h3><p>{d}</p></div>\n'
-    for u, n, d in community_projects), 'Community projects', 'community-projects')
+    for u, n, d in community_projects))
+pj = sections('Projects', [('my-projects', 'My Projects', pj), ('community-projects', 'Community Projects', pj_c)])
 page('projects.html', 'Projects', 'Projects', pj, 'projects.html')
 
 # ---------------------------------------------------------------- Archive
@@ -453,7 +463,7 @@ arch = [
  ('archive/jowood.com_2003/gamers/index.html', 'archive/shot_jowood.com_2003.jpg', 'jowood.com – January 2003',
   'The game\'s pages on the publisher\'s site in English and German: the game, screenshots, demo, patches, reviews, system requirements and registration. Links to other JoWooD pages lead to the Internet Archive; the Zax logo was not preserved, the forms are disabled. Screenshots never archived at their own address come from the files of the same name elsewhere on jowood.com.'),
 ]
-ar = box('  <p>Early pictures of the game from a 1998 magazine cover CD, followed by the original websites, restored from copies at the Internet Archive. The websites are shown as they were – with frames, period HTML and, where noted, Flash. Only archived material is shown: images that were never preserved are marked as missing.</p>', 'Archive')
+ar_intro = box('  <p>Early pictures of the game from a 1998 magazine cover CD, the original websites, restored from copies at the Internet Archive, and the models that were left unused in the game data. The websites are shown as they were – with frames, period HTML and, where noted, Flash. Only archived material is shown: images that were never preserved are marked as missing.</p>')
 # Score 59 (CZ, November 1998): Bilder von der Heft-CD (NGF-Format, verlustfrei als PNG). Es sind die zehn großen Bilder der
 # reflexive.net-Seite von 1998 (nie archiviert); Reihenfolge und Unterschriften wie dort (sonst die Unterschrift im Bild).
 R0 = 'archive/1998-12_Version0/zax/'
@@ -467,7 +477,7 @@ score = [('ZAX03', 'Zax discovers a new world', 'Zax640Images/ZaxIllustration.ht
          ('ZAX10', 'Malak of the Korbo', 'Zax640Images/Korbo%20Illustration.htm'),
          ('ZAX08', 'The Zelon', 'Zax640Images/Zelon%20Illustration.htm'),
          ('ZAX09', 'The Zelon Interior', 'Zax640Images/Zelon%20Interior%20Illustration.htm')]
-ar += '\n' + box(
+ar_score = box(
     '  <p>Ten pictures from the cover CD of the Czech games magazine <i>Score</i>, issue 59 (November 1998) – almost three years before the release. '
     'They are the large pictures of the developer\'s <a href="' + R0 + 'zaxintro.html" target="_blank" rel="noopener">first Zax page</a> on reflexive.net (December 1998): seven illustrations and three early screenshots. '
     'The Internet Archive kept that page, but not these pictures. On the disc they are stored in the NGF image format, which the CD also uses for its other pictures; here they are converted to PNG without loss, in their original size of 640×480.</p>\n'
@@ -483,11 +493,11 @@ ar += '\n' + box(
     '  <p class="small">In English: “The very promising-looking sci-fi adventure ZAX was recently presented on the Internet by the marketing experts of Reflexive Entertainment. '
     'Its release is planned for the end of next year, but seeing these stunning rendered – and yet so realistic – pictures from the game, my heart tells me this could be one of the most promising products of next winter. '
     'If we all believe and hope together, maybe ZAX will reach the shops sooner, and we can finally put away the bib, grab the mouse and start playing. Can\'t wait.”</p>',
-    'Finds from the Score cover CD – 1998', 'score-1998')
-ar += '\n<h2 class="section-title"><span class="dots">Websites</span></h2>'
-ar += '\n<div class="cards">\n' + ''.join(
+    )
+ar_web = '<div class="cards">\n' + ''.join(
     f'<div class="box card"><p class="title">{t}</p><a href="{u}" target="_blank" rel="noopener">{img(s, t, "shot")}</a><p>{d}</p><p><a href="{u}" target="_blank" rel="noopener">Open</a></p></div>\n'
     for u, s, t, d in arch) + '</div>'
+ar = sections('Archive', [('score-1998', 'Score CD Finds 1998', ar_score), ('websites', 'Websites', ar_web), ('unused-content', 'Unused Content', uc)], ar_intro)
 page('archive.html', 'Archive', 'Archive', ar, 'archive.html')
 
 # ---------------------------------------------------------------- Sitemap (Seite im Menü + sitemap.xml)
@@ -503,9 +513,10 @@ SITEMAP = [
                                        ('news-links.html#development-news', 'Development news 2000–2001', []),
                                        ('logs.html', 'Developer logs', [('logs.html#log-' + re.sub(r'\W+', '-', l['date']).strip('-'), 'Log ' + l['date'], []) for l in logs]),
                                        ('news-links.html#links', 'Links', [])]),
- ('projects.html', 'Projects', [('projects.html#my-projects', 'Projects of this site', []), ('projects.html#community-projects', 'Community projects', [])]),
+ ('projects.html', 'Projects', [('projects.html#my-projects', 'My projects', []), ('projects.html#community-projects', 'Community projects', [])]),
  ('archive.html', 'Archive', [('archive.html#score-1998', 'Finds from the Score cover CD – 1998', [])] + [(u, t, []) for u, s_, t, d in arch]
-                              + [('archive/jowood.com_2003/gamers/index_de.html', 'jowood.com – January 2003, German pages', [])]),
+                              + [('archive/jowood.com_2003/gamers/index_de.html', 'jowood.com – January 2003, German pages', [])]
+                              + [('archive.html#unused-content', 'Unused Content – models the game never uses', [])]),
 ]
 smap = box('  <div class="sitemap">\n' + sm_list(SITEMAP) + '  </div>', 'Sitemap')
 page('sitemap.html', 'Sitemap', 'Sitemap', smap, 'sitemap.html')

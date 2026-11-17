@@ -8,8 +8,8 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
   sondern `tools/gen.py` ändern und `python3 tools/gen.py` ausführen (braucht Pillow).
 - Menü: Liste `MENU` in `tools/gen.py` (bis zu 7 Einträge passen in den Monitor der Leiste).
   Schrift und Zeilenhöhe des Menüs skalieren mit der Zahl der Einträge (CSS `--n`), die Fläche ist immer gefüllt.
-  „The Game“ (`the-game.html`) ist wie ein Handbuch gegliedert (`GAME_SECTIONS`): Overview, Story, Characters, Weapons, Interface, Screenshots, FAQ, Unused Content. Figuren und Waffen führen die Texte von reflexive.net (2001) und zax-game.com (2002–2004) je Eintrag zusammen.
-  Unused Content: Daten aus der Modellübersicht (Artefakt) in `tools/unused_models.json` (je Kategorie), Bilder in `assets/img/unused/<kategorie>/`.
+  „The Game“ (`the-game.html`) ist wie ein Handbuch gegliedert (`GAME_SECTIONS`): Overview, Story, Characters, Weapons, Interface, Screenshots, FAQ. Figuren und Waffen führen die Texte von reflexive.net (2001) und zax-game.com (2002–2004) je Eintrag zusammen.
+  Unused Content (Abschnitt im Archiv, `archive.html#unused-content`): Daten aus der Modellübersicht (Artefakt) in `tools/unused_models.json` (je Kategorie), Bilder in `assets/img/unused/<kategorie>/`.
 - Logbücher: `tools/logs.json`.
 - CSS/JS werden mit `?v=<Inhalts-Hash>` eingebunden (`asset()` in `tools/gen.py`), damit Browser keine alten Dateien aus dem Cache nehmen.
 - Vor dem Commit die geänderten Seiten im Browser prüfen (lokal: `python3 -m http.server`).
