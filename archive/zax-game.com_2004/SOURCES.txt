@@ -1,0 +1,29 @@
+Sources of the files in this folder
+===================================
+
+All pages and images are copies from the Internet Archive (web.archive.org).
+Most come from www.zax-game.com itself. Files that were never archived there
+come from zax.jowood.com, JoWooD's mirror of the same site (2001-2008):
+
+Pages:  english/enemy/altered_korbo.html, scorpio_flyer.html, sentinon.html, talon.html
+        english/heroic/mindaza.html, zelon.html
+        english/screenshots/01.html
+        english/news_nav.html, english/bottom_nav.html, german/downloads.html
+Images: images/home_zax2.jpg, missionb_mineral.jpg, missionb_ore.jpg, ss00.jpg
+        images/enemy_altered_korbo.jpg, enemy_azah_pon.jpg, enemy_crutch.jpg,
+        enemy_higher_orb_slayer.jpg, enemy_lord_om_overseer.jpg, enemy_om_overseer.jpg,
+        enemy_rogcoil.jpg, table_orange_top_left.gif, table_orange_top_right.gif,
+        table_orange_bottom_right.gif
+
+Files with the same name from another address:
+- english/news_php.html, links_php.html, german/news_php.html: the news and links
+  pages (news.php, links.php). The site's frame loaded the news from
+  admin.jowood.de/zax/news.php, which was never archived; the copy of
+  www.zax-game.com/english/news.php is used instead. Style sheet and frame
+  graphics point to the files of the same name on the site.
+- english/blank.html: the empty page of the "Top Secret" frame; only the German
+  copy (german/blank.html) was archived.
+
+Images that were never archived anywhere are red-hatched MISSING placeholders
+at their original size. Flash files that were never archived show
+archive/missing.html.

@@ -8,7 +8,7 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
   sondern `tools/gen.py` ändern und `python3 tools/gen.py` ausführen (braucht Pillow).
 - Menü: Liste `MENU` in `tools/gen.py` (bis zu 7 Einträge passen in den Monitor der Leiste).
   Schrift und Zeilenhöhe des Menüs skalieren mit der Zahl der Einträge (CSS `--n`), die Fläche ist immer gefüllt.
-  „The Game“ (`the-game.html`) fasst Mission Briefing, Profiles, Weapons und Unused Content als Abschnitte zusammen (`GAME_SECTIONS`).
+  „The Game“ (`the-game.html`) ist wie ein Handbuch gegliedert (`GAME_SECTIONS`): Overview, Story, Characters, Weapons, Interface, Screenshots, FAQ, Unused Content. Figuren und Waffen führen die Texte von reflexive.net (2001) und zax-game.com (2002–2004) je Eintrag zusammen.
   Unused Content: Daten aus der Modellübersicht (Artefakt) in `tools/unused_models.json` (je Kategorie), Bilder in `assets/img/unused/<kategorie>/`.
 - Logbücher: `tools/logs.json`.
 - CSS/JS werden mit `?v=<Inhalts-Hash>` eingebunden (`asset()` in `tools/gen.py`), damit Browser keine alten Dateien aus dem Cache nehmen.
@@ -25,10 +25,12 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
 - `assets/snd/` – Original-Töne aus top_nav.swf (hover, typing, zap, crackle).
 
 ## Archiv (`archive/`)
-- Originalseiten aus dem Internet Archive: reflexive.net/Zax (Jan/Apr/Dez 2001), zax-game.com und die Zax-Seite auf jowood.com (Jan 2003).
+- Originalseiten aus dem Internet Archive: reflexive.net/Zax (Dez 1998, Jan/Apr/Dez 2001, 2003), zax-game.com und die Zax-Seite auf jowood.com (Jan 2003).
 - Regel: nur echtes archiviertes Material. Nie archivierte Bilder bleiben als rot schraffierte
   „MISSING“-Platzhalter in Originalgröße stehen; keine selbst rekonstruierten Grafiken einfügen.
 - zax-game.com: Flash läuft über Ruffle (lokal in `assets/ruffle/`) in `index_flash.html` und `*/top_nav.html`.
+- GitHub Pages unterscheidet Groß-/Kleinschreibung, die alten Server nicht: nach Änderungen im Archiv `python3 tools/archive/check_links.py --fix`.
+- zax-game.com: was dort nie archiviert ist, kommt vom Spiegel zax.jowood.com (`archive/zax-game.com_2004/SOURCES.txt`).
 - Archivseiten nur in ASCII speichern: GitHub Pages sendet `charset=utf-8`, rohe Latin-1-Umlaute werden zu �.
   Nach dem Import `python3 tools/archive_entities.py`; `tools/gen.py` bricht sonst ab.
 - jowood.com-Archiv: nicht von Hand ändern, sondern `tools/archive/build_jowood.py` (Quellen in `tools/archive/jowood_src/`).

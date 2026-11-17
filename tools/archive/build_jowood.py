@@ -8,7 +8,8 @@ Was das Skript an den Originalseiten ändert (jeweils mit Kommentar im Quelltext
 - Links zwischen den archivierten Seiten zeigen lokal aufeinander, alle anderen JoWooD-Links
   ins Internet Archive; Links auf fremde Server bleiben, wie sie waren.
 - Formulare sind abgeschaltet (sie würden Daten an Server schicken, die es nicht mehr gibt).
-- Nie archivierte Bilder bekommen MISSING-Platzhalter (tools/archive/placeholder.py).
+- Nie archivierte Bilder bekommen MISSING-Platzhalter (tools/archive/placeholder.py), außer dieselbe Datei
+  liegt unter einer anderen JoWooD-Adresse (SAME_NAME).
 - Bilder aus deutlich späteren Aufnahmen als die Seite werden im Kopf der Seite aufgelistet.
 - Sonderzeichen werden zu HTML-Entities (tools/archive_entities.py).
 
@@ -51,10 +52,20 @@ MISSING = {
  'gamers/en/games/industrygiant2/link_industrygiant2.gif': (136, 76, 'as the other game banners'),
  'gamers/de/games/diegilde_addon/link_diegilde_addon.gif': (136, 76, 'as the other game banners'),
  'gamers/de/games/echelon/link_echelon.gif': (136, 76, 'as the other game banners'),
- **{f'gamers/en/games/zax/ss/tn_zax_{i}.jpg': (120, 90, 'as the archived thumbnail tn_zax_6.jpg') for i in range(1, 6)},
- 'gamers/de/games/zax/ss/tn_zax_4.jpg': (120, 90, 'as the other archived thumbnails'),
- **{f'gamers/en/games/zax/ss/zax_{i}.jpg': (800, 600, 'as the archived German screenshots') for i in range(1, 7)},
- 'gamers/de/games/zax/ss/zax_6.jpg': (800, 600, 'as the other archived screenshots'),
+}
+# Unter der eigenen Adresse nie archiviert, aber eine gleichnamige Datei (meist mit gleichem Inhalts-Hash im Archiv-Index)
+# liegt unter einer anderen JoWooD-Adresse: Pfad -> (andere Adresse, Aufnahme). Die Dateien liegen schon unter OUT.
+SAME_NAME = {
+ 'gamers/en/games/zax/ss/tn_zax_1.jpg': ('games/zax/en/ss/tn_zax_1.jpg', '20101226164059'),
+ 'gamers/en/games/zax/ss/tn_zax_2.jpg': ('games/zax/en/ss/tn_zax_2.jpg', '20101226164206'),
+ 'gamers/en/games/zax/ss/tn_zax_3.jpg': ('gamers/de/games/zax/ss/tn_zax_3.jpg', '20030325111203'),
+ 'gamers/en/games/zax/ss/tn_zax_4.jpg': ('games/zax/en/ss/tn_zax_4.jpg', '20101226164127'),
+ 'gamers/en/games/zax/ss/tn_zax_5.jpg': ('gamers/de/games/zax/ss/tn_zax_5.jpg', '20030325113605'),
+ 'gamers/de/games/zax/ss/tn_zax_4.jpg': ('games/zax/de/ss/tn_zax_4.jpg', '20071009075728'),
+ **{f'gamers/en/games/zax/ss/zax_{i}.jpg': (f'games/zax/en/ss/zax_{i}.jpg', ts) for i, ts in
+    ((1, '20101228023908'), (2, '20101228024011'), (3, '20101228024153'), (5, '20101228023536'), (6, '20101228023726'))},
+ 'gamers/en/games/zax/ss/zax_4.jpg': ('gamers/de/games/zax/ss/zax_4.jpg', '20040923085107'),
+ 'gamers/de/games/zax/ss/zax_6.jpg': ('games/zax/en/ss/zax_6.jpg', '20101228023726'),
 }
 LATE_DAYS = 60   # ab so vielen Tagen nach der Seite gilt eine Bildaufnahme als „später“
 
@@ -97,6 +108,8 @@ def build(src, url, name):
     if forms: notes.append('Forms are disabled; they would send data to servers that no longer exist.')
     gone = sorted(p for p in used if p in MISSING)
     if gone: notes.append('Never archived (MISSING placeholders): ' + '; '.join(f'{p} (size {MISSING[p][2]})' for p in gone) + '.')
+    same = sorted(p for p in used if p in SAME_NAME)
+    if same: notes.append('Never archived at their own address; the file of the same name from another JoWooD address: ' + '; '.join(f'{p} = {SAME_NAME[p][0]} ({fmt(SAME_NAME[p][1])})' for p in same) + '.')
     late = sorted(p for p in used if p in CAP['files'] and (day(CAP['files'][p]) - day(page_ts)).days > LATE_DAYS)
     if late: notes.append('From later captures, may differ from this date: ' + '; '.join(f'{p} ({fmt(CAP["files"][p])})' for p in late) + '.')
     comment = '<!-- ' + '\n     '.join(notes) + ' -->\n'
@@ -116,6 +129,7 @@ if __name__ == '__main__':
     lines = ['Internet Archive capture date of every file in this folder (fan-site archive).', '']
     lines += [f'{fmt(ts)}  gamers/{name}' for src, (u, name) in PAGES.items() for ts in [CAP["pages"][src]]]
     lines += [f'{fmt(ts)}  {p}' for p, ts in CAP['files'].items()]
+    lines += [f'{fmt(ts)}  {p}  (never archived at this address; file of the same name from www.jowood.com/{o})' for p, (o, ts) in SAME_NAME.items()]
     lines += [f'never archived  {p}  (placeholder, size {v[2]})' for p, v in MISSING.items()]
     open(os.path.join(OUT, 'CAPTURES.txt'), 'w').write('\n'.join(lines) + '\n')
     assert not [p for p in raw_pages() if 'jowood' in p]

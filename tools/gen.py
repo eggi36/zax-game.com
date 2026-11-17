@@ -98,7 +98,40 @@ home += '\n' + box('''  <div class="credits">
   </div>''')
 page('index.html', 'Homepage', 'Homepage', home)
 
-# ---------------------------------------------------------------- Mission Briefing
+# ---------------------------------------------------------------- The Game
+# Eine Seite in der Reihenfolge eines Handbuchs: Overview → Story → Characters → Weapons → Interface → Screenshots → FAQ → Unused Content.
+# Texte aus den archivierten Seiten: reflexive.net (2001) und zax-game.com (2002–2004); je Eintrag beide Quellen zusammengeführt.
+R1 = 'archive/2001-12_Version3/Zax/'          # reflexive.net, Dezember 2001
+ZG = 'archive/zax-game.com_2004/english/'     # zax-game.com
+SRC_NAMES = {'r': 'reflexive.net, 2001', 'z': 'zax-game.com, 2002–2004'}
+def src_links(srcs):
+    return '<p class="srcline">Source: ' + ' · '.join(f'<a href="{u}" target="_blank" rel="noopener">{SRC_NAMES[k]}</a>' for k, u in srcs) + '</p>'
+def thumb(path, alt):
+    return f'<div class="thumb">{img(path, alt)}</div>' if path else '<div class="thumb none">picture not preserved</div>'
+def entry(name, pic, texts, srcs, id=None):
+    i = f' id="{id}"' if id else ''
+    return f'  <div class="item entry"{i}>{thumb(pic, name)}<h3>{html.escape(name)}</h3>{ps(*texts)}{src_links(srcs)}</div>'
+
+# ---- Overview
+features_sp = ['Nonstop action', 'More than 100 challenging maps', '7 unique environment types', 'Tons of cool special effects',
+               'Frequent weapon upgrades throughout your adventure', 'Hundreds and hundreds of robots to decimate',
+               'Interesting puzzles, tricks, and traps around just about every corner', 'A captivating and involving story']
+features_mp = [('Salvage King', 'You have to try this! Your goal is to collect and protect your crystals from other marauding players intent on cashing in on your hard work. Should you collect your own, or forcibly take your opponents\' from him? Well, that\'s up to you.'),
+               ('Capture the Flag', 'Team up for some classic style flag retrieval in our trap-infested environments.'),
+               ('Deathmatch', 'It\'s survival of the fittest in the alien world! Can you adapt?')]
+facts = [('Developer', 'Reflexive Entertainment'), ('Publisher', 'JoWooD Productions'), ('Released', '2001, for Windows'),
+         ('Genre', 'Action/adventure in isometric view'), ('Single player', '22 missions on more than 100 maps in 7 environment types'),
+         ('Multiplayer', 'Deathmatch, Capture the Flag and Salvage King, over the Internet or a LAN for up to 16 players'),
+         ('Minimum system', 'Pentium II 233 MHz, 32 MB RAM')]
+ov = row(img('assets/img/gallery/jowood_packshot.jpg', 'Zax: The Alien Hunter, PC CD-ROM'), box(ps(
+    'Zax – The Alien Hunter is a non-stop action/adventure game that crash-lands you onto an alien world where everything has been turned upside down. A proud people have been enslaved, their world of ancient magic wrested from them by a mysterious god of metal. Your fiery entrance onto their planet has given them hope for a release from their torment, but you are in sad shape yourself. With no military training and a heavily-damaged ship, your obstacles are clear.',
+    'Unprepared as you are, you represent the final hope for the Korbo. Are you up to the challenge? Can you defeat the minions of Om? No one said being a hero was easy.')
+    + '\n  <dl class="facts">\n' + ''.join(f'    <dt>{k}</dt><dd>{v}</dd>\n' for k, v in facts) + '  </dl>', 'Zax: The Alien Hunter'))
+ov += '\n' + box('  <h3>Single player</h3>\n  <ul>\n' + ''.join(f'    <li>{f}</li>\n' for f in features_sp) + '  </ul>\n'
+                 '  <h3>Multiplayer</h3>\n  <dl class="faq">\n' + ''.join(f'    <dt>{n}</dt><dd>{t}</dd>\n' for n, t in features_mp) + '  </dl>\n'
+                 + src_links([('z', ZG + 'features.html')]), 'Features')
+
+# ---- Story
 story = [
  ('assets/img/missionb_zax.jpg', 'Zax', 'Story', [
   'Caranthian Ore and Crystals were once common commodities. Now they are the most rare, precious and priceless substances in existence. They were the foundation of a fortune, the life blood of an economy and a lifelong obsession.',
@@ -115,10 +148,108 @@ story = [
   'Finally, when the onboard materials generator was repaired, Zax set off to make his dream a reality. He knew there was more Caranthian Ore out there somewhere, and he would find it.',
   'Ten long years later, he was about to set down on what he thought was an uncharted and unclaimed planet in deep space.']),
 ]
-mb = ''
+st = ''
 for src, alt, title, paras in story:
     b = box(ps(*paras), title)
-    mb += (row(img(src, alt), b) if src else row('<div style="width:177px"></div>', b)) + '\n'
+    st += (row(img(src, alt), b) if src else row('<div style="width:177px"></div>', b)) + '\n'
+st += box('  <p>How the story was told before the release: in 1998 Zax was still a soldier of the “Galactic Imperium” on a planet about to be destroyed by a supernova (<a href="archive/1998-12_Version0/zax/zaxintro.html" target="_blank" rel="noopener">reflexive.net, December 1998</a>), and during development the hero was called “Crater”.</p>', 'Earlier versions')
+
+# ---- Characters (Bild: zax-game.com, sonst reflexive.net; Texte beider Seiten)
+P, PO = 'assets/img/profiles/', 'assets/img/profiles/official/'
+RC, ZE, ZH = R1 + 'Characters.htm', ZG + 'enemy/', ZG + 'heroic/'
+characters = [
+ ('Heroes', [
+  ('Zax', PO + 'heroic_zax.jpg', ['On a quest to get rich has his priorities rearranged when discovering the plight of the Korbo.',
+    'Rollin Triskin “Zax”: Born 2318 son of Tallis and Marion Triskin. His parents, fearing that they would not be able to get him out of the system, were forced to place him with his uncle. They hugged their boy and promised they would come for him as soon as they could. Months turned into years and the years turned into his life. Zax never saw or heard from his parents again.'],
+   [('z', ZH + 'zax.html'), ('r', RC)]),
+  ('Zelon', None, ['The onboard artificial intelligence of Zax\'s ship. He fondly refers to her as Babe. She is his second set of eyes and ears as he discovers this alien environment. She also develops new items for Zax to use on his adventure.'], [('z', ZH + 'zelon.html')]),
+  ('The Korbo', None, ['The Korbo are a native race to the planet Zax has discovered. They are an intelligent, yet somewhat primitive people that has been overwhelmed and enslaved by the robots on the planet. They have been praying to their true gods for a saviour. Many of them view Zax as that saviour.'], [('z', ZH + 'korbo.html')]),
+  ('Mindaza', None, ['A Korbo Shaman, wise, but not as learned as Valeth.'], [('z', ZH + 'mindaza.html')])]),
+ ('Om and his servants', [
+  ('Om', None, ['This robot has convinced the Korbo that he is an angry god that should be obeyed and worshipped. His robotic minions are the chief obstacles for Zax.'], [('z', ZE + 'om.html')]),
+  ('Azah-Pan', PO + 'enemy_azah_pon.jpg', ['This mysterious spirit is capable of possessing and controlling robots. A fiercely loyal servant of Om. His assignment is to remove the threat presented by Zax.'], [('z', ZE + 'azah_pan.html')]),
+  ('Altered Korbo', PO + 'enemy_altered_korbo.jpg', ['Once loyal Korbo citizens, Altered Korbo are part flesh, part machine and have been programmed to be servants of Om. These unfortunate beings have been injected with what the Korbo call the Virus of Metal. They are Om\'s ultimate means of fear creation and population control. They are aggressive but not very durable or strong.'], [('z', ZE + 'altered_korbo.html')]),
+  ('Rogcoil', PO + 'enemy_rogcoil.jpg', ['Quick moving, lightly armoured patrol robots using energy pulse weapons a bit stronger than the altered Korbo. Assigned to guard the jungle and caves and supervise the enslaved Korbo.',
+    'These Cyborg are lightly armed and are directly controlled by Om. Rogcoil often patrol in groups. They can be seen around Korbo villages, herding the Korbo to their doom. Although they are not heavily armored, they can still put up a fight and are extremely effective at intimidating the Korbo.'], [('z', ZE + 'rogcoil.html'), ('r', RC)]),
+  ('Crutch', PO + 'enemy_crutch.jpg', ['Derives its name from its means of propulsion. It is heavily armoured with very accurate energy pulse weaponry.'], [('z', ZE + 'crutch.html')]),
+  ('Om Overseer', PO + 'enemy_om_overseer.jpg', ['Heavily armoured biped robot that has a missile launcher for a right arm. Bears decorations from a time when the Korbo believed Om\'s minions were deities.'], [('z', ZE + 'om_overseer.html')]),
+  ('Master Om Overseer', P + 'parascope.jpg', ['These highly intelligent Bots are the right hand of Om. Master Overseers control other Bots and coordinate their activities in gathering resources for the construction of facilities. Their other purpose involves the gathering and enslaving of Korbo. Master Overseers are equipped with shields and a powerful right gun.'], [('r', RC)]),
+  ('Lord Om Overseer', PO + 'enemy_lord_om_overseer.jpg', ['The most devastating robot in Om\'s service. Capable of discharging missiles in tandem from either of its two \'arms\'. Korbo have seldom seen this most feared robot.',
+    'Lord Overseers are similar to Master Overseers but do not take part in the daily routines of the Korbo slave camps. Their job is to serve the needs of Om. Lords can be found mostly near the inner chambers of the facilities to which Om itself resides. They are darker in color than the Masters and pack a much more powerful projectile. A Companion Drone is usually found with these evil Bots.'], [('z', ZE + 'lord_om_overseer.html'), ('r', RC)]),
+  ('Orb Slayer', None, ['Originally created to carry much smaller ordinance, this robot has been overloaded with a heavy explosive ball-bomb. Despite the limp, it presents formidable opposition.'], [('z', ZE + 'orb_slayer.html')]),
+  ('Higher Orb Slayer', PO + 'enemy_higher_orb_slayer.jpg', ['This improvement of the Orb Slayer has no trouble carrying, or delivering, its even more devastating spheric bomb.',
+    'These Bots are like their lower counterparts but with one exception. The Higher Orb Slayer wields a more powerful orb that is fired from a cannon on its right arm.'], [('z', ZE + 'higher_orb_slayer.html'), ('r', RC)]),
+  ('Skynuk', None, ['This flying bot is nimble and very aggressive. It shoots explosive tip bullets that are extremely deadly.'], [('z', ZE + 'skynuk.html')]),
+  ('Scorpio Flyer', P + 'scorpio.jpg', ['Bigger, stronger and more intimidating than the Skynuk. Watch out!',
+    'The Scorpio Flyer is a larger Bot that hovers about a foot over the ground. These Bots can be found near Om\'s strongholds to fend off large groups of Korbo rebels. They are equipped with large lasers and an energy grenade thrower.'], [('z', ZE + 'scorpio_flyer.html'), ('r', RC)]),
+  ('Talon', None, ['This spider-like robot is slow moving but equipped with a grenade launcher that will keep intruders on alert.'], [('z', ZE + 'talon.html')]),
+  ('Sentinon', None, ['Created to guard high security areas, these robots lie harmless underground until a would-be trespasser is detected. They then arm themselves in a startling manner.'], [('z', ZE + 'sentinon.html')])]),
+ ('Creatures', [
+  ('Cave Dweller', P + 'cave_dweller.jpg', ['This soft-shelled four-legged arachnid resides deep in the wet caverns of LV-42-3. Though very slow moving, they can kill enemy and prey alike with the venomous spray shot from their mouths.'], [('r', RC)]),
+  ('Jungle Creature', P + 'jungle_creature.jpg', ['These creatures can usually be found in packs throughout the jungle regions. These speedy two-legged beasts use their powerful jaws to feast upon the native wild boar and any unsuspecting Korbo.'], [('r', RC)])]),
+]
+ch = box('  <p>The heroes, the robots of Om and the creatures of the planet, as the developer (reflexive.net, 2001) and the official site (zax-game.com, 2002–2004) described them. Where both sites wrote about the same character, both texts are given; pictures were only partly preserved.</p>\n'
+         '  <nav class="toc">' + ' · '.join(f'<a href="#ch-{re.sub(r"[^a-z]+", "-", g.lower()).strip("-")}">{g}</a>' for g, _ in characters) + '</nav>')
+for g, items in characters:
+    ch += '\n' + box('\n'.join(entry(*c) for c in items), g, 'ch-' + re.sub(r'[^a-z]+', '-', g.lower()).strip('-'))
+
+# ---- Weapons (Reihenfolge und Texte von zax-game.com – meist Zelons Worte –, Bilder und längere Texte von reflexive.net)
+W, RW, ZW = 'assets/img/weapons/', R1 + 'Weapons.htm', ZG + 'weapons/'
+weapons = [
+ ('Modified Laser Welder', None, ['I designed this weapon for you when it became apparent you would need to defend yourself. Its low power laser pulse is being drawn from a fusion reactor meant to weld and repair metallic components. I will work on a replacement immediately.'], [('z', ZW + 'laser_welder.html')]),
+ ('Light Pistol', W + 'light_pistol_ill.gif', ['Much more powerful than the modified laser welder, it can be fired frequently to spray damage in numerous directions.',
+   'This pistol is the standard emergency weapon that Crater carries in his boot holster or has strapped under his seat. Its small, tough frame has been proven time and again to be ideal in dealing with surprise problems – though it is typically used as a backup when the regular primary weapon has been disabled. Although its disruptive power is actually weaker than that of the Modified Laser Welder, the laser blast emitted from the Light Pistol has a far greater range.'], [('z', ZW + 'light_pistol.html'), ('r', RW)]),
+ ('Semi Automatic Pistol', None, ['Designed for use with metal piercing projectiles. To be used at your discretion. I suspect it will be most valuable when the power supply of your battery is low.'], [('z', ZW + 'semi_auto.html')]),
+ ('Full Automatic Pistol', W + 'full_auto_pistol.gif', ['Capable of discharging bullets at a far greater rate than the semi-auto version. Created after optimizing the firing mechanism of the Semi-Auto Pistol.',
+   'This weapon fires slugs at an ungodly rate, reducing the enemies in front of it to pieces. However, it uses bullets like there is no tomorrow, and should only be used in the most dire of situations or when a bullet stockpile has just been located. Blocked by: the Inertia shield.'], [('z', ZW + 'full_auto.html'), ('r', RW)]),
+ ('Twin Disruptor', W + 'twin_disruptor_ill.gif', ['Twin mounted disruptive lasers for increased damage ability.',
+   'This weapon has twin-mounted disruptive lasers that feed asynchronously off of the power source, reducing the power leakage and increasing the damage potential. It provides a good punch for the Mega-Joule usage.'], [('z', ZW + 'twin_disruptor.html'), ('r', RW)]),
+ ('Tri-Spread Gun', W + 'tri_gun_detail.jpg', ['This is the Tri-Spread Gun. A very damaging energy based weapon capable of dispersing energy pulses in three different directions.',
+   'This is the level 3 version of the Light Pistol. The only difference other than doing more damage is that the Tri-Spread gun emits 3 lasers. Blocked by: the Albedo shield.'], [('z', ZW + 'tri_spread.html'), ('r', RW)]),
+ ('Grenade Launcher', None, ['Ejects grenades so that you may reduce the number of robots in an area prior to entering it yourself.'], [('z', ZW + 'grenade_launcher.html')]),
+ ('Proximity Mine', None, ['Great care should be taken using these mines. Once placed, there are only a few seconds to clear the area before it arms itself with a hair trigger. Its proximity detectors will cause the explosives to detonate when anything or anyone comes close to it.'], [('z', ZW + 'proximity_mine.html')]),
+ ('Plasma Thrower', None, ['Akin to a flamethrower, this weapon expels material that is not liquid and not solid – Plasma – that causes large amounts of damage to whatever it touches.'], [('z', ZW + 'plasma_thrower.html')]),
+ ('Psyonic Wave Glove', None, ['This glove will send out a stream of psyonic electricity that will expand and encompass the first object it comes in contact with.'], [('z', ZW + 'psionic_wave.html')]),
+ ('Missile Launcher', None, ['Typically too expensive to use under normal conditions, Zelon is devising a model that is compatible with the rockets “available” from the robots.'], [('z', ZW + 'missile_launcher.html')]),
+ ('Impaction Cannon', W + 'impaction_cannon.jpg', ['This weapon emits an energy pulse fused with a sub-nucleonic charge.',
+   'A weapon of untested strength and power, the Impaction Cannon is a mish-mash of ancient alien technology and Imperium ingenuity. It emits a highly focused laser pulse surrounded by a phase-dampened sub-nuclear envelope, perfect for punching through albedo shields and robotic matter. Its Mega-Joule cost is very high, but the show is well worth the wait.'], [('z', ZW + 'impaction_cannon.html'), ('r', RW)]),
+ ('Nuclear Disruptor', W + 'nucleardisbeauty.jpg', ['Emits a small radioactive cloud that is devastating to its targets.',
+   'This large weapon spits forth a translucent, glowing cloud that emits massively duped electrons at enemy targets. What makes this weapon especially devastating is the intelligence that the cloud exhibits. It follows its target through hallways and around corners until it consumes itself or its target. The cloud does move slowly, so if the target runs away (and keeps running) the cloud (perhaps) can be avoided.'], [('z', ZW + 'nuclear_disruptor.html'), ('r', RW)]),
+]
+wp = box('  <p>The thirteen weapons in the order Zax gets them. Zelon builds each one in the materials generator on board the ship (see <a href="#interface">Interface</a>); the first text of each weapon is hers, from the official site. “Crater” in the longer texts of the developer\'s site was the working name of the hero.</p>\n'
+         + '\n'.join(entry(*w) for w in weapons))
+
+# ---- Interface (Features-Seite von zax-game.com)
+hud = [('Health', 'If you allow Zax\'s health to go to 0% he dies and the game is over. You will want to keep his health as high as possible at all times.'),
+       ('Shield Charge', 'Zax\'s current shield charge is displayed as a graphical representation of the fraction of the current charge over the total possible charge. Generating a higher level shield will increase total possible charge.'),
+       ('Ore & Crystals', 'The number of ore and crystals are displayed as a fraction of how many Zax currently has – compared to how many he has collected over the course of his adventure.'),
+       ('Sphere of Zin', 'This sphere detects evil in the general vicinity of its carrier.'),
+       ('Game Time Elapsed', 'Zelon will keep a running clock of how long Zax\'s adventure has taken him. Useful for the mission log.'),
+       ('Secondary weapon', 'Proximity Mines are displayed here (if Zax has them). The number below the icon represents the number of mines that Zax has in his possession. By default, weapons in this window are activated by clicking the right mouse button.'),
+       ('Battery charge', 'Zax\'s current battery charge is displayed as a graphical representation of the fraction of current over total possible charge. Generating a higher-level battery will increase total possible charge.'),
+       ('Primary Weapon', 'The primary weapon that Zax is currently using. By default, weapons in this window are fired by clicking the left mouse button.')]
+gen_steps = ['Find your way to the Materials Generator onboard Zelon. It is towards the front of the ship.',
+             'When the Generator appears, click on the Weapons tab (note the three other tabs as well).',
+             'Click on the bar featuring the Modified Laser Welder (note that its background becomes highlighted).',
+             'Click the Generate Button. If the item is not generated, you do not possess enough Ore or Crystals to create it. The quantity of ore or crystals required to create an item are listed to the far right of the item.']
+it = box(f'  <p>{img("assets/img/gallery/features_hud.jpg", "The heads up display")}</p>\n  <p>At all times during gameplay, you will see the HUD at the bottom of the screen. There, useful information is constantly displayed – from left to right:</p>\n  <dl class="faq">\n'
+         + ''.join(f'    <dt>{n}</dt><dd>{t}</dd>\n' for n, t in hud) + '  </dl>\n' + src_links([('z', ZG + 'features.html')]), 'The heads up display (HUD)')
+it += '\n' + box(f'  <p>{img("assets/img/gallery/features_materials.jpg", "The materials generator")}</p>\n'
+         + ps('Common back on Zax\'s home planet, Materials Generators convert raw materials into other items. As Zelon develops new items for Zax to use on his quest, she will let him know of their availability.',
+              'Each item requires a specific number of Caranthian Ore and Crystal deposits. It is up to Zax to find the required amount in the world around him. Items available in the Materials Generator are divided into Weapons, Shields, Power Generators and Miscellaneous. How to create an item – for example the Modified Laser Welder:')
+         + '\n  <ol>\n' + ''.join(f'    <li>{s}</li>\n' for s in gen_steps) + '  </ol>\n' + src_links([('z', ZG + 'features.html')]), 'The materials generator')
+
+# ---- Screenshots
+shots = [('reflexive_ss00.jpg', 'Pipes and machinery', 'r'), ('reflexive_ss02.jpg', 'In the caves', 'r'), ('jowood_zax_1.jpg', 'Laser barriers in a cave', 'j'),
+         ('reflexive_ss22.jpg', 'Lava and pipes', 'r'), ('jowood_zax_2.jpg', 'A pool of lava', 'j'), ('reflexive_ss12.jpg', 'Jungle clearing', 'r'),
+         ('jowood_zax_6.jpg', 'Jungle ruins', 'j'), ('reflexive_ss07.jpg', 'Temple floor', 'r'), ('jowood_zax_5.jpg', 'Metal halls', 'j'),
+         ('jowood_zax_3.jpg', 'Snow and ice', 'j'), ('reflexive_ss04.jpg', 'Mission statistics', 'r'), ('reflexive_multiplayer07.jpg', 'Multiplayer', 'r')]
+SHOT_SRC = {'r': 'reflexive.net', 'j': 'jowood.com'}
+sc = box('  <p>Screenshots from the developer\'s site (reflexive.net, 2001–2003) and the publisher\'s game pages (jowood.com, 2004–2010). Earlier pictures of the game, from 1998, are in the <a href="archive.html#score-1998">Archive</a>.</p>\n  <div class="gallery renders">\n' + ''.join(
+    f'    <figure><a class="pic" href="assets/img/gallery/{f}" target="_blank" rel="noopener">{img("assets/img/gallery/" + f, t)}</a><figcaption>{html.escape(t)} <span class="srcline">{SHOT_SRC[k]}</span></figcaption></figure>\n'
+    for f, t, k in shots) + '  </div>')
+
+# ---- FAQ
 faq = [
  ('What kind of game is Zax: The Alien Hunter?', 'Zax: The Alien Hunter is an Action / Adventure game, with heavy emphasis on the action. We have spent a great deal of time and effort making sure that the player always has a goal and plenty of enemies to deal with. The adventure side comes in with an involving storyline that unfolds over one hundred maps.'),
  ('How many missions does Zax: The Alien Hunter have?', 'There are 22 missions in the game. Many of these missions have several maps, which means that some of the missions can be completed in a non-linear fashion. That is, what you choose to do first in a given scenario, impacts which order you finish the missions.'),
@@ -129,36 +260,9 @@ faq = [
  ('Can Zax: The Alien Hunter be played over the Internet?', 'Yes, Zax is playable over the internet. We are estimating a maximum of 16 players per game. However, that will depend on the system specs of the machine running the server.'),
  ('Is it fun?', 'It rocks! We think it\'ll keep you in front of your PC for hours at a time just so you can see what happens around the next corner. (and there are a lot of corners!)'),
 ]
-mb += box('  <p class="small">From the official FAQ by Reflexive Entertainment (2001). Note: the Zax CD-Key is found on the back of the jewel case, not the back of the manual as indicated in the manual.</p>\n  <dl class="faq">\n' +
-          ''.join(f'    <dt>{q}</dt><dd>{a}</dd>\n' for q, a in faq) + '  </dl>', 'Frequently asked questions')
+fq = box('  <p class="small">From the official FAQ by Reflexive Entertainment (2001). Note: the Zax CD-Key is found on the back of the jewel case, not the back of the manual as indicated in the manual.</p>\n  <dl class="faq">\n' +
+         ''.join(f'    <dt>{q}</dt><dd>{a}</dd>\n' for q, a in faq) + '  </dl>\n' + src_links([('r', R1 + 'FAQ.htm')]))
 
-# ---------------------------------------------------------------- Profiles
-chars = [
- ('zax.jpg', 'Zax', 'Rollin Triskin “Zax”: Born 2318 son of Tallis and Marion Triskin. His parents, fearing that they would not be able to get him out of the system, were forced to place him with his uncle. They hugged their boy and promised they would come for him as soon as they could. Months turned into years and the years turned into his life. Zax never saw or heard from his parents again.'),
- ('cave_dweller.jpg', 'Cave Dweller', 'This soft-shelled four-legged arachnid resides deep in the wet caverns of LV-42-3. Though very slow moving, they can kill enemy and prey alike with the venomous spray shot from their mouths.'),
- ('jungle_creature.jpg', 'Jungle Creature', 'These creatures can usually be found in packs throughout the jungle regions. These speedy two-legged beasts use their powerful jaws to feast upon the native wild boar and any unsuspecting Korbo.'),
- ('higher_orb_slayer.jpg', 'Higher Orb Slayer', 'These Bots are like their lower counterparts but with one exception. The Higher Orb Slayer wields a more powerful orb that is fired from a cannon on its right arm.'),
- ('oversier.jpg', 'Lord Om Overseers', 'Lord Overseers are similar to Master Overseers but do not take part in the daily routines of the Korbo slave camps. Their job is to serve the needs of Om. Lords can be found mostly near the inner chambers of the facilities to which Om itself resides. They are darker in color than the Masters and pack a much more powerful projectile. A Companion Drone is usually found with these evil Bots.'),
- ('parascope.jpg', 'Master Om Overseers', 'These highly intelligent Bots are the right hand of Om. Master Overseers control other Bots and coordinate their activities in gathering resources for the construction of facilities. Their other purpose involves the gathering and enslaving of Korbo. Master Overseers are equipped with shields and a powerful right gun.'),
- ('rogcoil.jpg', 'Rogcoil', 'These Cyborg are lightly armed and are directly controlled by Om. Rogcoil often patrol in groups. They can be seen around Korbo villages, herding the Korbo to their doom. Although they are not heavily armored, they can still put up a fight and are extremely effective at intimidating the Korbo.'),
- ('scorpio.jpg', 'Scorpio Flyer', 'The Scorpio Flyer is a larger Bot that hovers about a foot over the ground. These Bots can be found near Om\'s strongholds to fend off large groups of Korbo rebels. They are equipped with large lasers and an energy grenade thrower.'),
-]
-pr = box('\n'.join(f'  <div class="item">{img("assets/img/profiles/"+f, n)}<h3>{n}</h3><p>{t}</p></div>' for f, n, t in chars),
-         'Profiles')
-
-# ---------------------------------------------------------------- Weapons
-weapons = [
- ('light_pistol_ill.gif', 'Light Pistol', 'This pistol is the standard emergency weapon that Crater carries in his boot holster or has strapped under his seat. Its small, tough frame has been proven time and again to be ideal in dealing with surprise problems – though it is typically used as a backup when the regular primary weapon has been disabled. Although its disruptive power is actually weaker than that of the Modified Laser Welder, the laser blast emitted from the Light Pistol has a far greater range.'),
- ('twin_disruptor_ill.gif', 'Twin Disrupter', 'This weapon has twin-mounted disruptive lasers that feed asynchronously off of the power source, reducing the power leakage and increasing the damage potential. It provides a good punch for the Mega-Joule usage.'),
- ('full_auto_pistol.gif', 'Full Automatic Pistol', 'This weapon fires slugs at an ungodly rate, reducing the enemies in front of it to pieces. However, it uses bullets like there is no tomorrow, and should only be used in the most dire of situations or when a bullet stockpile has just been located. Blocked by: the Inertia shield.'),
- ('impaction_cannon.jpg', 'Impaction Cannon', 'A weapon of untested strength and power, the Impaction Cannon is a mish-mash of ancient alien technology and Imperium ingenuity. It emits a highly focused laser pulse surrounded by a phase-dampened sub-nuclear envelope, perfect for punching through albedo shields and robotic matter. Its Mega-Joule cost is very high, but the show is well worth the wait.'),
- ('tri_gun_detail.jpg', 'Tri-Spread Gun', 'This is the level 3 version of the Light Pistol. The only difference other than doing more damage is that the Tri-Spread gun emits 3 lasers. Blocked by: the Albedo shield.'),
- ('nucleardisbeauty.jpg', 'Autonomous Nuclear Disrupter', 'This large weapon spits forth a translucent, glowing cloud that emits massively duped electrons at enemy targets. What makes this weapon especially devastating is the intelligence that the cloud exhibits. It follows its target through hallways and around corners until it consumes itself or its target. The cloud does move slowly, so if the target runs away (and keeps running) the cloud (perhaps) can be avoided.'),
-]
-wp = box('\n'.join(f'  <div class="item">{img("assets/img/weapons/"+f, n)}<h3>{n}</h3><p>{t}</p></div>' for f, n, t in weapons)
-         + '\n  <p class="small">“Crater” in the first description was the working name of the hero during development.</p>', 'Weapons')
-
-# ---------------------------------------------------------------- The Game (Mission Briefing, Profiles, Weapons)
 # ---------------------------------------------------------------- Unused Content (Modelle, die das Spiel nie benutzt)
 # Daten: tools/unused_models.json ({Kategorie: [Modelle]}) + Vorschaubilder in assets/img/unused/<kategorie>/
 # (aus der Modellübersicht der Verweisanalyse der DATA.dat: kein Level, Skript, keine Definition und nicht Zax.exe nennt sie).
@@ -183,8 +287,8 @@ def unused_box(cat, models):
     return box(out, cat, 'unused-' + cat.lower())
 uc = box('  <p>Models in the game data (<code>DATA.dat</code>) that the game never uses: no level, script, object definition or the executable refers to them. Each picture is the first frame of the model, rendered straight from the game files.</p>')
 uc += ''.join('\n' + unused_box(cat, models) for cat, models in unused_models.items())
-GAME_SECTIONS = [('mission-briefing', 'Mission Briefing', mb), ('profiles', 'Profiles', pr), ('weapons', 'Weapons', wp),
-                 ('unused-content', 'Unused Content', uc)]
+GAME_SECTIONS = [('overview', 'Overview', ov), ('story', 'Story', st), ('characters', 'Characters', ch), ('weapons', 'Weapons', wp),
+                 ('interface', 'Interface', it), ('screenshots', 'Screenshots', sc), ('faq', 'FAQ', fq), ('unused-content', 'Unused Content', uc)]
 game = '<nav class="subnav" aria-label="The Game">' + ''.join(f'<a href="#{a}">{html.escape(t)}</a>' for a, t, _ in GAME_SECTIONS) + '</nav>\n'
 game += '\n'.join(f'<section id="{a}" aria-labelledby="{a}-h">\n<h2 class="section-title" id="{a}-h"><span class="dots">{html.escape(t)}</span></h2>\n{body}\n</section>'
                   for a, t, body in GAME_SECTIONS)
@@ -257,8 +361,9 @@ dl = community + '\n' + official
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
 # ---------------------------------------------------------------- News & Links (+ Developer Logs)
-news_site = [('11/16/26', 'New in <a href="downloads.html#official">Downloads</a>: the demo of 1 June 2001, the earliest known build of the game, in 8-bit colour and with still images instead of the intro videos.'),
-             ('11/16/26', 'New in the <a href="archive.html#score-1998">Archive</a>: eleven early pictures of the game from the cover CD of the Czech magazine <i>Score</i>, issue 59 (November 1998), with the text that came with them.'),
+news_site = [('11/17/26', 'New finds from the Internet Archive: the first Zax page of 1998 and the reflexive.net page of 2003 in the <a href="archive.html">Archive</a>, many more pages and pictures of zax-game.com and jowood.com, and a new <a href="the-game.html">The Game</a> page that brings together everything the developer\'s and the official site said about the game: story, characters, weapons, interface and screenshots.'),
+             ('11/16/26', 'New in <a href="downloads.html#official">Downloads</a>: the demo of 1 June 2001, the earliest known build of the game, in 8-bit colour and with still images instead of the intro videos.'),
+             ('11/16/26', 'New in the <a href="archive.html#score-1998">Archive</a>: ten early pictures of the game from the cover CD of the Czech magazine <i>Score</i>, issue 59 (November 1998), with the text that came with them.'),
              ('11/14/26', 'This fan site goes online: navigation and fonts rebuilt from the original Flash files of zax-game.com, the original websites restored in the <a href="archive.html">Archive</a>.')]
 news_orig = [
  ('04/03/01', 'Zax&trade; has a brand new name! "Zax the Alien Hunter" is now the official title of the Zax title that has been under construction for the past year. The team is currently working on multi-player maps, AI\'s and optimizations. The game is looking beautiful if I do say so myself.'),
@@ -322,30 +427,53 @@ pj += '\n' + box('  <p>Projects by other fans.</p>\n' + ''.join(
 page('projects.html', 'Projects', 'Projects', pj, 'projects.html')
 
 # ---------------------------------------------------------------- Archive
+ZGA = 'archive/zax-game.com_2004/english/'
+def links(items): return ', '.join(f'<a href="{u}" target="_blank" rel="noopener">{t}</a>' for u, t in items)
+zg_more = ('<br>Pages that were reached through Flash menus that were not preserved: '
+    + links([(ZGA + 'features.html', 'features'), ('archive/zax-game.com_2004/german/features.html', 'Features (German)'),
+             (ZGA + 'heroic/zax.html', 'heroes'), (ZGA + 'enemy/om.html', 'enemies'), (ZGA + 'weapons/laser_welder.html', 'weapons'),
+             (ZGA + 'screenshots/00.html', 'screenshots'), (ZGA + 'links_php.html', 'links')])
+    + '. All heroes, enemies and weapons are linked from <a href="the-game.html#characters">The Game</a>.')
+R4 = 'archive/2003-06_Version4/zax/screenhtms/'
+r4_shots = ('<br>Screenshot pages (their overview page was not preserved): '
+    + links([(R4 + f'ss{n:02d}.htm', f'{n:02d}') for n in range(26) if n not in (3,)] + [(R4 + f'multiplayer%20{n:02d}.htm', f'MP{n:02d}') for n in range(1, 10)]) + '.')
 arch = [
+ ('archive/1998-12_Version0/zax/zaxintro.html', 'archive/shot_1998-12_Version0.png', 'reflexive.net/Zax – December 1998',
+  'The first Zax page of the developer: “Zax, Coming 1999-2000”, with the early story of a soldier of the Galactic Imperium. Only the text was preserved; its ten large pictures – seven illustrations and three screenshots – are the ones found on the <a href="#score-1998">Score cover CD</a>, the other images are marked as missing.'),
  ('archive/2001-01_Version1/Zax/index.html', 'archive/shot_2001-01_Version1.png', 'reflexive.net/Zax – January 2001',
   'The developer\'s site during production. Most of the layout graphics were not preserved; missing images are marked.'),
  ('archive/2001-04_Version2/Zax/index.html', 'archive/shot_2001-04_Version2.png', 'reflexive.net/Zax – April 2001',
   'The stone medallion design with Zax and the rune chain. Some frame graphics were not preserved; missing images are marked.'),
  ('archive/2001-12_Version3/Zax/index.html', 'archive/shot_2001-12_Version3.png', 'reflexive.net/Zax – December 2001',
   'The release version with FAQ, demo page and the mirrored navigation.'),
+ ('archive/2003-06_Version4/zax.htm', 'archive/shot_2003-06_Version4.png', 'reflexive.net – 2002 to 2003',
+  'The short Zax page on the developer\'s site after the release, with FAQ, characters, weapons, demo and the French patch. Of its screenshot gallery seven full-size pictures were preserved.' + r4_shots),
  ('archive/zax-game.com_2004/index_flash.html', 'archive/shot_zax-game.com_gateway.png', 'zax-game.com – 2002 to 2004',
-  'The official JoWooD site in English and German. Navigation and banner are the original Flash files, played with the Ruffle emulator.'),
+  'The official JoWooD site in English and German. Navigation and banner are the original Flash files, played with the Ruffle emulator. Files that were never archived on zax-game.com come from JoWooD\'s mirror zax.jowood.com.' + zg_more),
  ('archive/jowood.com_2003/gamers/index.html', 'archive/shot_jowood.com_2003.jpg', 'jowood.com – January 2003',
-  'The game\'s pages on the publisher\'s site in English and German: the game, screenshots, demo, patches, reviews, system requirements and registration. Links to other JoWooD pages lead to the Internet Archive; the Zax logo and most English screenshots were not preserved, the forms are disabled.'),
+  'The game\'s pages on the publisher\'s site in English and German: the game, screenshots, demo, patches, reviews, system requirements and registration. Links to other JoWooD pages lead to the Internet Archive; the Zax logo was not preserved, the forms are disabled. Screenshots never archived at their own address come from the files of the same name elsewhere on jowood.com.'),
 ]
 ar = box('  <p>Early pictures of the game from a 1998 magazine cover CD, followed by the original websites, restored from copies at the Internet Archive. The websites are shown as they were – with frames, period HTML and, where noted, Flash. Only archived material is shown: images that were never preserved are marked as missing.</p>', 'Archive')
-# Score 59 (CZ, November 1998): Bilder von der Heft-CD (NGF-Format, verlustfrei als PNG); Titel wie im Bild, sonst beschrieben
-score = [('ZAX00', 'In-game view: jungle ruins'), ('ZAX01', 'The throne of Om'), ('ZAX02', 'In-game view: a Korbo village'),
-         ('ZAX03', 'Zax discovers a new world'), ('ZAX04', 'In-game view with the inventory'), ('ZAX05', 'In-game view: jungle ruins, second view'),
-         ('ZAX06', 'Sentinel at the Temple'), ('ZAX07', 'The Crutch'), ('ZAX08', 'The Zelon'), ('ZAX09', 'The Zelon Interior'),
-         ('ZAX10', 'Malak of the Korbo')]
+# Score 59 (CZ, November 1998): Bilder von der Heft-CD (NGF-Format, verlustfrei als PNG). Es sind die zehn großen Bilder der
+# reflexive.net-Seite von 1998 (nie archiviert); Reihenfolge und Unterschriften wie dort (sonst die Unterschrift im Bild).
+R0 = 'archive/1998-12_Version0/zax/'
+score = [('ZAX03', 'Zax discovers a new world', 'Zax640Images/ZaxIllustration.htm'),
+         ('ZAX02', 'Zax finds huts of The Korbo.', 'ZaxScreenShots/SSVillage.htm'),
+         ('ZAX04', 'Deep underground in the Korbo Cave Temples.', 'ZaxScreenShots/SSCave.htm'),
+         ('ZAX05', 'Zax at the gate of Korbo ruins.', 'ZaxScreenShots/SSTemple.htm'),
+         ('ZAX06', 'Sentinel at the Temple', 'Zax640Images/Sentinel%20Illustration.htm'),
+         ('ZAX07', 'The Crutch', 'Zax640Images/Crutch%20Illustration.htm'),
+         ('ZAX01', 'The Throne of Om.', 'Zax640Images/Om%20Illustration.htm'),
+         ('ZAX10', 'Malak of the Korbo', 'Zax640Images/Korbo%20Illustration.htm'),
+         ('ZAX08', 'The Zelon', 'Zax640Images/Zelon%20Illustration.htm'),
+         ('ZAX09', 'The Zelon Interior', 'Zax640Images/Zelon%20Interior%20Illustration.htm')]
 ar += '\n' + box(
-    '  <p>Early pictures of the game from the cover CD of the Czech games magazine <i>Score</i>, issue 59 (November 1998) – almost three years before the release. '
-    'They show renders and in-game views from an early stage of development. On the disc they are stored in the NGF image format, which the CD also uses for its other pictures; here they are converted to PNG without loss, in their original size of 640×480.</p>\n'
+    '  <p>Ten pictures from the cover CD of the Czech games magazine <i>Score</i>, issue 59 (November 1998) – almost three years before the release. '
+    'They are the large pictures of the developer\'s <a href="' + R0 + 'zaxintro.html" target="_blank" rel="noopener">first Zax page</a> on reflexive.net (December 1998): seven illustrations and three early screenshots. '
+    'The Internet Archive kept that page, but not these pictures. On the disc they are stored in the NGF image format, which the CD also uses for its other pictures; here they are converted to PNG without loss, in their original size of 640×480.</p>\n'
     '  <div class="gallery renders">\n' + ''.join(
         f'    <figure><a class="pic" href="archive/score_1998-11/{f}.png" target="_blank" rel="noopener">{img(f"archive/score_1998-11/{f}.png", t)}</a>'
-        f'<figcaption>{html.escape(t)}</figcaption></figure>\n' for f, t in score) +
+        f'<figcaption>{html.escape(t)}</figcaption></figure>\n' for f, t, pg in score) +
     '  </div>\n'
     '  <p>The text that came with the pictures:</p>\n'
     '  <blockquote lang="cs">Velmi nadějně vyhlížející sci-fi adventuru ZAX prezentovali na Internetu před nedávnem marketingoví odborníci firmy Reflexive Entertainment. '
@@ -355,7 +483,7 @@ ar += '\n' + box(
     '  <p class="small">In English: “The very promising-looking sci-fi adventure ZAX was recently presented on the Internet by the marketing experts of Reflexive Entertainment. '
     'Its release is planned for the end of next year, but seeing these stunning rendered – and yet so realistic – pictures from the game, my heart tells me this could be one of the most promising products of next winter. '
     'If we all believe and hope together, maybe ZAX will reach the shops sooner, and we can finally put away the bib, grab the mouse and start playing. Can\'t wait.”</p>',
-    'Score cover CD – November 1998', 'score-1998')
+    'Finds from the Score cover CD – 1998', 'score-1998')
 ar += '\n<h2 class="section-title"><span class="dots">Websites</span></h2>'
 ar += '\n<div class="cards">\n' + ''.join(
     f'<div class="box card"><p class="title">{t}</p><a href="{u}" target="_blank" rel="noopener">{img(s, t, "shot")}</a><p>{d}</p><p><a href="{u}" target="_blank" rel="noopener">Open</a></p></div>\n'
@@ -376,7 +504,7 @@ SITEMAP = [
                                        ('logs.html', 'Developer logs', [('logs.html#log-' + re.sub(r'\W+', '-', l['date']).strip('-'), 'Log ' + l['date'], []) for l in logs]),
                                        ('news-links.html#links', 'Links', [])]),
  ('projects.html', 'Projects', [('projects.html#my-projects', 'Projects of this site', []), ('projects.html#community-projects', 'Community projects', [])]),
- ('archive.html', 'Archive', [('archive.html#score-1998', 'Score cover CD – November 1998: early pictures', [])] + [(u, t, []) for u, s_, t, d in arch]
+ ('archive.html', 'Archive', [('archive.html#score-1998', 'Finds from the Score cover CD – 1998', [])] + [(u, t, []) for u, s_, t, d in arch]
                               + [('archive/jowood.com_2003/gamers/index_de.html', 'jowood.com – January 2003, German pages', [])]),
 ]
 smap = box('  <div class="sitemap">\n' + sm_list(SITEMAP) + '  </div>', 'Sitemap')
@@ -394,11 +522,11 @@ open(os.path.join(SITE, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\nSite
 # Alte Adressen -> passende Seite der Fan-Site: frühere Einzelseiten dieser Site und zax-game.com (2002–2004;
 # deutsche -> Startseite).
 REDIRECTS = {
-    'mission-briefing.html': 'the-game.html#mission-briefing', 'profiles.html': 'the-game.html#profiles',
+    'mission-briefing.html': 'the-game.html#story', 'profiles.html': 'the-game.html#characters',
     'weapons.html': 'the-game.html#weapons',
     'index_flash.html': 'index.html', 'index_no_flash.html': 'index.html', 'gateway.html': 'index.html',
     **{f'english/{p}.html': 'index.html' for p in ('index', 'homepage', 'top_nav', 'top_secret')},
-    **{f'english/{p}.html': 'the-game.html#mission-briefing' for p in ('mission_briefing', 'missionb_nav', 'story', 'mission_shots')},
+    **{f'english/{p}.html': 'the-game.html#story' for p in ('mission_briefing', 'missionb_nav', 'story', 'mission_shots')},
     **{f'english/{p}.html': 'downloads.html' for p in ('downloads', 'downloads_nav', 'cargo_hold')},
     'english/news_and_links.html': 'news-links.html',
     **{f'german/{p}.html': 'index.html' for p in ('index', 'homepage', 'top_nav', 'mission_briefing', 'missionb_nav', 'story', 'cargo_hold')},
