@@ -363,7 +363,33 @@ community = box('''  <h3>Tools</h3>
 ''' + ''.join(f'''    <li><a href="{REL}{f}"><b>{n}</b></a> ({size(f)}) – {t}</li>
 ''' for f, n, t in packs) + '''  </ul>
   <p class="small">Fan-made tools and packs, not affiliated with the rights holders. Checksums: <a href="https://github.com/eggi36/zax-game.com/releases/tag/downloads">release page</a>. More projects around the game are listed on the <a href="projects.html">Projects</a> page.</p>''')
-dl = sections('Downloads', [('community', 'Community Downloads', community), ('official', 'Official Downloads', official)])
+# Vollversionen des Spiels: nur externe Links, nichts davon liegt auf dieser Seite oder im Release.
+# Je Eintrag: (Name, Adresse, Anbieter, Beschreibung) – z. B. ('Zax: The Alien Hunter – English', 'https://…', 'archive.org', 'CD image, …')
+game_downloads = [
+ ('Zax: The Alien Hunter – English', 'https://archive.org/details/zax-the-alien-hunter-flt', 'archive.org', ''),
+ ('Zax: The Alien Hunter – Chinese', 'https://archive.org/details/ZTAHChs', 'archive.org', ''),
+ ('Zax: The Alien Hunter – French', 'https://www.abandonware-france.org/ltf_abandon/ltf_jeu.php?id=4014&fic=liens', 'abandonware-france.org', ''),
+ ('Zax: The Alien Hunter – German', 'https://archive.org/details/Zax_DE', 'archive.org', ''),
+ ('Zax: The Alien Hunter – Polish', 'https://archive.org/details/zax_20210926', 'archive.org', ''),
+ ('Zax: The Alien Hunter – Russian', 'https://www.old-games.ru/game/download/2011.html', 'old-games.ru', ''),
+ ('Zax: The Alien Hunter – Spanish', 'https://archive.org/details/Zax_ES', 'archive.org', ''),
+]
+if game_downloads:
+    # Flaggen im Stil der Sprachwahl von zax-game.com (en.gif = flag_uk.gif dort); ohne Flagge bleibt der Platz frei
+    FLAGS = {'English': 'en', 'Chinese': 'zh', 'French': 'fr', 'German': 'de', 'Polish': 'pl', 'Spanish': 'es', 'Czech': 'cs', 'Russian': 'ru'}
+    def flag(n):
+        c = FLAGS.get(n.rsplit('– ', 1)[-1])
+        return img(f'assets/img/flags/{c}.gif', '') if c else '<span class="noflag"></span>'
+    gd_list = '  <ul class="downloads flags">\n' + ''.join(
+        f'    <li><a class="flag" href="{html.escape(u)}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">{flag(n)}</a><span><a href="{html.escape(u)}" target="_blank" rel="noopener"><b>{html.escape(n)}</b></a> <span class="srcline">({html.escape(h)}, external)</span>{"<br>" + t if t else ""}</span></li>\n'
+        for n, u, h, t in game_downloads) + '  </ul>\n'
+else:
+    gd_list = '  <p><i>No links yet.</i></p>\n'
+game_dl = box('  <p>The full versions of the game in its different editions. They are not hosted here: the links lead to other sites, which are responsible for their downloads.</p>\n'
+              + gd_list
+              + f'  <p>Problems with the copy protection? Use the <code>Zax.exe</code> of the <a href="{REL}ZaxDemo_2001-08-06_Build1308.exe">demo of 6 August 2001</a> (build 1308) – it is the full version\'s EXE without copy protection: install the demo, back up or rename the <code>Zax.exe</code> in the game folder of the full version, then copy the demo\'s <code>Zax.exe</code> there. This does not work with the Chinese edition.</p>\n'
+              + '  <p class="small">You need the full version for the fix packs and language packs below.</p>')
+dl = sections('Downloads', [('game', 'Game Downloads', game_dl), ('community', 'Community Downloads', community), ('official', 'Official Downloads', official)])
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
 # ---------------------------------------------------------------- News & Links (+ Developer Logs)
@@ -506,7 +532,7 @@ def sm_list(items):
 SITEMAP = [
  ('index.html', 'Homepage', []),
  ('the-game.html', 'The Game', [(f'the-game.html#{a}', t, []) for a, t, _ in GAME_SECTIONS]),
- ('downloads.html', 'Downloads', [('downloads.html#community', 'Community downloads – tools, fix packs and language packs', []),
+ ('downloads.html', 'Downloads', [('downloads.html#game', 'Game downloads – full versions (external links)', []), ('downloads.html#community', 'Community downloads – tools, fix packs and language packs', []),
                                    ('downloads.html#official', 'Official downloads – demos and the French patch', []),
                                    ('https://github.com/eggi36/zax-game.com/releases/tag/downloads', 'Release page with all files and checksums', [])]),
  ('news-links.html', 'News & Links', [('news-links.html#site-news', 'Site news', []),

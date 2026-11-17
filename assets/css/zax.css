@@ -98,6 +98,10 @@ main { padding: 18px 13px 0; }
 .box ul { margin: 0 0 1em; padding-left: 18px; }
 .box li { margin-bottom: .35em; }
 .box ul.downloads li { margin-bottom: .8em; }
+.box ul.downloads.flags { list-style: none; padding-left: 0; }
+.box ul.downloads.flags li { display: flex; align-items: center; gap: 12px; margin-bottom: .5em; }
+.box ul.downloads.flags .flag { flex: none; display: block; line-height: 0; }
+.box ul.downloads.flags img, .box ul.downloads.flags .noflag { display: block; width: 82px; height: 47px; }
 .small { font-size: 11px; color: #5fa9c7; }
 .date { display: block; color: #fff; font-size: 11px; letter-spacing: .05em; }
 /* Galerie (Unused Content): Bild mittig auf einer Kachel im Grau der Vorschaubilder */
