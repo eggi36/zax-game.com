@@ -43,14 +43,14 @@ for p in glob.glob(os.path.join(ARCHIVE, '*', 'external', '*', '*')):
 SCORE = {'om illustration.jpg': 'ZAX01', 'zax illustration.jpg': 'ZAX03', 'sentinel illustration.jpg': 'ZAX06',
          'the crutch.jpg': 'ZAX07', 'the zelon.jpg': 'ZAX08', 'zelon interior.jpg': 'ZAX09', 'korbo illustration.jpg': 'ZAX10',
          'screen shot of village.gif': 'ZAX02', 'screen shot in cave.gif': 'ZAX04', 'screen shot of temple.gif': 'ZAX05'}
-# Die Vorschauen (380 breit) daneben wurden auch nie archiviert: aus denselben Bildern verkleinert. Die breiten
+# Die Vorschauen (380 breit, Zelon-Innenraum 330x246) daneben wurden auch nie archiviert: aus denselben Bildern verkleinert. Die breiten
 # Vorschauen (380x208) zeigen nur den Bildausschnitt ohne Rand, Logo und Bildunterschrift (Zeilen 62-415).
 BAND = (0, 62, 640, 416)
 THUMBS = {'zax by ship illustration.jpg': ('ZAX03', BAND), 'sentinel illustration.jpg': ('ZAX06', BAND),
           'crutch illustration.jpg': ('ZAX07', BAND), 'the zelon.jpg': ('ZAX08', BAND),
           'om rendering.jpg': ('ZAX01', None), 'korbo village.jpg': ('ZAX10', None),
           'screen shot of village 380.jpg': ('ZAX02', None), 'screen shot in cave 380.jpg': ('ZAX04', None),
-          'screen shot of temple 380.jpg': ('ZAX05', None)}
+          'screen shot of temple 380.jpg': ('ZAX05', None), "zax's ship interior.jpg": ('ZAX09', None)}
 # Screenshots von 2003, die dort nie archiviert wurden, aber als dieselbe Datei bei jowood.com liegen. Zuordnung über die
 # archivierten Vorschauen (reflexive.net/Zax/images/Screen Shots/Screen Shot NNSmall.jpg, Internet Archive 2002/2003):
 # mittlere Abweichung 3,6-5,3 gegenüber über 18 bei allen anderen Bildern. Bei 16 und 20 nennt die Seite 640x480,
@@ -108,7 +108,7 @@ def build(root, ts, start, extra=(), gone=()):
             if name in SCORE and size_of(m, s) == (640, 480):
                 notes.append(f'the picture of this page was never archived; it is the same picture from the cover CD of Score 59 (November 1998), {SCORE[name]}.png')
                 return f'{attr}={q}{os.path.relpath(os.path.join(ARCHIVE, "score_1998-11", SCORE[name] + ".png"), here).replace(os.sep, "/")}{q}'
-            if name in THUMBS and size_of(m, s) and size_of(m, s)[0] == 380:
+            if name in THUMBS and size_of(m, s):
                 z, box = THUMBS[name]; im = Image.open(os.path.join(ARCHIVE, 'score_1998-11', z + '.png')).convert('RGB')
                 (im.crop(box) if box else im).resize(size_of(m, s), Image.LANCZOS).save(dst, quality=92, subsampling=0)
                 notes.append('the small pictures of this page were never archived; they are scaled down from the pictures of the cover CD of Score 59 (November 1998)')

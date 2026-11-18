@@ -538,7 +538,7 @@ ar_2001 = box(
     'The Internet Archive kept the page, but not the pictures. The same series was shown by GameSpot in its First Look of 5 January 2001; the pictures here are put together from several copies of it, '
     'without logos (the first still shows GameSpot\'s “G”, no GameSpot copy of the seventh was preserved). The order on the developer\'s page is not known; this is the order of GameSpot.</p>\n'
     '  <div class="gallery renders">\n' + ''.join(
-        f'    <figure><a class="pic" href="{R3}Images/BigScreens/ZSS{n:02d}.jpg" target="_blank" rel="noopener">{img(f"{R3}Images/BigScreens/ZSS{n:02d}.jpg", t)}</a>'
+        f'    <figure><a class="pic" href="{R3}images/BigScreens/ZSS{n:02d}.jpg" target="_blank" rel="noopener">{img(f"{R3}images/BigScreens/ZSS{n:02d}.jpg", t)}</a>'
         f'<figcaption>{html.escape(t)}</figcaption></figure>\n' for n, t in enumerate(shots2001, 1)) +
     '  </div>')
 ar_web = '<div class="cards">\n' + ''.join(
@@ -615,4 +615,23 @@ raw = raw_pages()
 if raw:
     sys.exit('Archivseiten mit rohen Sonderzeichen – erst `python3 tools/archive_entities.py` ausführen:\n  '
              + '\n  '.join(os.path.relpath(p, SITE) for p in raw))
+
+# ---------------------------------------------------------------- Lokale Verweise: Schreibweise genau prüfen
+# GitHub Pages unterscheidet Groß-/Kleinschreibung, macOS nicht: lokal läuft ein falsch geschriebener Pfad, live nicht.
+from urllib.parse import unquote
+def exact(path):
+    cur = SITE
+    for part in os.path.relpath(path, SITE).split(os.sep):
+        if part == '..' or not os.path.isdir(cur) or part not in os.listdir(cur): return False
+        cur = os.path.join(cur, part)
+    return True
+bad = []
+for f in sorted(os.listdir(SITE)):
+    if not f.endswith('.html'): continue
+    for u in re.findall(r'(?:src|href)="([^"]+)"', open(os.path.join(SITE, f), encoding='utf-8').read()):
+        if re.match(r'(?i)([a-z]+:|#|//)', u): continue
+        t = os.path.normpath(os.path.join(SITE, unquote(u.split('#')[0].split('?')[0])))
+        if u.split('#')[0].split('?')[0] and not exact(t): bad.append(f'{f}: {u}')
+if bad:
+    sys.exit('Verweise auf nicht vorhandene Dateien (Schreibweise beachten):\n  ' + '\n  '.join(bad))
 print('ok')
