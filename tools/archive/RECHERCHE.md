@@ -1,6 +1,6 @@
 # Recherche: fehlende Archivbilder
 
-Stand 18.11.2026. Hält fest, was gesucht wurde, was gefunden wurde und welche Quellen noch nicht geprüft sind.
+Stand 18.11.2026 (zwei Suchrunden). Hält fest, was gesucht wurde, was gefunden wurde und welche Quellen noch nicht geprüft sind.
 
 ## Screenshot-Galerie reflexive.net 2003 (`archive/2003-06_Version4/zax/images/Screen Shots/`)
 
@@ -48,20 +48,28 @@ Vorschau. Möglich wären noch 03 und 15, die keine Vorschau haben.
 - **gamepressure.com (GRY OnLine):** nur die Januar-Serie.
 - **reflexive.net selbst:** alle archivierten Dateien unter `Zax/images/Screen Shots/` (CDX-Abfrage) sind verwendet.
 
+- **Zweite Runde (18.11.2026), ohne Treffer:**
+  - **GameSpot:** von der August-Serie sind auch unter `image.com.com` nur 003–005 archiviert; die 38 Einzelseiten
+    `screens.html?page=N` zeigen die drei bekannten Serien (7 + 9 + 22). `zax_boxshot.jpg` (100×119) ist kein fehlendes Bild.
+  - **IGN** (Review `pc.ign.com/articles/167/167008p1.html`): Bilder `pcmedia.ign.com/media/reviews/image/zax_sept28_*`,
+    eigene Aufnahmen der Redaktion (Abweichung über 17).
+  - **GameSpy** (Review `gamespy.com/reviews/october01/zax/`, Bilder 1–5): eigene Aufnahmen.
+  - **jowood.com/.de/.at** (alle archivierten Bilder mit „zax“ im Namen): nur die schon verwendeten Screenshots,
+    Packshots und `en/news/zax.jpg` (120×136, nicht das fehlende `news_zax.jpg` 177×236 von zax-game.com).
+  - **zax-game.com und zax.jowood.com** (alle archivierten Bilder): von den fehlenden Figuren-, Waffen- und
+    Produktbildern (`enemy_*`, `heroic_*`, `weapon_*`, `game_download.jpg`, `news_zax.jpg`, `links_zax.jpg`, `ss01`, `ss25`)
+    ist keines archiviert, auch `ss02–24` nicht.
+  - **gameswelt.de** (35 Bilder in 640×480), **pcgames.de** (Test 11/2001, 4 Bilder), **LaunchBox** (15 Bilder, meist
+    Packungen und Fan-Bilder): andere Bilder.
+- **Gefunden:** `reflexive.net/images/ZaxMain.jpg` (193×74, Aufnahme 2004-12-13) – dieselbe Adresse wie das fehlende Bild
+  der Fassung von 2003; liegt in `finds_src/www.reflexive.net/images/` und wird von `import_reflexive.py` eingesetzt.
+
 ### Noch nicht geprüft
 
-- **IGN** (pc.ign.com): Review vom 28.09.2001 von Ivan Sulic, mit Bildergalerie.
-- **GameSpy:** Review von Mark Walker.
-- **GameSpot:** die übrigen Bilder der August-Serie. Für 001, 002 und 006–009 sind nur die Vorschauen archiviert, die großen Bilder liegen nicht unter `gamespot.com` und waren unter `image.com.com` wegen einer Zeitüberschreitung nicht abzufragen.
-- **GameSpot:** die Einzelseiten `screens.html?page=N` und `images/0/N/` (2003–2010).
-- **gameswelt.de:** die großen Fassungen der Einzelseiten (`/zax-the-alien-hunter/screenshots/uebersicht-180707/…`). Die Vorschauen passen zwar nicht, aber die Seite nennt 18 Bilder, und eines fehlt in der Übersicht.
-- **4Gamer.net** (www.4gamer.net/review/live/zax.html): Review der japanischen Fassung.
-- **LaunchBox Games DB** (gamesdb.launchbox-app.com/games/details/105454): Bilder in 800×600.
-- **MobyGames** (mobygames.com/game/5954/zax-the-alien-hunter): Screenshots und Promo-Bilder.
-- **Deutsche Magazine 2001/2002:** 4players.de, gamestar.de, pcgames.de, pcaction.de.
-- **zax-game.com:** `ss01.jpg` und `ss25.jpg` haben dieselben Nummern wie reflexive.net; `ss00.jpg` ist pixelgleich mit
-  Screen Shot 00. Weitere Bilder (`ss02–24`) sind dort nicht verlinkt, aber vielleicht unter `images/` archiviert.
-  Eine CDX-Abfrage `zax-game.com/images/ss` steht noch aus.
+- **MobyGames, 4Gamer.net, spaziogames.it:** blockieren automatische Abrufe (Cloudflare-Prüfung); nur im Browser von Hand.
+- **Deutsche Magazine:** 4players.de, gamestar.de, pcaction.de.
+- **Hinweis zur CDX-Abfrage:** eckige Klammern im Filter müssen kodiert werden (`filter=original:.*%5BZz%5Dax.*`),
+  sonst kommt stillschweigend eine leere Liste zurück.
 
 ## Navigation reflexive.net April 2001 (Hover-Bilder `*2.gif` und Randstücke)
 
