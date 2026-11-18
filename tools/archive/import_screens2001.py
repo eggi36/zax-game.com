@@ -27,6 +27,10 @@ def what(n):
     if n == 7: return '; GameSpot\'s zax_screen007.jpg was never archived, so the picture is put together from two other copies without logo'
     return f', zax_screen{n:03d}.jpg, with the area of the GameSpot logo taken from another copy'
 
+def images_dir(z):
+    """Bilderordner in genau der vorhandenen Schreibweise (2001-01/-04: Images, 2001-12: images)."""
+    return next(d for d in os.listdir(z) if d.lower() == 'images')
+
 def note(path, text):
     s = open(path, encoding='ascii', newline='').read()
     if 'fan-site archive' in s: s = s[:s.index('<!-- fan-site archive')] + s[s.index('-->', s.index('<!-- fan-site archive')) + 3:].lstrip('\r\n')
@@ -41,8 +45,9 @@ def main(src):
         small = im.resize((150, 113), Image.LANCZOS).quantize(256, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
         for v in VERSIONS:
             z = os.path.join(ROOT, 'archive', v, 'Zax')
-            im.save(os.path.join(z, 'Images', 'BigScreens', f'ZSS{n:02d}.jpg'), quality=95, subsampling=0)
-            small.save(os.path.join(z, 'Images', 'SmallScreens', f'ZSS{n:02d}small.gif'))
+            imgs = os.path.join(z, images_dir(z))
+            im.save(os.path.join(imgs, 'BigScreens', f'ZSS{n:02d}.jpg'), quality=95, subsampling=0)
+            small.save(os.path.join(imgs, 'SmallScreens', f'ZSS{n:02d}small.gif'))
             note(os.path.join(z, 'ScreenHtms', f'Screen{n}.htm'), NOTE_BIG.format(what=what(n)))
     for v in VERSIONS:
         note(os.path.join(ROOT, 'archive', v, 'Zax', 'Screens.htm'), NOTE_SMALL)

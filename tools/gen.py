@@ -322,13 +322,13 @@ def size(name):
     b = SIZES[name]   # KeyError = Datei fehlt im Release
     return f'{b / 1e6:.1f} MB' if b >= 1e6 else f'{max(1, round(b / 1e3))} KB'
 demos = [
- ('ZaxDemo_2001-06-01.exe', '1 June 2001', None, '1 June 2001',
+ ('ZaxDemo_2001-06-01.exe', '2001-06-01', None, '2001-06-01',
   'The earliest known build, from a much older stage of the engine. It runs in 8-bit colour only, offers any 4:3 resolution from 640×480 upwards, shows still images instead of the intro videos and still has working cheat codes. Only a third-party repack of its installer has survived.'),
- ('ZaxDemo_2001-07-01_Build890.exe', '1 July 2001', '890', '30 June 2001',
+ ('ZaxDemo_2001-07-01_Build890.exe', '2001-07-01', '890', '2001-06-30',
   'The first demo with 16-bit graphics and the intro videos. Like the June demo, it still has 3D positional sound via DirectSound3D and EAX.'),
- ('ZaxDemo_2001-07-19_Build950.exe', '19 July 2001', '950', '18 July 2001',
+ ('ZaxDemo_2001-07-19_Build950.exe', '2001-07-19', '950', '2001-07-18',
   'An intermediate build shortly before the full version, without the positional sound of the earlier demos.'),
- ('ZaxDemo_2001-08-06_Build1308.exe', '6 August 2001', '1308', '1 August 2001',
+ ('ZaxDemo_2001-08-06_Build1308.exe', '2001-08-06', '1308', '2001-08-01',
   'Technically the EXE of the full version without copy protection – only its smaller data set makes it a demo.'),
 ]
 official = box('''  <h3>Playable demos (2001)</h3>
@@ -392,37 +392,37 @@ cdkey_html = ('  <h3 id="cdkey-generator">CD key generator</h3>\n  <p>The game a
     f'<script src="{asset("assets/js/cdkey.js")}" defer></script>\n')
 game_dl = box('  <p>The full versions of the game in its different editions. They are not hosted here: the links lead to other sites, which are responsible for their downloads.</p>\n'
               + gd_list
-              + f'  <p>Problems with the copy protection? Use the <code>Zax.exe</code> of the <a href="{REL}ZaxDemo_2001-08-06_Build1308.exe">demo of 6 August 2001</a> (build 1308) – it is the full version\'s EXE without copy protection: install the demo, back up or rename the <code>Zax.exe</code> in the game folder of the full version, then copy the demo\'s <code>Zax.exe</code> there. This does not work with the Chinese edition.</p>\n'
+              + f'  <p>Problems with the copy protection? Use the <code>Zax.exe</code> of the <a href="{REL}ZaxDemo_2001-08-06_Build1308.exe">demo of 2001-08-06</a> (build 1308) – it is the full version\'s EXE without copy protection: install the demo, back up or rename the <code>Zax.exe</code> in the game folder of the full version, then copy the demo\'s <code>Zax.exe</code> there. This does not work with the Chinese edition.</p>\n'
               + cdkey_html
               + '  <p class="small">You need the full version for the fix packs and language packs below.</p>')
 dl = sections('Downloads', [('game', 'Game Downloads', game_dl), ('community', 'Community Downloads', community), ('official', 'Official Downloads', official)])
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
 # ---------------------------------------------------------------- News & Links (+ Developer Logs)
-news_site = [('11/18/26', 'The <a href="news-links.html#development-news">Development News</a> now start in 1998: the first news about Zax from the Reflexive news page, from the start of development on 2 April 1998.'),
-             ('11/18/26', 'Seven early screenshots of January 2001 – the series of the developer\'s site, also shown by GameSpot – are now in the <a href="archive.html#screens-2001">Archive</a>, also on the screenshot pages of the 2001 versions. The first Zax page of 1998 shows its small pictures again, scaled down from the Score cover CD pictures, and the screenshot gallery of 2003 has four more pictures, found on jowood.com.'),
-             ('11/17/26', 'New in <a href="downloads.html">Downloads</a>: <a href="downloads.html#game">links to the full version</a> of the game in seven languages with a tip for copy protection problems, a <a href="downloads.html#cdkey-generator">CD key generator</a> and a fix pack for the original Russian edition.'),
-             ('11/17/26', 'New finds from the Internet Archive: the first Zax page of 1998 and the reflexive.net page of 2003 in the <a href="archive.html">Archive</a>, many more pages and pictures of zax-game.com and jowood.com, and a new <a href="the-game.html">The Game</a> page that brings together everything the developer\'s and the official site said about the game: story, characters, weapons, interface and screenshots.'),
-             ('11/16/26', 'New in <a href="downloads.html#official">Downloads</a>: the demo of 1 June 2001, the earliest known build of the game, in 8-bit colour and with still images instead of the intro videos.'),
-             ('11/16/26', 'New in the <a href="archive.html#score-1998">Archive</a>: ten early pictures of the game from the cover CD of the Czech magazine <i>Score</i>, issue 59 (November 1998), with the text that came with them.'),
-             ('11/14/26', 'This fan site goes online: navigation and fonts rebuilt from the original Flash files of zax-game.com, the original websites restored in the <a href="archive.html">Archive</a>.')]
+news_site = [('2026-11-18', 'The <a href="news-links.html#development-news">Development News</a> now start in 1998: the first news about Zax from the Reflexive news page, from the start of development on 1998-04-02.'),
+             ('2026-11-18', 'Seven early screenshots of January 2001 – the series of the developer\'s site, also shown by GameSpot – are now in the <a href="archive.html#screens-2001">Archive</a>, also on the screenshot pages of the 2001 versions. The first Zax page of 1998 shows its small pictures again, scaled down from the Score cover CD pictures, and the screenshot gallery of 2003 has four more pictures, found on jowood.com.'),
+             ('2026-11-17', 'New in <a href="downloads.html">Downloads</a>: <a href="downloads.html#game">links to the full version</a> of the game in seven languages with a tip for copy protection problems, a <a href="downloads.html#cdkey-generator">CD key generator</a> and a fix pack for the original Russian edition.'),
+             ('2026-11-17', 'New finds from the Internet Archive: the first Zax page of 1998 and the reflexive.net page of 2003 in the <a href="archive.html">Archive</a>, many more pages and pictures of zax-game.com and jowood.com, and a new <a href="the-game.html">The Game</a> page that brings together everything the developer\'s and the official site said about the game: story, characters, weapons, interface and screenshots.'),
+             ('2026-11-16', 'New in <a href="downloads.html#official">Downloads</a>: the demo of 2001-06-01, the earliest known build of the game, in 8-bit colour and with still images instead of the intro videos.'),
+             ('2026-11-16', 'New in the <a href="archive.html#score-1998">Archive</a>: ten early pictures of the game from the cover CD of the Czech magazine <i>Score</i>, issue 59 (November 1998), with the text that came with them.'),
+             ('2026-11-14', 'This fan site goes online: navigation and fonts rebuilt from the original Flash files of zax-game.com, the original websites restored in the <a href="archive.html">Archive</a>.')]
 news_orig = [
- ('04/03/01', 'Zax&trade; has a brand new name! "Zax the Alien Hunter" is now the official title of the Zax title that has been under construction for the past year. The team is currently working on multi-player maps, AI\'s and optimizations. The game is looking beautiful if I do say so myself.'),
- ('02/15/01', 'Hmmm, I wonder what\'s new? You guessed it! The Zax page has been redesigned yet again. However this time it is for good reason. There is now a Zax message board that will be moderated by members of Reflexive. There will be a major update to the Logs section soon.'),
- ('01/03/01', 'Well, the Zax Team is back at work after a nice relaxing vacation! There have been many changes, you just can\'t see most of them. There is a new screen shot, and the Logs section has been redone. There is also a new Weapon revealed, so have fun checking out all the new stuff.'),
- ('12/07/00', 'The website has just about been completed. All of the sections will be updated on a continuous basis. So checkout what is new and come back often for updates!'),
- ('11/12/00', 'The Zax website is going through some major changes. It should now be updated every week with the latest and greatest information on the Epic adventure Zax. Stay tuned for more information.'),
+ ('2001-04-03', 'Zax&trade; has a brand new name! "Zax the Alien Hunter" is now the official title of the Zax title that has been under construction for the past year. The team is currently working on multi-player maps, AI\'s and optimizations. The game is looking beautiful if I do say so myself.'),
+ ('2001-02-15', 'Hmmm, I wonder what\'s new? You guessed it! The Zax page has been redesigned yet again. However this time it is for good reason. There is now a Zax message board that will be moderated by members of Reflexive. There will be a major update to the Logs section soon.'),
+ ('2001-01-03', 'Well, the Zax Team is back at work after a nice relaxing vacation! There have been many changes, you just can\'t see most of them. There is a new screen shot, and the Logs section has been redone. There is also a new Weapon revealed, so have fun checking out all the new stuff.'),
+ ('2000-12-07', 'The website has just about been completed. All of the sections will be updated on a continuous basis. So checkout what is new and come back often for updates!'),
+ ('2000-11-12', 'The Zax website is going through some major changes. It should now be updated every week with the latest and greatest information on the Epic adventure Zax. Stay tuned for more information.'),
 ]
 # 1998: Reflexive-Nachrichtenseite (reflexive.net/news/news.html, Internet Archive 19.01.2000, Quelle in
 # tools/archive/finds_src/www.reflexive.net/news/), nur die Meldungen zu Zax; Links zur Zax-Seite zeigen aufs Archiv.
 Z98 = 'archive/1998-12_Version0/zax/zaxintro.html'
 news_1998 = [
- ('12/22/98', 'We\'re hiring! We are on the verge of expansion, and we are ready to add personnel for the exciting growth we have planned. We are currently seeking a full-time Artist and will be hiring a full-time Level Designer in the next few months to work on our next project, tentatively titled <a href="' + Z98 + '">Zax</a>. We have a great work environment and if you think you have what it takes, please inquire within...'),
- ('09/28/98', 'Many new pictures have been added to the Zax page, as well as multiple hi-res screenshots. Just click on the low-res screenshots to get the larger version. Swarm is also out in selected stores, and will be getting substantial press in PC Gamer\'s December issue. We may have some more exciting news about our newest title Zax, but certain discussions are still hush hush at the moment. We will write more about it here as details become available, but it DEFINATELY looks like everyone will be hearing about Zax and Reflexive Entertainment in the near future...'),
- ('08/31/98', 'A rendering of Om has been added to the <a href="' + Z98 + '">Zax Web Page</a>, as well as new story elements. Swarm will also be in stores “very soon”...hopefully late September. We will be adding pages and information on where to obtain the game in the near future.'),
- ('late 08/98', 'Zax has been in development for over 4 months, and it is looking fantastic. For a sneak peak at our graphically intense gaming masterpiece, click <a href="' + Z98 + '">HERE</a>.'),
- ('05/28/98', 'E3 in Atlanta, Georgia (May 28 through 30). The team had fun and garnered even more contacts within the industry. Had some extremely favorable contacts with the preliminary design of Zax.'),
- ('04/02/98', 'The birth of a new game... Reflexive begins development of a brand new title called <strong>Zax</strong>. Our site will soon have detailed information on this exciting new game. Discover the Universe of Zax.'),
+ ('1998-12-22', 'We\'re hiring! We are on the verge of expansion, and we are ready to add personnel for the exciting growth we have planned. We are currently seeking a full-time Artist and will be hiring a full-time Level Designer in the next few months to work on our next project, tentatively titled <a href="' + Z98 + '">Zax</a>. We have a great work environment and if you think you have what it takes, please inquire within...'),
+ ('1998-09-28', 'Many new pictures have been added to the Zax page, as well as multiple hi-res screenshots. Just click on the low-res screenshots to get the larger version. Swarm is also out in selected stores, and will be getting substantial press in PC Gamer\'s December issue. We may have some more exciting news about our newest title Zax, but certain discussions are still hush hush at the moment. We will write more about it here as details become available, but it DEFINATELY looks like everyone will be hearing about Zax and Reflexive Entertainment in the near future...'),
+ ('1998-08-31', 'A rendering of Om has been added to the <a href="' + Z98 + '">Zax Web Page</a>, as well as new story elements. Swarm will also be in stores “very soon”...hopefully late September. We will be adding pages and information on where to obtain the game in the near future.'),
+ ('1998-08 (late)', 'Zax has been in development for over 4 months, and it is looking fantastic. For a sneak peak at our graphically intense gaming masterpiece, click <a href="' + Z98 + '">HERE</a>.'),
+ ('1998-05-28', 'E3 in Atlanta, Georgia (May 28 through 30). The team had fun and garnered even more contacts within the industry. Had some extremely favorable contacts with the preliminary design of Zax.'),
+ ('1998-04-02', 'The birth of a new game... Reflexive begins development of a brand new title called <strong>Zax</strong>. Our site will soon have detailed information on this exciting new game. Discover the Universe of Zax.'),
 ]
 links = [
  ('About the game', [
@@ -437,7 +437,7 @@ links = [
 nl_site = box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_site))
 nl_dev = box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_orig + news_1998)
                  + '  <p class="small">News from the developer\'s site by Reflexive Entertainment: 2000–2001 from the Zax page, 1998 from the Reflexive news page (the entries about Zax).</p>', )
-nl_logs = box('  <p>Every week the Reflexive team posted what they had been working on – programmers, artists and level designers. Three of these logs have survived: 12/08/00, 12/15/00 and 01/05/01.</p>\n  <p><a href="logs.html">Read the developer logs</a></p>', )
+nl_logs = box('  <p>Every week the Reflexive team posted what they had been working on – programmers, artists and level designers. Three of these logs have survived: 2000-12-08, 2000-12-15 and 2001-01-05.</p>\n  <p><a href="logs.html">Read the developer logs</a></p>', )
 lk = ''
 for head, entries in links:
     lk += f'  <h3>{head}</h3>\n  <ul>\n' + ''.join(
@@ -497,7 +497,7 @@ arch = [
  ('archive/1998-12_Version0/zax/zaxintro.html', 'archive/shot_1998-12_Version0.png', 'reflexive.net/Zax – December 1998',
   'The first Zax page of the developer: “Zax, Coming 1999-2000”, with the early story of a soldier of the Galactic Imperium. Only the text was preserved; its ten large pictures – seven illustrations and three screenshots – are the ones found on the <a href="#score-1998">Score cover CD</a>, and its small pictures are scaled down from them; the other images are marked as missing.'),
  ('archive/2001-01_Version1/Zax/index.html', 'archive/shot_2001-01_Version1.png', 'reflexive.net/Zax – January 2001',
-  'The developer\'s site during production. Most of the layout graphics were not preserved; missing images are marked. The seven screenshots were not preserved either: they are shown from the same series on GameSpot (5 January 2001), the order is not known.'),
+  'The developer\'s site during production. Most of the layout graphics were not preserved; missing images are marked. The seven screenshots were not preserved either: they are shown from the same series on GameSpot (2001-01-05), the order is not known.'),
  ('archive/2001-04_Version2/Zax/index.html', 'archive/shot_2001-04_Version2.png', 'reflexive.net/Zax – April 2001',
   'The stone medallion design with Zax and the rune chain. Some frame graphics were not preserved; missing images are marked.'),
  ('archive/2001-12_Version3/Zax/index.html', 'archive/shot_2001-12_Version3.png', 'reflexive.net/Zax – December 2001',
@@ -547,7 +547,7 @@ shots2001 = ['Laser maze in a cave', 'Wooden bridge in the jungle', 'Jungle path
              'Deep in the caves', 'Korbo village with fires', 'Village square']
 ar_2001 = box(
     '  <p>Seven early screenshots, with the old status bar: the pictures of the developer\'s <a href="' + R3 + 'Screens.htm" target="_blank" rel="noopener">screenshot page</a> on reflexive.net in 2001. '
-    'The Internet Archive kept the page, but not the pictures. The same series was shown by GameSpot in its First Look of 5 January 2001; the pictures here are put together from several copies of it, '
+    'The Internet Archive kept the page, but not the pictures. The same series was shown by GameSpot in its First Look of 2001-01-05; the pictures here are put together from several copies of it, '
     'without logos (the first still shows GameSpot\'s “G”, no GameSpot copy of the seventh was preserved). The order on the developer\'s page is not known; this is the order of GameSpot.</p>\n'
     '  <div class="gallery renders">\n' + ''.join(
         f'    <figure><a class="pic" href="{R3}images/BigScreens/ZSS{n:02d}.jpg" target="_blank" rel="noopener">{img(f"{R3}images/BigScreens/ZSS{n:02d}.jpg", t)}</a>'
@@ -630,11 +630,14 @@ if raw:
 
 # ---------------------------------------------------------------- Lokale Verweise: Schreibweise genau prüfen
 # GitHub Pages unterscheidet Groß-/Kleinschreibung, macOS nicht: lokal läuft ein falsch geschriebener Pfad, live nicht.
+from functools import lru_cache
 from urllib.parse import unquote
+@lru_cache(maxsize=None)
+def entries(d): return frozenset(os.listdir(d)) if os.path.isdir(d) else frozenset()
 def exact(path):
     cur = SITE
     for part in os.path.relpath(path, SITE).split(os.sep):
-        if part == '..' or not os.path.isdir(cur) or part not in os.listdir(cur): return False
+        if part == '..' or part not in entries(cur): return False
         cur = os.path.join(cur, part)
     return True
 bad = []

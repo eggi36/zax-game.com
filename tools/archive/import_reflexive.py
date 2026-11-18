@@ -110,6 +110,7 @@ def build(root, ts, start, extra=(), gone=()):
                 return f'{attr}={q}{os.path.relpath(os.path.join(ARCHIVE, "score_1998-11", SCORE[name] + ".png"), here).replace(os.sep, "/")}{q}'
             if name in THUMBS and size_of(m, s):
                 z, box = THUMBS[name]; im = Image.open(os.path.join(ARCHIVE, 'score_1998-11', z + '.png')).convert('RGB')
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
                 (im.crop(box) if box else im).resize(size_of(m, s), Image.LANCZOS).save(dst, quality=92, subsampling=0)
                 notes.append('the small pictures of this page were never archived; they are scaled down from the pictures of the cover CD of Score 59 (November 1998)')
                 return m.group(0)
