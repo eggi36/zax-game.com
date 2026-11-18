@@ -399,7 +399,8 @@ dl = sections('Downloads', [('game', 'Game Downloads', game_dl), ('community', '
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
 # ---------------------------------------------------------------- News & Links (+ Developer Logs)
-news_site = [('11/18/26', 'Seven early screenshots of January 2001 – the series of the developer\'s site, also shown by GameSpot – are now in the <a href="archive.html#screens-2001">Archive</a>, also on the screenshot pages of the 2001 versions. The first Zax page of 1998 shows its small pictures again, scaled down from the Score cover CD pictures, and the screenshot gallery of 2003 has four more pictures, found on jowood.com.'),
+news_site = [('11/18/26', 'The <a href="news-links.html#development-news">Development News</a> now start in 1998: the first news about Zax from the Reflexive news page, from the start of development on 2 April 1998.'),
+             ('11/18/26', 'Seven early screenshots of January 2001 – the series of the developer\'s site, also shown by GameSpot – are now in the <a href="archive.html#screens-2001">Archive</a>, also on the screenshot pages of the 2001 versions. The first Zax page of 1998 shows its small pictures again, scaled down from the Score cover CD pictures, and the screenshot gallery of 2003 has four more pictures, found on jowood.com.'),
              ('11/17/26', 'New in <a href="downloads.html">Downloads</a>: <a href="downloads.html#game">links to the full version</a> of the game in seven languages with a tip for copy protection problems, a <a href="downloads.html#cdkey-generator">CD key generator</a> and a fix pack for the original Russian edition.'),
              ('11/17/26', 'New finds from the Internet Archive: the first Zax page of 1998 and the reflexive.net page of 2003 in the <a href="archive.html">Archive</a>, many more pages and pictures of zax-game.com and jowood.com, and a new <a href="the-game.html">The Game</a> page that brings together everything the developer\'s and the official site said about the game: story, characters, weapons, interface and screenshots.'),
              ('11/16/26', 'New in <a href="downloads.html#official">Downloads</a>: the demo of 1 June 2001, the earliest known build of the game, in 8-bit colour and with still images instead of the intro videos.'),
@@ -412,6 +413,17 @@ news_orig = [
  ('12/07/00', 'The website has just about been completed. All of the sections will be updated on a continuous basis. So checkout what is new and come back often for updates!'),
  ('11/12/00', 'The Zax website is going through some major changes. It should now be updated every week with the latest and greatest information on the Epic adventure Zax. Stay tuned for more information.'),
 ]
+# 1998: Reflexive-Nachrichtenseite (reflexive.net/news/news.html, Internet Archive 19.01.2000, Quelle in
+# tools/archive/finds_src/www.reflexive.net/news/), nur die Meldungen zu Zax; Links zur Zax-Seite zeigen aufs Archiv.
+Z98 = 'archive/1998-12_Version0/zax/zaxintro.html'
+news_1998 = [
+ ('12/22/98', 'We\'re hiring! We are on the verge of expansion, and we are ready to add personnel for the exciting growth we have planned. We are currently seeking a full-time Artist and will be hiring a full-time Level Designer in the next few months to work on our next project, tentatively titled <a href="' + Z98 + '">Zax</a>. We have a great work environment and if you think you have what it takes, please inquire within...'),
+ ('09/28/98', 'Many new pictures have been added to the Zax page, as well as multiple hi-res screenshots. Just click on the low-res screenshots to get the larger version. Swarm is also out in selected stores, and will be getting substantial press in PC Gamer\'s December issue. We may have some more exciting news about our newest title Zax, but certain discussions are still hush hush at the moment. We will write more about it here as details become available, but it DEFINATELY looks like everyone will be hearing about Zax and Reflexive Entertainment in the near future...'),
+ ('08/31/98', 'A rendering of Om has been added to the <a href="' + Z98 + '">Zax Web Page</a>, as well as new story elements. Swarm will also be in stores “very soon”...hopefully late September. We will be adding pages and information on where to obtain the game in the near future.'),
+ ('late 08/98', 'Zax has been in development for over 4 months, and it is looking fantastic. For a sneak peak at our graphically intense gaming masterpiece, click <a href="' + Z98 + '">HERE</a>.'),
+ ('05/28/98', 'E3 in Atlanta, Georgia (May 28 through 30). The team had fun and garnered even more contacts within the industry. Had some extremely favorable contacts with the preliminary design of Zax.'),
+ ('04/02/98', 'The birth of a new game... Reflexive begins development of a brand new title called <strong>Zax</strong>. Our site will soon have detailed information on this exciting new game. Discover the Universe of Zax.'),
+]
 links = [
  ('About the game', [
   ('https://www.mobygames.com/game/5954/zax-the-alien-hunter/', 'MobyGames', 'credits, screenshots, releases'),
@@ -423,14 +435,14 @@ links = [
   ('https://web.archive.org/web/2004/http://www.zax-game.com/', 'zax-game.com at the Internet Archive', '')]),
 ]
 nl_site = box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_site))
-nl_dev = box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_orig)
-                 + '  <p class="small">News from the official site by Reflexive Entertainment, 2000–2001.</p>', )
+nl_dev = box(''.join(f'  <p><span class="date">{d}</span>{t}</p>\n' for d, t in news_orig + news_1998)
+                 + '  <p class="small">News from the developer\'s site by Reflexive Entertainment: 2000–2001 from the Zax page, 1998 from the Reflexive news page (the entries about Zax).</p>', )
 nl_logs = box('  <p>Every week the Reflexive team posted what they had been working on – programmers, artists and level designers. Three of these logs have survived: 12/08/00, 12/15/00 and 01/05/01.</p>\n  <p><a href="logs.html">Read the developer logs</a></p>', )
 lk = ''
 for head, entries in links:
     lk += f'  <h3>{head}</h3>\n  <ul>\n' + ''.join(
         f'    <li><a href="{u}">{n}</a>{" – " + d if d else ""}</li>\n' for u, n, d in entries) + '  </ul>\n'
-nl = sections('News & Links', [('site-news', 'Site News', nl_site), ('development-news', 'Development News 2000–2001', nl_dev),
+nl = sections('News & Links', [('site-news', 'Site News', nl_site), ('development-news', 'Development News 1998–2001', nl_dev),
                                ('developer-logs', 'Developer Logs', nl_logs), ('links', 'Links', box(lk))])
 page('news-links.html', 'News & Links', 'News & Links', nl, 'news-links.html')
 
@@ -557,7 +569,7 @@ SITEMAP = [
                                    ('downloads.html#official', 'Official downloads – demos and the French patch', []),
                                    ('https://github.com/eggi36/zax-game.com/releases/tag/downloads', 'Release page with all files and checksums', [])]),
  ('news-links.html', 'News & Links', [('news-links.html#site-news', 'Site news', []),
-                                       ('news-links.html#development-news', 'Development news 2000–2001', []),
+                                       ('news-links.html#development-news', 'Development news 1998–2001', []),
                                        ('logs.html', 'Developer logs', [('logs.html#log-' + re.sub(r'\W+', '-', l['date']).strip('-'), 'Log ' + l['date'], []) for l in logs]),
                                        ('news-links.html#links', 'Links', [])]),
  ('projects.html', 'Projects', [('projects.html#my-projects', 'My projects', []), ('projects.html#community-projects', 'Community projects', [])]),
