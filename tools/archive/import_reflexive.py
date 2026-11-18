@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Baut die Fassungen 1998 und 2003 von reflexive.net/Zax aus den Funden in tools/archive/finds_src/www.reflexive.net/.
 
-- archive/1998-12_Version0/: die erste Zax-Seite (zaxintro.html, Dezember 1998) mit ihren Bildseiten. Die zehn
+- archive/1998-12_Version0/: die erste Zax-Seite (zaxintro.html, Dezember 1998) mit ihren Bildseiten und der
+  Nachrichtenseite von Reflexive (news/news.html). Die zehn
   großen Bilder wurden nie archiviert; es sind die Bilder der Score-Heft-CD (archive/score_1998-11/), die Seiten
   zeigen sie mit Kommentar (Entscheidung des Seitenbetreibers).
 - archive/2003-06_Version4/: reflexive.net/zax.htm (2003) mit FAQ, Characters, Weapons, Demo, French Patch und den
@@ -58,6 +59,9 @@ THUMBS = {'zax by ship illustration.jpg': ('ZAX03', BAND), 'sentinel illustratio
 JOWOOD_SS = os.path.join(ARCHIVE, 'jowood.com_2003', 'gamers', 'en', 'games', 'zax', 'ss')
 SAME_PICTURE = {'screen shot 05.jpg': 'zax_1.jpg', 'screen shot 13.jpg': 'zax_6.jpg',
                 'screen shot 16.jpg': 'zax_3.jpg', 'screen shot 20.jpg': 'zax_2.jpg'}
+# Hinweise im Quelltext einzelner Seiten. Die Nachrichtenseite ist nur in einer Aufnahme vom 19.01.2000 erhalten;
+# zuletzt geändert am 15.04.1999, die Meldungen reichen bis Dezember 1998 – sie gehört zur Fassung von 1998.
+PAGE_NOTES = {'news/news.html': ['this page is the copy at the Internet Archive of 2000-01-19 (last modified April 15, 1999); its news end in December 1998']}
 # "…" darf ' enthalten (Zax's Ship Interior.jpg), '…' darf " enthalten
 LINK = re.compile(r'''(?i)\b(src|href|background)=(?:(")([^"]+)"|(')([^']+)'|()([^"'\s>]+))''')
 MISSING_HTML = os.path.join(ARCHIVE, 'missing.html')
@@ -72,12 +76,13 @@ def build(root, ts, start, extra=(), gone=()):
     """root: Zielordner; ts: Internet-Archive-Aufnahme für fremde Seitenlinks; gone: Seiten, die zur Zeit
     dieser Fassung Fehlerseiten waren (zeigen missing.html)."""
     todo, done = [start, *extra], set()
+    pages = {p.lower() for p in extra}
     while todo:
         page = todo.pop(0)
         if page.lower() in done or page.lower() not in found: continue
         done.add(page.lower())
         s = open(found[page.lower()], 'rb').read().decode('latin-1').replace('\r\n', '\n')
-        base, notes = os.path.dirname(page), []
+        base, notes = os.path.dirname(page), list(PAGE_NOTES.get(page.lower(), ()))
         here = os.path.dirname(os.path.join(root, page))
         def missing(target): return os.path.relpath(MISSING_HTML, here).replace(os.sep, '/') + '?' + url_path(target)
         def fix(m):
@@ -97,7 +102,7 @@ def build(root, ts, start, extra=(), gone=()):
             low = target.lower()
             if low.endswith(('.htm', '.html')):
                 if low in gone: return f'{attr}={q}{missing(os.path.basename(target))}{q}'
-                if low in found and low.startswith('zax'): todo.append(target); return m.group(0)
+                if low in found and (low.startswith('zax') or low in pages): todo.append(target); return m.group(0)
                 if os.path.exists(os.path.join(root, target)): return m.group(0)
                 if attr.lower() == 'src': return f'{attr}={q}{missing(target)}{q}'      # Rahmen
                 return f'{attr}={q}https://web.archive.org/web/{ts}/http://www.reflexive.net/{url_path(target)}{q}'
@@ -134,7 +139,7 @@ def build(root, ts, start, extra=(), gone=()):
         print('page', os.path.relpath(dst, ARCHIVE))
 
 def main():
-    build(os.path.join(ARCHIVE, '1998-12_Version0'), '19990221113005', 'zax/zaxintro.html')
+    build(os.path.join(ARCHIVE, '1998-12_Version0'), '19990221113005', 'zax/zaxintro.html', ['news/news.html'])
     build(os.path.join(ARCHIVE, '2003-06_Version4'), '20030620084750', 'zax.htm',
           ['zax/screensmain.htm', 'zax/frenchfix.htm']
           + [f'zax/screenhtms/ss{n:02d}.htm' for n in range(26)] + [f'zax/screenhtms/multiplayer {n:02d}.htm' for n in range(1, 10)],

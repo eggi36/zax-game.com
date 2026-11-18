@@ -2,6 +2,8 @@
 # Nie archiviert und als Hintergrund oder Download ohne Größe für einen Platzhalter.
 1998-12_Version0/zax/zaxintro.html: ../common/navagationbar/Nav%20Button%20Background.gif
 1998-12_Version0/zax/zaxintro.html: Vertical%20Bar%20Zax.jpg
+1998-12_Version0/news/news.html: ../common/navagationbar/Nav%20Button%20Background.gif
+1998-12_Version0/news/news.html: ../common/VerticleButtonBackground.jpg
 2001-12_Version3/Frames/Purchase.htm: ../Demos/RicochetSetup.exe
 2001-12_Version3/Zax/Demopage.htm: ../../Demos/Zax%20Demo.exe
 2003-06_Version4/zax.htm: ../images/Background.jpg
