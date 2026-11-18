@@ -34,6 +34,9 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
   (Rückgabe 1 bei neuen Problemen; hingenommene Lücken in `tools/archive/known_missing.txt`).
 - Funde vom Nov. 2026: Quellseiten in `tools/archive/finds_src/`; reflexive.net 1998/2003 baut `tools/archive/import_reflexive.py`,
   die neuen zax-game.com-Seiten `tools/archive/import_zaxgame.py` (nicht von Hand ändern).
+- Suche nach fehlenden Archivbildern: Stand, Treffer und noch nicht geprüfte Quellen in `tools/archive/RECHERCHE.md`;
+  Funde für die 2003er-Galerie mit `tools/archive/match_thumbs.py` gegen die archivierten Vorschauen prüfen.
+- Screenshots ZSS01–07 (2001, auch Abschnitt `archive.html#screens-2001`): `tools/archive/import_screens2001.py` (Serie vom Jan. 2001, GameSpot; Quelle nicht im Repo).
 - zax-game.com: was dort nie archiviert ist, kommt vom Spiegel zax.jowood.com (`archive/zax-game.com_2004/SOURCES.txt`).
 - Archivseiten nur in ASCII speichern: GitHub Pages sendet `charset=utf-8`, rohe Latin-1-Umlaute werden zu �.
   Nach dem Import `python3 tools/archive_entities.py`; `tools/gen.py` bricht sonst ab.

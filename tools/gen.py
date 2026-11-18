@@ -254,7 +254,7 @@ shots = [('reflexive_ss00.jpg', 'Pipes and machinery', 'r'), ('reflexive_ss02.jp
          ('jowood_zax_6.jpg', 'Jungle ruins', 'j'), ('reflexive_ss07.jpg', 'Temple floor', 'r'), ('jowood_zax_5.jpg', 'Metal halls', 'j'),
          ('jowood_zax_3.jpg', 'Snow and ice', 'j'), ('reflexive_ss04.jpg', 'Mission statistics', 'r'), ('reflexive_multiplayer07.jpg', 'Multiplayer', 'r')]
 SHOT_SRC = {'r': 'reflexive.net', 'j': 'jowood.com'}
-sc = box('  <p>Screenshots from the developer\'s site (reflexive.net, 2001–2003) and the publisher\'s game pages (jowood.com, 2004–2010). Earlier pictures of the game, from 1998, are in the <a href="archive.html#score-1998">Archive</a>.</p>\n  <div class="gallery renders">\n' + ''.join(
+sc = box('  <p>Screenshots from the developer\'s site (reflexive.net, 2001–2003) and the publisher\'s game pages (jowood.com, 2004–2010). Earlier pictures of the game, from 1998 and January 2001, are in the <a href="archive.html">Archive</a>.</p>\n  <div class="gallery renders">\n' + ''.join(
     f'    <figure><a class="pic" href="assets/img/gallery/{f}" target="_blank" rel="noopener">{img("assets/img/gallery/" + f, t)}</a><figcaption>{html.escape(t)} <span class="srcline">{SHOT_SRC[k]}</span></figcaption></figure>\n'
     for f, t, k in shots) + '  </div>')
 
@@ -399,7 +399,8 @@ dl = sections('Downloads', [('game', 'Game Downloads', game_dl), ('community', '
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
 # ---------------------------------------------------------------- News & Links (+ Developer Logs)
-news_site = [('11/17/26', 'New in <a href="downloads.html">Downloads</a>: <a href="downloads.html#game">links to the full version</a> of the game in seven languages with a tip for copy protection problems, a <a href="downloads.html#cdkey-generator">CD key generator</a> and a fix pack for the original Russian edition.'),
+news_site = [('11/18/26', 'Seven early screenshots of January 2001 – the series of the developer\'s site, also shown by GameSpot – are now in the <a href="archive.html#screens-2001">Archive</a>, also on the screenshot pages of the 2001 versions. The first Zax page of 1998 shows its small pictures again, scaled down from the Score cover CD pictures, and the screenshot gallery of 2003 has four more pictures, found on jowood.com.'),
+             ('11/17/26', 'New in <a href="downloads.html">Downloads</a>: <a href="downloads.html#game">links to the full version</a> of the game in seven languages with a tip for copy protection problems, a <a href="downloads.html#cdkey-generator">CD key generator</a> and a fix pack for the original Russian edition.'),
              ('11/17/26', 'New finds from the Internet Archive: the first Zax page of 1998 and the reflexive.net page of 2003 in the <a href="archive.html">Archive</a>, many more pages and pictures of zax-game.com and jowood.com, and a new <a href="the-game.html">The Game</a> page that brings together everything the developer\'s and the official site said about the game: story, characters, weapons, interface and screenshots.'),
              ('11/16/26', 'New in <a href="downloads.html#official">Downloads</a>: the demo of 1 June 2001, the earliest known build of the game, in 8-bit colour and with still images instead of the intro videos.'),
              ('11/16/26', 'New in the <a href="archive.html#score-1998">Archive</a>: ten early pictures of the game from the cover CD of the Czech magazine <i>Score</i>, issue 59 (November 1998), with the text that came with them.'),
@@ -482,21 +483,21 @@ r4_shots = ('<br>Screenshot pages (their overview page was not preserved): '
     + link_list([(R4 + f'ss{n:02d}.htm', f'{n:02d}') for n in range(26) if n not in (3,)] + [(R4 + f'multiplayer%20{n:02d}.htm', f'MP{n:02d}') for n in range(1, 10)]) + '.')
 arch = [
  ('archive/1998-12_Version0/zax/zaxintro.html', 'archive/shot_1998-12_Version0.png', 'reflexive.net/Zax – December 1998',
-  'The first Zax page of the developer: “Zax, Coming 1999-2000”, with the early story of a soldier of the Galactic Imperium. Only the text was preserved; its ten large pictures – seven illustrations and three screenshots – are the ones found on the <a href="#score-1998">Score cover CD</a>, the other images are marked as missing.'),
+  'The first Zax page of the developer: “Zax, Coming 1999-2000”, with the early story of a soldier of the Galactic Imperium. Only the text was preserved; its ten large pictures – seven illustrations and three screenshots – are the ones found on the <a href="#score-1998">Score cover CD</a>, and its small pictures are scaled down from them; the other images are marked as missing.'),
  ('archive/2001-01_Version1/Zax/index.html', 'archive/shot_2001-01_Version1.png', 'reflexive.net/Zax – January 2001',
-  'The developer\'s site during production. Most of the layout graphics were not preserved; missing images are marked.'),
+  'The developer\'s site during production. Most of the layout graphics were not preserved; missing images are marked. The seven screenshots were not preserved either: they are shown from the same series on GameSpot (5 January 2001), the order is not known.'),
  ('archive/2001-04_Version2/Zax/index.html', 'archive/shot_2001-04_Version2.png', 'reflexive.net/Zax – April 2001',
   'The stone medallion design with Zax and the rune chain. Some frame graphics were not preserved; missing images are marked.'),
  ('archive/2001-12_Version3/Zax/index.html', 'archive/shot_2001-12_Version3.png', 'reflexive.net/Zax – December 2001',
   'The release version with FAQ, demo page and the mirrored navigation.'),
  ('archive/2003-06_Version4/zax.htm', 'archive/shot_2003-06_Version4.png', 'reflexive.net – 2002 to 2003',
-  'The short Zax page on the developer\'s site after the release, with FAQ, characters, weapons, demo and the French patch. Of its screenshot gallery seven full-size pictures were preserved.' + r4_shots),
+  'The short Zax page on the developer\'s site after the release, with FAQ, characters, weapons, demo and the French patch. Of its screenshot gallery seven full-size pictures were preserved; four more are shown from jowood.com, which used the same files.' + r4_shots),
  ('archive/zax-game.com_2004/index_flash.html', 'archive/shot_zax-game.com_gateway.png', 'zax-game.com – 2002 to 2004',
   'The official JoWooD site in English and German. Navigation and banner are the original Flash files, played with the Ruffle emulator. Files that were never archived on zax-game.com come from JoWooD\'s mirror zax.jowood.com.' + zg_more),
  ('archive/jowood.com_2003/gamers/index.html', 'archive/shot_jowood.com_2003.jpg', 'jowood.com – January 2003',
   'The game\'s pages on the publisher\'s site in English and German: the game, screenshots, demo, patches, reviews, system requirements and registration. Links to other JoWooD pages lead to the Internet Archive; the Zax logo was not preserved, the forms are disabled. Screenshots never archived at their own address come from the files of the same name elsewhere on jowood.com.'),
 ]
-ar_intro = box('  <p>Early pictures of the game from a 1998 magazine cover CD, the original websites, restored from copies at the Internet Archive, and the models that were left unused in the game data. The websites are shown as they were – with frames, period HTML and, where noted, Flash. Only archived material is shown: images that were never preserved are marked as missing.</p>')
+ar_intro = box('  <p>Early pictures of the game from a 1998 magazine cover CD and from January 2001, the original websites, restored from copies at the Internet Archive, and the models that were left unused in the game data. The websites are shown as they were – with frames, period HTML and, where noted, Flash. Only archived material is shown: images that were never preserved are marked as missing.</p>')
 # Score 59 (CZ, November 1998): Bilder von der Heft-CD (NGF-Format, verlustfrei als PNG). Es sind die zehn großen Bilder der
 # reflexive.net-Seite von 1998 (nie archiviert); Reihenfolge und Unterschriften wie dort (sonst die Unterschrift im Bild).
 R0 = 'archive/1998-12_Version0/zax/'
@@ -527,10 +528,23 @@ ar_score = box(
     'Its release is planned for the end of next year, but seeing these stunning rendered – and yet so realistic – pictures from the game, my heart tells me this could be one of the most promising products of next winter. '
     'If we all believe and hope together, maybe ZAX will reach the shops sooner, and we can finally put away the bib, grab the mouse and start playing. Can\'t wait.”</p>',
     )
+# Screenshot-Serie Januar 2001: die Bilder ZSS01-07 der reflexive.net-Seite 2001 (nie archiviert), dieselbe Serie wie bei
+# GameSpot (First Look, 05.01.2001); eingesetzt von tools/archive/import_screens2001.py. Reihenfolge wie bei GameSpot.
+R3 = 'archive/2001-12_Version3/Zax/'
+shots2001 = ['Laser maze in a cave', 'Wooden bridge in the jungle', 'Jungle path', 'Fight at the temple statue',
+             'Deep in the caves', 'Korbo village with fires', 'Village square']
+ar_2001 = box(
+    '  <p>Seven early screenshots, with the old status bar: the pictures of the developer\'s <a href="' + R3 + 'Screens.htm" target="_blank" rel="noopener">screenshot page</a> on reflexive.net in 2001. '
+    'The Internet Archive kept the page, but not the pictures. The same series was shown by GameSpot in its First Look of 5 January 2001; the pictures here are put together from several copies of it, '
+    'without logos (the first still shows GameSpot\'s “G”, no GameSpot copy of the seventh was preserved). The order on the developer\'s page is not known; this is the order of GameSpot.</p>\n'
+    '  <div class="gallery renders">\n' + ''.join(
+        f'    <figure><a class="pic" href="{R3}Images/BigScreens/ZSS{n:02d}.jpg" target="_blank" rel="noopener">{img(f"{R3}Images/BigScreens/ZSS{n:02d}.jpg", t)}</a>'
+        f'<figcaption>{html.escape(t)}</figcaption></figure>\n' for n, t in enumerate(shots2001, 1)) +
+    '  </div>')
 ar_web = '<div class="cards">\n' + ''.join(
     f'<div class="box card"><p class="title">{t}</p><a href="{u}" target="_blank" rel="noopener">{img(s, t, "shot")}</a><p>{d}</p><p><a href="{u}" target="_blank" rel="noopener">Open</a></p></div>\n'
     for u, s, t, d in arch) + '</div>'
-ar = sections('Archive', [('score-1998', 'Score CD Finds 1998', ar_score), ('websites', 'Websites', ar_web), ('unused-content', 'Unused Content', uc)], ar_intro)
+ar = sections('Archive', [('score-1998', 'Score CD Finds 1998', ar_score), ('screens-2001', 'Screenshots January 2001', ar_2001), ('websites', 'Websites', ar_web), ('unused-content', 'Unused Content', uc)], ar_intro)
 page('archive.html', 'Archive', 'Archive', ar, 'archive.html')
 
 # ---------------------------------------------------------------- Sitemap (Seite im Menü + sitemap.xml)
@@ -547,7 +561,7 @@ SITEMAP = [
                                        ('logs.html', 'Developer logs', [('logs.html#log-' + re.sub(r'\W+', '-', l['date']).strip('-'), 'Log ' + l['date'], []) for l in logs]),
                                        ('news-links.html#links', 'Links', [])]),
  ('projects.html', 'Projects', [('projects.html#my-projects', 'My projects', []), ('projects.html#community-projects', 'Community projects', [])]),
- ('archive.html', 'Archive', [('archive.html#score-1998', 'Finds from the Score cover CD – 1998', [])] + [(u, t, []) for u, s_, t, d in arch]
+ ('archive.html', 'Archive', [('archive.html#score-1998', 'Finds from the Score cover CD – 1998', []), ('archive.html#screens-2001', 'Screenshots of January 2001', [])] + [(u, t, []) for u, s_, t, d in arch]
                               + [('archive/jowood.com_2003/gamers/index_de.html', 'jowood.com – January 2003, German pages', [])]
                               + [('archive.html#unused-content', 'Unused Content – models the game never uses', [])]),
 ]

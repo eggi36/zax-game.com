@@ -40,6 +40,8 @@ Content building blocks:
 - `tools/archive/placeholder.py` – the red-hatched MISSING placeholder for never-archived images.
 - `tools/archive/check_links.py` – finds local links in the archive that would break on GitHub Pages (missing files, or a different upper/lower case than the file); `--fix` corrects the case. Accepted gaps are listed in `tools/archive/known_missing.txt`; it exits with 1 on new problems.
 - `tools/archive/import_reflexive.py`, `tools/archive/import_zaxgame.py` – build reflexive.net/Zax 1998 and 2003 and the additional zax-game.com pages from the source pages in `tools/archive/finds_src/` (Internet Archive finds of November 2026).
+- `tools/archive/match_thumbs.py`, `tools/archive/RECHERCHE.md` – match found pictures against the archived thumbnails of the 2003 screenshot gallery; notes on the search for missing archive images.
+- `tools/archive/import_screens2001.py` – the screenshot series of January 2001 (also shown by GameSpot) for ZSS01–07 of reflexive.net/Zax 2001 (also shown in the Archive section).
 - `tools/archive/build_jowood.py` – rebuilds `archive/jowood.com_2003/gamers/*.html` from the original pages in `tools/archive/jowood_src/`; capture dates are in `tools/archive/jowood_captures.json` and `archive/jowood.com_2003/CAPTURES.txt`.
 
 ## Fonts

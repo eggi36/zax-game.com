@@ -9,7 +9,7 @@
   nie archiviert: beides zeigt archive/missing.html.
 
 Bilder: schon vorhandene bleiben; sonst aus dem Fundordner FOUND_IMAGES (nur beim ersten Lauf nötig), aus einer
-anderen Fassung (gleicher Pfad unter Zax/), Score-CD-Bild, oder ein MISSING-Platzhalter in Originalgröße.
+anderen Fassung (gleicher Pfad unter Zax/), Score-CD-Bild (auch die Vorschauen von 1998, verkleinert), oder ein MISSING-Platzhalter in Originalgröße.
 Bilder fremder Server werden aus einer lokalen Kopie unter archive/*/external/<Server>/ genommen.
 Seitenlinks, die nicht im Archiv liegen, zeigen ins Internet Archive (Aufnahme der Startseite); nie
 archivierte Rahmen zeigen archive/missing.html.
@@ -23,6 +23,7 @@ from urllib.parse import unquote, urlsplit
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from placeholder import make
+from PIL import Image
 
 ARCHIVE = os.path.normpath(os.path.join(HERE, '..', '..', 'archive'))
 SRC = os.path.join(HERE, 'finds_src', 'www.reflexive.net')
@@ -42,6 +43,21 @@ for p in glob.glob(os.path.join(ARCHIVE, '*', 'external', '*', '*')):
 SCORE = {'om illustration.jpg': 'ZAX01', 'zax illustration.jpg': 'ZAX03', 'sentinel illustration.jpg': 'ZAX06',
          'the crutch.jpg': 'ZAX07', 'the zelon.jpg': 'ZAX08', 'zelon interior.jpg': 'ZAX09', 'korbo illustration.jpg': 'ZAX10',
          'screen shot of village.gif': 'ZAX02', 'screen shot in cave.gif': 'ZAX04', 'screen shot of temple.gif': 'ZAX05'}
+# Die Vorschauen (380 breit) daneben wurden auch nie archiviert: aus denselben Bildern verkleinert. Die breiten
+# Vorschauen (380x208) zeigen nur den Bildausschnitt ohne Rand, Logo und Bildunterschrift (Zeilen 62-415).
+BAND = (0, 62, 640, 416)
+THUMBS = {'zax by ship illustration.jpg': ('ZAX03', BAND), 'sentinel illustration.jpg': ('ZAX06', BAND),
+          'crutch illustration.jpg': ('ZAX07', BAND), 'the zelon.jpg': ('ZAX08', BAND),
+          'om rendering.jpg': ('ZAX01', None), 'korbo village.jpg': ('ZAX10', None),
+          'screen shot of village 380.jpg': ('ZAX02', None), 'screen shot in cave 380.jpg': ('ZAX04', None),
+          'screen shot of temple 380.jpg': ('ZAX05', None)}
+# Screenshots von 2003, die dort nie archiviert wurden, aber als dieselbe Datei bei jowood.com liegen. Zuordnung über die
+# archivierten Vorschauen (reflexive.net/Zax/images/Screen Shots/Screen Shot NNSmall.jpg, Internet Archive 2002/2003):
+# mittlere Abweichung 3,6-5,3 gegenüber über 18 bei allen anderen Bildern. Bei 16 und 20 nennt die Seite 640x480,
+# die jowood-Datei ist 800x600 (wird von width/height der Seite verkleinert).
+JOWOOD_SS = os.path.join(ARCHIVE, 'jowood.com_2003', 'gamers', 'en', 'games', 'zax', 'ss')
+SAME_PICTURE = {'screen shot 05.jpg': 'zax_1.jpg', 'screen shot 13.jpg': 'zax_6.jpg',
+                'screen shot 16.jpg': 'zax_3.jpg', 'screen shot 20.jpg': 'zax_2.jpg'}
 # "…" darf ' enthalten (Zax's Ship Interior.jpg), '…' darf " enthalten
 LINK = re.compile(r'''(?i)\b(src|href|background)=(?:(")([^"]+)"|(')([^']+)'|()([^"'\s>]+))''')
 MISSING_HTML = os.path.join(ARCHIVE, 'missing.html')
@@ -72,7 +88,8 @@ def build(root, ts, start, extra=(), gone=()):
                 u = urlsplit(url); copy = external.get((u.netloc.lower(), os.path.basename(u.path).lower()))
                 if not copy: return m.group(0)
                 dst = os.path.join(root, 'external', u.netloc.lower(), os.path.basename(copy))
-                os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(copy, dst)
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                if os.path.abspath(copy) != os.path.abspath(dst): shutil.copyfile(copy, dst)
                 notes.append(f'local copy of {url}')
                 return f'{attr}={q}{os.path.relpath(dst, here).replace(os.sep, "/")}{q}'
             target = os.path.normpath(os.path.join(base, unquote(url.split('#')[0]))).replace(os.sep, '/')
@@ -91,6 +108,15 @@ def build(root, ts, start, extra=(), gone=()):
             if name in SCORE and size_of(m, s) == (640, 480):
                 notes.append(f'the picture of this page was never archived; it is the same picture from the cover CD of Score 59 (November 1998), {SCORE[name]}.png')
                 return f'{attr}={q}{os.path.relpath(os.path.join(ARCHIVE, "score_1998-11", SCORE[name] + ".png"), here).replace(os.sep, "/")}{q}'
+            if name in THUMBS and size_of(m, s) and size_of(m, s)[0] == 380:
+                z, box = THUMBS[name]; im = Image.open(os.path.join(ARCHIVE, 'score_1998-11', z + '.png')).convert('RGB')
+                (im.crop(box) if box else im).resize(size_of(m, s), Image.LANCZOS).save(dst, quality=92, subsampling=0)
+                notes.append('the small pictures of this page were never archived; they are scaled down from the pictures of the cover CD of Score 59 (November 1998)')
+                return m.group(0)
+            if name in SAME_PICTURE and root.endswith('2003-06_Version4'):
+                os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(os.path.join(JOWOOD_SS, SAME_PICTURE[name]), dst)
+                notes.append(f'the picture of this page was never archived here; it is the same picture as jowood.com/gamers/en/games/zax/ss/{SAME_PICTURE[name]} (matched with the archived thumbnail of this site)')
+                return m.group(0)
             if os.path.exists(dst): return m.group(0)
             src = found.get(low) or known.get(low)
             if src:
