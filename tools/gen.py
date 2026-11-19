@@ -370,7 +370,7 @@ community = box('''  <h3>Tools</h3>
 game_downloads = [
  ('English', 'en', 'https://archive.org/details/zax-the-alien-hunter-flt', 'archive.org', ''),
  ('Chinese', 'zh', 'https://archive.org/details/ZTAHChs', 'archive.org', ''),
- ('French', 'fr', 'https://www.abandonware-france.org/ltf_abandon/ltf_jeu.php?id=4014&fic=liens', 'abandonware-france.org', ''),
+ ('French', 'fr', 'https://archive.org/details/Zax_FR', 'archive.org', ''),
  ('German', 'de', 'https://archive.org/details/Zax_DE', 'archive.org', ''),
  ('Polish', 'pl', 'https://archive.org/details/zax_20210926', 'archive.org', ''),
  ('Russian', 'ru', 'https://www.old-games.ru/game/download/2011.html', 'old-games.ru', ''),
