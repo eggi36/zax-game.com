@@ -34,7 +34,8 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
   Vom Nutzer freigegebene Ausnahmen (immer mit Herkunftskommentar `<!-- fan-site archive: … -->` in der Seite):
   dasselbe Bild von einer anderen Adresse (pixelgleich bzw. über archivierte Vorschauen belegt, z. B. jowood.com, Score-CD);
   Vorschauen, die aus einem vorhandenen großen Bild verkleinert sind; die Januar-2001-Serie ZSS01–07 (aus GameSpot-Kopien
-  ohne Logo zusammengesetzt). Nicht erlaubt bleibt: nachgezeichnete, gespiegelte oder ähnliche, aber nicht gleiche Bilder.
+  ohne Logo zusammengesetzt); die Multiplayer-Bilder 2003 (GameStar-Kopien derselben Aufnahmen, auf Seitengröße verkleinert und
+  je Farbkanal an die archivierte Vorschau angeglichen, `GAMESTAR_MP` in `import_reflexive.py`). Nicht erlaubt bleibt: nachgezeichnete, gespiegelte oder ähnliche, aber nicht gleiche Bilder.
 - zax-game.com: Flash läuft über Ruffle (lokal in `assets/ruffle/`) in `index_flash.html` und `*/top_nav.html`.
 - GitHub Pages unterscheidet Groß-/Kleinschreibung, die alten Server nicht: nach Änderungen im Archiv `python3 tools/archive/check_links.py --fix`
   (Rückgabe 1 bei neuen Problemen; hingenommene Lücken in `tools/archive/known_missing.txt`).

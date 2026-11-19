@@ -15,7 +15,7 @@ Bilder fremder Server werden aus einer lokalen Kopie unter archive/*/external/<S
 Seitenlinks, die nicht im Archiv liegen, zeigen ins Internet Archive (Aufnahme der Startseite); nie
 archivierte Rahmen zeigen archive/missing.html.
 
-Aufruf: python3 tools/archive/import_reflexive.py [FOUND_IMAGES]   (Pillow; danach archive_entities.py,
+Aufruf: python3 tools/archive/import_reflexive.py [FOUND_IMAGES]   (Pillow, numpy; danach archive_entities.py,
 check_links.py --fix)
 """
 import glob, os, re, shutil, sys
@@ -59,6 +59,31 @@ THUMBS = {'zax by ship illustration.jpg': ('ZAX03', BAND), 'sentinel illustratio
 JOWOOD_SS = os.path.join(ARCHIVE, 'jowood.com_2003', 'gamers', 'en', 'games', 'zax', 'ss')
 SAME_PICTURE = {'screen shot 05.jpg': 'zax_1.jpg', 'screen shot 13.jpg': 'zax_6.jpg',
                 'screen shot 16.jpg': 'zax_3.jpg', 'screen shot 20.jpg': 'zax_2.jpg'}
+# Die Multiplayer-Bilder von 2003 (außer 07) wurden nie archiviert. GameStar zeigt dieselben Aufnahmen, aber heller und in
+# 800x600 (finds_src/images.cgames.de/…/zax-the-alien-hunter-105N_*.jpg). Ausnahme mit Angleichung (Entscheidung des
+# Seitenbetreibers, 2026-11-19): auf 640x480 verkleinert und je Farbkanal an die archivierte Vorschau angeglichen.
+# Probe am archivierten Multiplayer07.jpg: Abweichung 4,4 statt 39 (dieselbe Datei 3-6). Siehe RECHERCHE.md.
+GAMESTAR = os.path.join(HERE, 'finds_src', 'images.cgames.de', 'images', 'gamestar', '4')
+GAMESTAR_MP = {'multiplayer01.jpg': '1055_1072603', 'multiplayer02.jpg': '1054_1072602', 'multiplayer03.jpg': '1051_1072599',
+               'multiplayer04.jpg': '1058_1072606', 'multiplayer05.jpg': '1053_1072601', 'multiplayer06.jpg': '1052_1072600',
+               'multiplayer08.jpg': '1056_1072604', 'multiplayer09.jpg': '1059_1072607'}
+THUMB_DIR = os.path.join(SRC, 'zax', 'images', 'Screen Shots')
+
+def matched(name, size):
+    """GameStar-Bild in Seitengröße, je Farbkanal an die archivierte Vorschau (150x113) angeglichen."""
+    import numpy as np
+    big = Image.open(os.path.join(GAMESTAR, f'zax-the-alien-hunter-{GAMESTAR_MP[name]}.jpg')).convert('RGB').resize(size, Image.LANCZOS)
+    thumb = Image.open(os.path.join(THUMB_DIR, name[:-4].capitalize() + 'small.jpg')).convert('RGB')
+    a, b = np.asarray(thumb), np.asarray(big.resize(thumb.size, Image.LANCZOS))
+    luts = []
+    for c in range(3):
+        x, y = b[..., c].ravel(), a[..., c].ravel().astype(float)
+        n = np.bincount(x, minlength=256); s = np.bincount(x, weights=y, minlength=256)
+        v = np.arange(256); m = n >= 3
+        lut = np.interp(v, v[m], s[m] / n[m])                                   # mittlerer Zielwert je Ausgangswert
+        lut = np.convolve(np.pad(lut, 4, mode='edge'), np.ones(9) / 9, 'valid')  # glätten
+        luts.append(list(np.clip(np.round(np.maximum.accumulate(lut)), 0, 255).astype(np.uint8)))  # monoton
+    return Image.merge('RGB', [ch.point(l) for ch, l in zip(big.split(), luts)])
 # Hinweise im Quelltext einzelner Seiten. Die Nachrichtenseite ist nur in einer Aufnahme vom 19.01.2000 erhalten;
 # zuletzt geändert am 15.04.1999, die Meldungen reichen bis Dezember 1998 – sie gehört zur Fassung von 1998.
 PAGE_NOTES = {'news/news.html': ['this page is the copy at the Internet Archive of 2000-01-19 (last modified April 15, 1999); its news end in December 1998']}
@@ -122,6 +147,12 @@ def build(root, ts, start, extra=(), gone=()):
             if name in SAME_PICTURE and root.endswith('2003-06_Version4'):
                 os.makedirs(os.path.dirname(dst), exist_ok=True); shutil.copyfile(os.path.join(JOWOOD_SS, SAME_PICTURE[name]), dst)
                 notes.append(f'the picture of this page was never archived here; it is the same picture as jowood.com/gamers/en/games/zax/ss/{SAME_PICTURE[name]} (matched with the archived thumbnail of this site)')
+                return m.group(0)
+            if name in GAMESTAR_MP and root.endswith('2003-06_Version4') and size_of(m, s):
+                os.makedirs(os.path.dirname(dst), exist_ok=True); matched(name, size_of(m, s)).save(dst, quality=95, subsampling=0)
+                notes.append('the picture of this page was never archived; it is the same screenshot from the gallery of gamestar.de '
+                             f'(images.cgames.de/images/gamestar/4/zax-the-alien-hunter-{GAMESTAR_MP[name]}.jpg, 800x600, brighter), '
+                             'scaled to 640x480 and its colours matched to the archived thumbnail of this site')
                 return m.group(0)
             if os.path.exists(dst): return m.group(0)
             src = found.get(low) or known.get(low)

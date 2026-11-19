@@ -503,7 +503,7 @@ arch = [
  ('archive/2001-12_Version3/Zax/index.html', 'archive/shot_2001-12_Version3.png', 'reflexive.net/Zax – December 2001',
   'The release version with FAQ, demo page and the mirrored navigation.'),
  ('archive/2003-06_Version4/zax.htm', 'archive/shot_2003-06_Version4.png', 'reflexive.net – 2002 to 2003',
-  'The short Zax page on the developer\'s site after the release, with FAQ, characters, weapons, demo and the French patch. Of its screenshot gallery seven full-size pictures were preserved; four more are shown from jowood.com, which used the same files.' + r4_shots),
+  'The short Zax page on the developer\'s site after the release, with FAQ, characters, weapons, demo and the French patch. Of its screenshot gallery seven full-size pictures were preserved; four more are shown from jowood.com, which used the same files, and eight multiplayer pictures from GameStar\'s brighter copies of the same screenshots, scaled and colour-matched to the archived thumbnails.' + r4_shots),
  ('archive/zax-game.com_2004/index_flash.html', 'archive/shot_zax-game.com_gateway.png', 'zax-game.com – 2002 to 2004',
   'The official JoWooD site in English and German. Navigation and banner are the original Flash files, played with the Ruffle emulator. Files that were never archived on zax-game.com come from JoWooD\'s mirror zax.jowood.com.' + zg_more),
  ('archive/jowood.com_2003/gamers/index.html', 'archive/shot_jowood.com_2003.jpg', 'jowood.com – January 2003',

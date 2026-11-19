@@ -1,6 +1,6 @@
 # Recherche: fehlende Archivbilder
 
-Stand 18.11.2026 (zwei Suchrunden). Hält fest, was gesucht wurde, was gefunden wurde und welche Quellen noch nicht geprüft sind.
+Stand 19.11.2026 (drei Suchrunden). Hält fest, was gesucht wurde, was gefunden wurde und welche Quellen noch nicht geprüft sind.
 
 ## Screenshot-Galerie reflexive.net 2003 (`archive/2003-06_Version4/zax/images/Screen Shots/`)
 
@@ -25,7 +25,7 @@ Abgleich: `python3 tools/archive/match_thumbs.py <Bild oder Ordner>` liefert die
 | 00, 02, 04, 07, 12, 22, Multiplayer07 | archiviert | reflexive.net |
 | 05, 13, 16, 20 | eingesetzt (`import_reflexive.py`, `SAME_PICTURE`) | jowood.com `ss/zax_1`, `zax_6`, `zax_3`, `zax_2` |
 | 01, 06, 08–11, 14, 15, 17–19, 21, 23–25 | fehlt | – |
-| Multiplayer01–06, 08, 09 | fehlt | – |
+| Multiplayer01–06, 08, 09 | eingesetzt, angeglichen (`import_reflexive.py`, `GAMESTAR_MP`) | gamestar.de, Galerie 52251 |
 
 Ohne Zuordnung bleibt jowoods `zax_5.jpg` (800×600): Abweichung über 18, es ist also keins der Bilder mit erhaltener
 Vorschau. Möglich wären noch 03 und 15, die keine Vorschau haben.
@@ -64,10 +64,36 @@ Vorschau. Möglich wären noch 03 und 15, die keine Vorschau haben.
 - **Gefunden:** `reflexive.net/images/ZaxMain.jpg` (193×74, Aufnahme 2004-12-13) – dieselbe Adresse wie das fehlende Bild
   der Fassung von 2003; liegt in `finds_src/www.reflexive.net/images/` und wird von `import_reflexive.py` eingesetzt.
 
+- **Dritte Runde (19.11.2026):**
+  - **GameStar** (Galerie `gamestar.de/galerien/zax_the_alien_hunter,52251.html`, 9 Bilder, 800×600,
+    `images.cgames.de/images/gamestar/4/zax-the-alien-hunter-105N_10725xx.jpg`, N = 1–9): das ist die ganze
+    **Multiplayer-Reihe 01–09** derselben Aufnahmen, aber heller und in 800×600 statt 640×480.
+    - Zuordnung: 1051→MP03, 1052→MP06, 1053→MP05, 1054→MP02, 1055→MP01, 1056→MP08, 1057→MP07, 1058→MP04, 1059→MP09.
+    - Ohne Tonwertausgleich Abweichung 30–57; mit Ausgleich je Farbkanal 3,4–4,7, das nächstbeste Bild 8,5 oder mehr.
+    - Gegenprobe mit dem archivierten `Multiplayer07.jpg` (640×480): gleiches Einzelbild (Uhr 00:05:28, gleiche Meldungen),
+      Restabweichung 3,6, Korrelation 0,96.
+    - Also dasselbe Bild, aber **nicht dieselbe Datei** (andere Größe und Helligkeit). Vom Nutzer als Ausnahme freigegeben
+      (19.11.2026): `import_reflexive.py` verkleinert auf 640×480 und gleicht jedes Bild je Farbkanal an seine archivierte
+      Vorschau an (Kurve aus den 150×113-Pixeln, geglättet, monoton). Probe am echten Multiplayer07: Abweichung 4,4 statt 39.
+      Quellen in `finds_src/images.cgames.de/`. Das erklärt auch die helleren GameSpot-Bilder vom August 2001 (MP03–05).
+  - **4Gamer.net** (Review `4gamer.net/review/live/zax.html`, `img/zax/zax01–09.jpg`, 800×600): eigene Aufnahmen der
+    japanischen Fassung (Abweichung über 31).
+  - **MobyGames** (Spiel-ID 5954): Live-Seite hinter Cloudflare, auch von Hand nicht passierbar. Über das Internet Archive:
+    13 Nutzer-Screenshots (587×440, `cdn.mobygames.com/<id>.webp`) ohne Treffer; die Promo-Gruppe enthält nur
+    Zeitschriftenanzeigen (CD-Action, NextGen, PC Games).
+  - **Eurogamer** (Review `eurogamer.net/r-zax`, 4 Bilder, 800×600): eigene Aufnahmen.
+  - **spaziogames.it** (Review): keine Zax-Bilder. **4players.de, pcaction.de:** keine Zax-Bilder im Internet Archive
+    (pcaction nur der Demo-Download), keine Galerie live gefunden.
+  - **Vom Nutzer gefunden (19.11.2026, Quelle nicht im Repo):** zwei Fassungen der Januar-Serie 2001 in 600×450.
+    - Eine entspricht ZSS05 (Abweichung 1,4), die andere ZSS04 (2,7). Es ist jeweils dasselbe Einzelbild, aber mit anderer
+      Anzeige unten rechts: ZSS05 ohne den Munitionszähler „27“, ZSS04 ohne den blauen Balken und mit verschobenem Waffensymbol.
+    - Genau dort liegt in unseren Fassungen das aus einer anderen GameSpot-Kopie eingesetzte Stück (Logo-Bereich). Es gab
+      also zwei veröffentlichte Fassungen dieser Bilder; welche reflexive.net zeigte, ist ohne archivierte Vorschau nicht
+      zu entscheiden. Kleiner und nicht dieselbe Datei: nicht eingesetzt.
+
 ### Noch nicht geprüft
 
-- **MobyGames, 4Gamer.net, spaziogames.it:** blockieren automatische Abrufe (Cloudflare-Prüfung); nur im Browser von Hand.
-- **Deutsche Magazine:** 4players.de, gamestar.de, pcaction.de.
+- **MobyGames live** (falls die Cloudflare-Prüfung einmal durchgeht): große Fassungen der Nutzer-Screenshots.
 - **Hinweis zur CDX-Abfrage:** eckige Klammern im Filter müssen kodiert werden (`filter=original:.*%5BZz%5Dax.*`),
   sonst kommt stillschweigend eine leere Liste zurück.
 
