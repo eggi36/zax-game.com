@@ -97,6 +97,119 @@ Vorschau. Möglich wären noch 03 und 15, die keine Vorschau haben.
 - **Hinweis zur CDX-Abfrage:** eckige Klammern im Filter müssen kodiert werden (`filter=original:.*%5BZz%5Dax.*`),
   sonst kommt stillschweigend eine leere Liste zurück.
 
+## Japanische Vollversion (Downloads-Seite)
+
+Gesucht am 20.11.2026, ohne Download-Fund.
+- **Titel:** 「ザックス 〜エイリアンハンター〜 完全日本語版」 (4Gamer: „ZAX ～エイリアンハンター～ 完全日本語版“).
+- **Verlag:** Media Quest (メディアクエスト, auch „Kids Station“). Erschienen am 13.12.2001, 8800 Yen (mit Steuer 9240 Yen).
+- **Belege:** die Kritik `4gamer.net/review/live/zax.html` vom 12.01.2002. Impress Forest Watch schrieb am 15.08.2001 noch,
+  dass keine japanische Fassung angekündigt sei.
+- **Geprüft, ohne Treffer:**
+  - Internet Archive, Suche nach „zax“ mit japanisch/jpn, ザックス, エイリアンハンター, メディアクエスト und mediaquest.
+    Andere Media-Quest-Titel liegen dort im Namensschema `(Win)(Media Quest, …)(JP)(ja)`, Zax nicht.
+  - Websuche (englisch und japanisch), Zomb's Lair, MyAbandonware.
+- **Händler und Auktionen (Stand 20.11.2026):**
+  - **Amazon.co.jp:** ASIN B00005REZ0, Marke マイピック (MyPick), Artikelnummer **MJD-1090**, erschienen 2001/12/13.
+    Derzeit nicht erhältlich, auch kein Marketplace-Angebot.
+  - **Mercari:** ein Exemplar vom Shop Suruga-ya, gebraucht für 3450 Yen, ausverkauft. Laut Anzeige für Windows
+    95/98/Me/2000/XP; die Seriennummer steht auf der CD-Hülle.
+  - **Yahoo! Auctions** (über Buyee, aus der EU gesperrt): kein Angebot.
+  - **Suruga-ya direkt:** hinter einer Cloudflare-Prüfung; dort nach „MJD-1090“ suchen.
+  - **Ergebnis:** weder neu noch als Download erhältlich, nur gebraucht. Im Internet Archive und bei Zomb's Lair
+    gibt es nur die englische Fassung.
+- **Noch offen:** Suruga-ya direkt. Für die Downloads-Seite gibt es ohne Download nichts zu verlinken.
+
+## Brasilianische und taiwanesische Fassung (Downloads-Seite)
+
+Gesucht am 20.11.2026, ohne Download-Fund.
+- **Brasilien:** Die Fassung gab es.
+  - Titel „Zax: O Caçador de Alienígenas“, Verlag JoWooD, Vertrieb Infogrames do Brasil Ltda., 2002 (MobyGames, Releases;
+    der dort genannte 23.11.2001 gehört zur russischen Ausgabe von Russobit-M), Box, EAN 7898172881199.
+  - Belege: MobyGames-Seiten Releases und Covers (über das Internet Archive) sowie GameFAQs.
+  - MobyGames hat Scans von Box, Medium und Handbuch; die Credits nennen eine Übersetzung und das Team von Infogrames Brasil.
+    **Sprache (geklärt 20.11.2026 an den Packungsbildern bei MobyGames): Spiel englisch, nur das Handbuch portugiesisch.**
+    Unterseite der Box: „Conteúdo: 01 CD-ROM / Software em inglês – 01 Manual em português“ und rot
+    „É necessário proficiência no idioma inglês para a correta utilização deste produto“; Rückseite mit dem Siegel
+    „Manual em português / Software em inglês“. Hersteller der Box Videolar (Barueri), Herausgeber Infogrames do Brasil.
+    Die CD trägt dieselbe Nummer wie die britische (`ROZAX00003LAB`).
+  - Im Internet Archive gibt es keine Fassung auf Portugiesisch (Suche nach Titel, Sprache por, brasil/brazil).
+- **Taiwan:** angekündigt, aber keine Veröffentlichung belegt.
+  - Die Reflexive-News nennen die Fassung als in Arbeit:
+    - 17.10.2001: „Zax is also currently being translated into Japanese and Taiwanese“
+      (`archive/2001-12_Version3/Frames/Archived News/10-01.htm`);
+    - 01.11.2001: Japanese, Taiwanese, Polish, French, Spanish;
+    - 21.11.2001: zusätzlich Russian und Chinese (`archive/2001-12_Version3/News.htm`).
+  - Alle anderen Fassungen dieser Liste sind erschienen, die taiwanesische nicht nachweisbar.
+  - Ohne Treffer gesucht wurde so:
+    - Websuche nach 異形獵人, Bahamut und üblichen Verlagen (第三波, 英特衛, 松崗, 美商藝電).
+    - Internet Archive.
+    - MobyGames: listet keine Veröffentlichung in Taiwan.
+    - Alle chinesischen Quellen beziehen sich auf die vereinfachte chinesische Fassung (archive.org `ZTAHChs`).
+  - Möglicher Rest der Arbeit: In der vereinfachten chinesischen Fassung stehen drei Menütexte in Langzeichen, und
+    `Multiplayer.RDS` besteht aus GBK-Bytes, die als Big5 gelesen wurden (zax-packs `chinese/INFO.txt`).
+
+## Polnische Fassung im Handel (20.11.2026)
+
+- **Veröffentlichungen** (MobyGames, gry-online.pl, dubbingpedia.pl):
+  - Handel: „Zax: Galaktyczny Wojownik“, Übersetzung und Vertrieb CD Projekt, 49,90 zł, Datum unsicher:
+    MobyGames nennt den 12.12.2002, gry-online den 12.12.2001. Die Reflexive-News vom 21.11.2001 führen Polnisch noch
+    als in Arbeit; beide Daten sind damit möglich. Synchronisation von Start International Polska;
+    Zelon wird von Agnieszka Kunikowska gesprochen.
+  - Billig-Ausgabe „Tanie Granie“ (28.02.2003).
+  - Beilage zu Świat Gier Komputerowych 10/2002 (Vertrieb Egmont).
+- **Vollversionen in Zeitschriften** (zapach-papieru.pl, Baza gier z czasopism): „Zax: Galaktyczny wojownik“ in
+  Komputer Świat GRY 20 und CD-Action 71; „Zax: The Alien Hunter“ in CDA 67, CDA 70 und GK 83 (vermutlich Demos).
+- **Internet Archive:**
+  - `zax_20210926` (unser polnischer Link) ist die Beilage zu Komputer Świat Gry 04/2004 mit Freischaltcode,
+    nicht die Ausgabe aus dem Handel.
+  - `cdrom-cdaction-71` und `-71-2`: Auf beiden CDs ist kein Zax; die Vollversion lag wohl auf einer dritten,
+    nicht archivierten CD.
+  - `play-07-2004-cd-3` („Zax & Beach Volley“, Zeitschrift Play 07/2004, Vollversion; Sprache ungeprüft).
+  - Ein Abbild der CD-Projekt-Ausgabe aus dem Handel ist nicht archiviert (Suche nach Titel, Sprache pol, CD Projekt,
+    Tanie Granie).
+
+## Weitere Hinweise auf Sprachfassungen (20.11.2026)
+
+- **Reflexive-News 2001** (`archive/2001-12_Version3/`): genannt werden nur Fassungen, die Reflexive selbst übersetzen
+  ließ (Vermutung). Deutsch fehlt vermutlich, weil JoWooD (Österreich) die deutsche Fassung selbst machte; sie erschien
+  schon am 28.09.2001, also vor den Meldungen.
+- **zax-game.com 2004:** nur Englisch und Deutsch als Sprachen der Seite, dazu der Patch für die französische Fassung.
+- **Exe der chinesischen Fassung (Build 1314):** voreingestellte Schrift `MSGOTHIC.TTC` / „MS UI Gothic“, also japanisch
+  (zax-decomp `docs/EXE_FINDINGS.md`, `CUnicodeTrueTypeFontInfo`). Die Unicode-Fassung des Programms stammt also
+  wahrscheinlich aus der japanischen Übersetzung. Die Exes der anderen Fassungen nennen keine Sprachen.
+- **MobyGames, Packungen** (Covers-Seite über das Internet Archive, Vorschaubilder direkt von `cdn.mobygames.com`):
+  USA, Großbritannien, Deutschland (dazu Oranzzsoft-Budget), Brasilien, Russland, Polen, Italien und der JoWooD-Shop.
+  - **Italien:** Keep Case, Rückseite auf Italienisch, „Exclusively distributed in Italy by Koch Media“.
+    Die CD ist nur englisch beschriftet („Made in EU“).
+    - EAN 9006113065036 (Rückseite). Die Websuche nach der EAN ergab nichts.
+    - Auf den CD-Bildern bei MobyGames hat die CD dieselbe Gestaltung wie die anderen JoWooD-CDs, aber eine eigene Nummer:
+      Italien anscheinend `ROZAX00006LAB`, Großbritannien `ROZAX00003LAB`, Deutschland (beide Ausgaben) `ROZAX00004LAB`.
+      Die Nummern sind aus kleinen Bildern abgelesen; die deutsche CD mit deutschen Daten trägt eine eigene Nummer.
+      Wofür die eigene Nummer steht (anderes Presswerk, anderer Build, zusätzliche Dateien wie ein italienisches
+      Handbuch als PDF?), ist offen. Laut spaziogames ist das Spiel selbst englisch; den Inhalt der CD prüft das bestellte Exemplar.
+    - **Sprache: Englisch.** Die Kritik bei spaziogames in der Fassung vom 27.03.2009 (Internet Archive,
+      `spaziogames.it/recensioni_videogiochi/console_pc/645/zax-the-alien-hunter.aspx`) nennt im Infokasten
+      „Distributore: Koch Media – Versione: Europea – Lingua: Inglese“. Die heutige Fassung der Seite hat den Kasten nicht mehr.
+    - Ein Exemplar ist bestellt (Stand 20.11.2026); daran Handbuch und CD-Inhalt prüfen.
+    - Sonst gibt es keine Belege. Gesucht wurde im Internet Archive (Sprache ita, italiano/italia, italienische Zeitschriften)
+      und im Netz (Koch Media, „in italiano“, Kritiken).
+    - multiplayer.it (Kritik vom 30.09.2001, `multiplayer.it/recensioni/zax-the-alien-hunter.html`, 13 Bilder 640×480 unter
+      `multiplayer.net-cdn.it/images/2001/09/30/199NN.zax.*.jpg`): nur 19928 passt zu einer Vorschau (Screen Shot 20, 3,3),
+      und das ist schon eingesetzt; die übrigen liegen über 18.
+  - **Brasilien:** englisches Spiel mit portugiesischem Handbuch, Vertrieb Infogrames (siehe oben).
+- **Tschechisch:** keine Ausgabe im Handel, sondern eine Übersetzung von Fans aus dem Jahr 2004 (zax-packs `czech`).
+  Das Spiel lag als Vollversion der Score-CD 114 bei (August 2003). Quelle: archive.org `score114cd`, Beschreibung
+  „Plná hra Zax the Alien Hunter“. Laut dem mitgelieferten Abbild-Protokoll (`*_cd2_volDesc.txt`) heißt die zweite CD
+  „Zax“ und enthält einen InstallShield-Installer (`SETUP.EXE`, `DATA1.CAB`, `DATA2.CAB`, `DATA.EXE`) sowie das Handbuch
+  als PDF (`ZAX_MA~1.PDF`). Geprüft am 20.11.2026: Das Spiel ist die englische Fassung, nur das Handbuch
+  ist tschechisch.
+- **Bekannte Fassungen damit:**
+  - übersetzt erschienen: Englisch, Deutsch, Französisch, Spanisch, Polnisch, Russisch, Chinesisch (vereinfacht), Japanisch;
+  - englisches Spiel in eigener Packung (Handbuch übersetzt oder vermutlich übersetzt): Brasilien, Italien (Handbuch
+    noch zu prüfen);
+  - englisches Spiel als Heft-Beilage mit übersetztem Handbuch: Tschechien (Score-CD 114);
+  - angekündigt, aber nicht nachgewiesen: Taiwan (Langzeichen).
+
 ## Navigation reflexive.net April 2001 (Hover-Bilder `*2.gif` und Randstücke)
 
 Die Navigation vom Dezember 2001 ist dasselbe Motiv, aber neu gerendert, kleiner und anders angeordnet; sie ist nicht
