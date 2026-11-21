@@ -40,7 +40,6 @@ def page(filename, display, title, body, current=None):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)} – Zax: The Alien Hunter</title>
 <link rel="stylesheet" href="{asset('assets/css/zax.css')}">
-<script>(function(){{try{{if(sessionStorage.getItem('zaxBooted')!=='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches){{var d=document.documentElement;d.classList.add('zax-boot');setTimeout(function(){{d.classList.remove('zax-boot');}},10000);}}}}catch(e){{}}}})();</script>
 </head>
 <body>
 <div class="page">
@@ -399,7 +398,9 @@ dl = sections('Downloads', [('game', 'Game Downloads', game_dl), ('community', '
 page('downloads.html', 'Downloads', 'Downloads', dl, 'downloads.html')
 
 # ---------------------------------------------------------------- News & Links (+ Developer Logs)
-news_site = [('2026-11-18', 'The <a href="news-links.html#development-news">Development News</a> now start in 1998: the first news about Zax from the Reflexive news page, from the start of development on 1998-04-02. The news page itself is in the <a href="archive.html#websites">Archive</a>, with the first Zax page of 1998.'),
+news_site = [('2026-11-19', 'The screenshot gallery of 2003 in the <a href="archive.html#websites">Archive</a> now has all nine multiplayer pictures: the eight that were never archived are shown from GameStar\'s brighter copies of the same screenshots, scaled and colour-matched to the archived thumbnails.'),
+             ('2026-11-19', 'The <a href="downloads.html#game">French full version</a> in Downloads now links to archive.org.'),
+             ('2026-11-18', 'The <a href="news-links.html#development-news">Development News</a> now start in 1998: the first news about Zax from the Reflexive news page, from the start of development on 1998-04-02. The news page itself is in the <a href="archive.html#websites">Archive</a>, with the first Zax page of 1998.'),
              ('2026-11-18', 'Seven early screenshots of January 2001 – the series of the developer\'s site, also shown by GameSpot – are now in the <a href="archive.html#screens-2001">Archive</a>, also on the screenshot pages of the 2001 versions. The first Zax page of 1998 shows its small pictures again, scaled down from the Score cover CD pictures, and the screenshot gallery of 2003 has four more pictures, found on jowood.com.'),
              ('2026-11-17', 'New in <a href="downloads.html">Downloads</a>: <a href="downloads.html#game">links to the full version</a> of the game in seven languages with a tip for copy protection problems, a <a href="downloads.html#cdkey-generator">CD key generator</a> and a fix pack for the original Russian edition.'),
              ('2026-11-17', 'New finds from the Internet Archive: the first Zax page of 1998 and the reflexive.net page of 2003 in the <a href="archive.html">Archive</a>, many more pages and pictures of zax-game.com and jowood.com, and a new <a href="the-game.html">The Game</a> page that brings together everything the developer\'s and the official site said about the game: story, characters, weapons, interface and screenshots.'),

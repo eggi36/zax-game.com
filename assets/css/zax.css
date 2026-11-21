@@ -57,7 +57,6 @@ img { border: 0; }
 .navbar.animated { background: #000; }
 .navbar.animated .menu li { visibility: hidden; }
 .navbar.animated .menu li.on { visibility: visible; }
-.navbar.booting .display, .navbar.booting .menu { visibility: hidden; }
 
 /* Menü im Monitor rechts (bis zu 7 Einträge). --n = Zahl der Einträge (aus tools/gen.py):
    die Fläche (68 px hoch, mit Abstand zum unteren Rand des Monitors) wird immer ganz gefüllt,
@@ -191,7 +190,3 @@ footer a { color: #6fa7c0; }
 .sound-toggle { font: inherit; color: var(--zax-glow); background: none; border: 1px solid #12394a; border-radius: 2px; padding: 0 6px; cursor: pointer; margin-top: 6px; }
 .sound-toggle:hover, .sound-toggle:focus { color: var(--zax-white); }
 
-/* Erster Besuch: Inhalt erst nach der Bootsequenz der Leiste einblenden */
-.zax-boot main, .zax-boot footer, .zax-boot .mobile-menu { visibility: hidden; }
-.zax-reveal main, .zax-reveal footer, .zax-reveal .mobile-menu { animation: zax-in .4s ease-out; }
-@keyframes zax-in { from { opacity: 0; } to { opacity: 1; } }

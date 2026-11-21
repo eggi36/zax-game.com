@@ -287,23 +287,22 @@
     ghostA.className = ghostB.className = 'ghost'; ghostA.setAttribute('aria-hidden', 'true'); ghostB.setAttribute('aria-hidden', 'true');
     display.appendChild(ghostA); display.appendChild(ghostB);
   }
-  function showTitle(text, delayFrames, withSound, done) {
-    if (!display) { if (done) done(); return; }
+  function showTitle(text) {
+    if (!display) return;
     clearInterval(dispTimer);
-    var f = -delayFrames, label = display.querySelector('.page-text');
+    var f = 0, label = display.querySelector('.page-text');
     var Y = [0.38, 0.59, 0.79, 1], A = [0.2, 0.47, 0.73, 1], GH = [4, 7, 11];
     label.textContent = text; ghostA.textContent = ghostB.textContent = text;
     label.style.opacity = 0; ghostA.style.visibility = ghostB.style.visibility = 'hidden';
-    if (reduced) { label.style.opacity = 1; label.style.transform = ''; if (done) done(); return; }
+    if (reduced) { label.style.opacity = 1; label.style.transform = ''; return; }
     function frame() {
-      if (f >= 0 && f < 4) {
-        if (f === 0 && withSound) sound(15, 0.6);
+      if (f < 4) {
         label.style.opacity = A[f]; label.style.transform = 'scaleY(' + Y[f] + ')';
       }
       var g = f >= 4 && GH.indexOf(f) >= 0;
       ghostA.style.visibility = ghostB.style.visibility = g ? 'visible' : 'hidden';
       f++;
-      if (f > 12) { clearInterval(dispTimer); if (done) done(); }
+      if (f > 12) clearInterval(dispTimer);
     }
     frame(); dispTimer = setInterval(frame, TICK);
   }
@@ -323,23 +322,10 @@
     nav.classList.add('animated');
   }
 
-  var booted = load('sessionStorage', 'zaxBooted') === '1';
   var title = pageText ? pageText.textContent : '';
 
-  function revealMenu(stagger) {
-    // Original: ein Menüpunkt pro Bild (Bilder 18–23), 12 Bilder/s
-    menuLinks.forEach(function (a, i) {
-      var li = a.parentNode;
-      if (!stagger) { li.classList.add('on'); return; }
-      setTimeout(function () { li.classList.add('on'); }, i * TICK);
-    });
-  }
-
-  // Seiteninhalt erst nach der Bootsequenz zeigen (Klasse kommt aus dem <head>)
-  function revealPage() {
-    var de = document.documentElement;
-    if (!de.classList.contains('zax-boot')) return;
-    de.classList.add('zax-reveal'); de.classList.remove('zax-boot');
+  function revealMenu() {
+    menuLinks.forEach(function (a) { a.parentNode.classList.add('on'); });
   }
 
   var running = null;
@@ -353,34 +339,17 @@
     running = requestAnimationFrame(tick);
   }
 
+  // Keine Bootsequenz: die Leiste steht sofort im Endzustand, die Funken laufen im Ruhezustand
   if (!player) {
-    revealMenu(false); revealPage();
-  } else if (!booted && !reduced) {
-    // Erster Besuch in dieser Sitzung: Ladeanzeige, dann Bootsequenz wie im Original
-    save('sessionStorage', 'zaxBooted', '1');
-    nav.classList.add('booting');
-    var root = player.root, introFrames = 20, fr = 0;
-    root.def.f[0] = root.def.f[0].filter(function (op) { return op.o !== 'a'; });
-    player.enter(root, 0, false);          // „WELCOME ZAX … PLEASE WAIT …“
-    root.playing = false;
-    if (display) { display.querySelector('.page-text').style.opacity = 0; }
-    loop(function () {
-      fr++;
-      if (fr < introFrames) { player.step(root); return; }
-      if (fr === introFrames) { root.playing = true; player.goto(root, 9); nav.classList.remove('booting'); return; }
-      player.step(root);
-      if (root.frame === 17) revealMenu(true);
-      if (root.frame === 23 && !root.titled) { root.titled = true; showTitle(title, 12, true, revealPage); }
-    });
+    revealMenu();
   } else {
-    // Weitere Seiten: Endzustand sofort, Funken im Ruhezustand
     var r = player.root;
     player.goto(r, 9, true); player.goto(r, 29, true); r.playing = false;
     ['left_spark', 'right_spark'].forEach(function (n) {
       var mc = player.find(r, '/' + n);
       if (mc) { player.goto(mc, mc.def.l.loop_start, true); mc.playing = true; }
     });
-    revealMenu(false); revealPage();
+    revealMenu();
     loop(function () { player.step(r); });
   }
 
@@ -389,14 +358,14 @@
   menuLinks.concat(Array.prototype.slice.call(nav.querySelectorAll('.home-link'))).forEach(function (a) {
     function over() {
       sound(38, 0.5);
-      if (nav.classList.contains('booting') || !display) return;
+      if (!display) return;
       clearTimeout(leaveTimer);
-      showTitle(a.getAttribute('data-label') || a.textContent, 0, false);
+      showTitle(a.getAttribute('data-label') || a.textContent);
     }
     function out() {
-      if (nav.classList.contains('booting') || !display) return;
+      if (!display) return;
       clearTimeout(leaveTimer);
-      leaveTimer = setTimeout(function () { showTitle(title, 0, false); }, 150);
+      leaveTimer = setTimeout(function () { showTitle(title); }, 150);
     }
     a.addEventListener('mouseenter', over);
     a.addEventListener('mouseleave', out);

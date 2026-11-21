@@ -19,7 +19,7 @@ Kommunikation mit dem Nutzer auf Deutsch; die Website selbst ist nur auf Englisc
 ## Aufbau
 - `assets/css/zax.css` – Layout; `.navbar` (797×107) ist der Nachbau von `top_nav.swf`.
 - `assets/js/nav.js` – kleiner Flash-Zeitleisten-Player + Menüverhalten:
-  Bootsequenz einmal pro Sitzung (Inhalt erst danach sichtbar), Anzeige zeigt beim Überfahren
+  keine Bootsequenz (Leiste und Inhalt sofort im Endzustand), Anzeige zeigt beim Überfahren
   den Menüpunkt, Klick lädt sofort, Dauer-Knistern (Sprite 64) bewusst entfernt.
 - `assets/js/cdkey.js` – CD-Key-Generator der Download-Seite (Prüfung wie in Zax.exe 0x46b540, läuft nur im Browser).
 - `assets/js/nav-data.js` – aus `top_nav.swf` exportierte Formen/Zeitleisten (generiert, nicht von Hand ändern).

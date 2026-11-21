@@ -29,7 +29,9 @@ def what(n):
 
 def images_dir(z):
     """Bilderordner in genau der vorhandenen Schreibweise (2001-01/-04: Images, 2001-12: images)."""
-    return next(d for d in os.listdir(z) if d.lower() == 'images')
+    d = next((d for d in os.listdir(z) if d.lower() == 'images'), None)
+    if d is None: sys.exit(f'kein Bilderordner (Images/images) in {z}')
+    return d
 
 def note(path, text):
     s = open(path, encoding='ascii', newline='').read()
